@@ -36,13 +36,7 @@ public class ResultsAdapter extends RecyclerView.Adapter<ResultsAdapter.ViewHold
         if (resultList != null && !resultList.isEmpty()) {
             if (resultList.get(i) != null) {
                 Result result = resultList.get(i);
-                viewHolder.resultItemBinding.setPkgname(result.getPkgname());
-                viewHolder.resultItemBinding.setPkgdesc(result.getPkgdesc());
-                viewHolder.resultItemBinding.setPkgver(result.getPkgver());
-                viewHolder.resultItemBinding.setLastUpdate(result.getLastUpdate());
-                viewHolder.resultItemBinding.setFlagDate(result.getFlagDate());
-                viewHolder.resultItemBinding.setArch(result.getArch());
-                viewHolder.resultItemBinding.setRepo(result.getRepo());
+                viewHolder.resultItemBinding.setResult(result);
             }
         }
     }
