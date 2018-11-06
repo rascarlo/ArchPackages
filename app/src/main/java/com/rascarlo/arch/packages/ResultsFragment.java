@@ -15,7 +15,7 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
 import com.rascarlo.arch.packages.adapters.ResultsAdapter;
-import com.rascarlo.arch.packages.api.pojo.Packages;
+import com.rascarlo.arch.packages.api.model.Packages;
 import com.rascarlo.arch.packages.viewmodel.PackagesViewModel;
 
 import java.util.ArrayList;

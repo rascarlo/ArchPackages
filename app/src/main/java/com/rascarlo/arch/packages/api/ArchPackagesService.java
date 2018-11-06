@@ -1,6 +1,6 @@
 package com.rascarlo.arch.packages.api;
 
-import com.rascarlo.arch.packages.api.pojo.Packages;
+import com.rascarlo.arch.packages.api.model.Packages;
 
 import java.util.List;
 

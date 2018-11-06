@@ -1,4 +1,4 @@
-package com.rascarlo.arch.packages.api.pojo;
+package com.rascarlo.arch.packages.api.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;

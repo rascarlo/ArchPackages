@@ -4,7 +4,7 @@ import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 
 import com.rascarlo.arch.packages.api.ArchPackagesService;
-import com.rascarlo.arch.packages.api.pojo.Packages;
+import com.rascarlo.arch.packages.api.model.Packages;
 import com.rascarlo.arch.packages.util.UtilConstants;
 
 import java.util.List;

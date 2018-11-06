@@ -8,7 +8,7 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import com.rascarlo.arch.packages.R;
-import com.rascarlo.arch.packages.api.pojo.Result;
+import com.rascarlo.arch.packages.api.model.Result;
 import com.rascarlo.arch.packages.databinding.ResultItemBinding;
 
 import java.util.ArrayList;
