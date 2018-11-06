@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/fragment_search_keywords_text_input_layout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/fragment_search_keywords_text_input_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/keywords"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+            tools:text="@string/keywords" />
+    </android.support.design.widget.TextInputLayout>
+
+    <RadioGroup
+        android:id="@+id/fragment_search_keywords_radio_group"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:checkedButton="@id/fragment_search_name_or_description_radio_button"
+        app:layout_constraintEnd_toEndOf="@+id/fragment_search_keywords_text_input_layout"
+        app:layout_constraintStart_toStartOf="@+id/fragment_search_keywords_text_input_layout"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_search_keywords_text_input_layout">
+
+        <RadioButton
+            android:id="@+id/fragment_search_name_or_description_radio_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/name_or_description" />
+
+        <RadioButton
+            android:id="@+id/fragment_search_exact_name_radio_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/exact_name" />
+
+        <RadioButton
+            android:id="@+id/fragment_search_description_radio_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/description" />
+
+    </RadioGroup>
+
+</android.support.constraint.ConstraintLayout>

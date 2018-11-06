@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="pkgname"
+            type="String" />
+
+        <variable
+            name="pkgdesc"
+            type="String" />
+
+        <variable
+            name="pkgver"
+            type="String" />
+
+        <variable
+            name="arch"
+            type="String" />
+
+        <variable
+            name="repo"
+            type="String" />
+
+        <variable
+            name="last_update"
+            type="String" />
+
+        <variable
+            name="flagDate"
+            type="String" />
+    </data>
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="@dimen/card_corner_radius"
+        app:cardElevation="@dimen/card_elevation"
+        app:cardMaxElevation="@dimen/card_max_elevation"
+        app:cardUseCompatPadding="true">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/arch_packages_result_item_text_view_pkgname"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@{pkgname}"
+                android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Title"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="pckgname" />
+
+            <View
+                android:id="@+id/arch_packages_result_item_ruler"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="4dp"
+                android:background="?attr/colorAccent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/arch_packages_result_item_text_view_pkgname" />
+
+            <TextView
+                android:id="@+id/arch_packages_result_item_text_view_pkgdescr"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@{pkgdesc}"
+                android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Subtitle"
+                android:visibility="@{pkgdesc != null ? View.VISIBLE : View.GONE}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/arch_packages_result_item_ruler"
+                tools:text="pkgdescr" />
+
+            <TextView
+                android:layout_marginTop="4dp"
+                android:id="@+id/arch_packages_result_item_text_view_pkgver"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@{@string/formatted_version(pkgver)}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                android:visibility="@{pkgver != null ? View.VISIBLE : View.GONE}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/arch_packages_result_item_text_view_pkgdescr"
+                tools:text="pkgver" />
+
+            <TextView
+                android:id="@+id/arch_packages_result_item_text_view_arch"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@{@string/formatted_arch(arch)}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                android:visibility="@{arch != null ? View.VISIBLE : View.GONE}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/arch_packages_result_item_text_view_pkgver"
+                tools:text="arch" />
+
+            <TextView
+                android:id="@+id/arch_packages_result_item_text_view_repo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@{@string/formatted_repo(repo)}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                android:visibility="@{repo != null ? View.VISIBLE : View.GONE}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/arch_packages_result_item_text_view_arch"
+                tools:text="repo" />
+
+            <TextView
+                android:id="@+id/arch_packages_result_item_text_view_last_update"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@{@string/formatted_last_update(last_update)}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                android:visibility="@{last_update != null ? View.VISIBLE : View.GONE}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/arch_packages_result_item_text_view_repo"
+                tools:text="last update" />
+
+            <TextView
+                android:id="@+id/arch_packages_result_item_text_view_flag_date"
+                android:layout_width="0dp"
+                android:textColor="@color/text_alert_red"
+                android:layout_height="wrap_content"
+                android:text="@{@string/formatted_flag_date(flagDate)}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                android:visibility="@{flagDate != null ? View.VISIBLE : View.GONE}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/arch_packages_result_item_text_view_last_update"
+                tools:text="Flag date" />
+
+        </android.support.constraint.ConstraintLayout>
+
+    </android.support.v7.widget.CardView>
+
+</layout>
