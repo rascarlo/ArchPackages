@@ -1,11 +1,13 @@
 package com.rascarlo.arch.packages.api;
 
+import com.rascarlo.arch.packages.api.model.Details;
 import com.rascarlo.arch.packages.api.model.Packages;
 
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface ArchPackagesService {
@@ -30,4 +32,9 @@ public interface ArchPackagesService {
                                        @Query("arch") List<String> listArch,
                                        @Query("flagged") List<String> listFlagged,
                                        @Query("page") int page);
+
+    @GET("{repository}/{architecture}/{package}/json")
+    Call<Details> searchDetails(@Path("repository") String repo,
+                                @Path("architecture") String arch,
+                                @Path("package") String pkgname);
 }
