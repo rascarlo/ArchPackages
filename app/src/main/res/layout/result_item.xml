@@ -11,6 +11,10 @@
             name="result"
             type="com.rascarlo.arch.packages.api.model.Result" />
 
+        <variable
+            name="stringConverters"
+            type="com.rascarlo.arch.packages.util.UtilStringConverters"/>
+
     </data>
 
     <android.support.v7.widget.CardView
@@ -125,6 +129,28 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/arch_packages_result_item_text_view_last_update"
+                tools:text="Flag date" />
+
+            <TextView
+                android:id="@+id/arch_packages_result_item_text_view_compressed_size"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                android:visibility="@{result.compressedSize != null ? View.VISIBLE : View.GONE}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/arch_packages_result_item_text_view_flag_date"
+                tools:text="Flag date" />
+
+            <TextView
+                android:id="@+id/arch_packages_result_item_text_view_installed_size"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                android:visibility="@{result.installedSize != null ? View.VISIBLE : View.GONE}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/arch_packages_result_item_text_view_compressed_size"
                 tools:text="Flag date" />
 
         </android.support.constraint.ConstraintLayout>

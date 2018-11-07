@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import com.rascarlo.arch.packages.R;
 import com.rascarlo.arch.packages.api.model.Result;
 import com.rascarlo.arch.packages.databinding.ResultItemBinding;
+import com.rascarlo.arch.packages.util.UtilStringConverters;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,8 +19,10 @@ public class ResultsAdapter extends RecyclerView.Adapter<ResultsAdapter.ViewHold
 
     private final LayoutInflater layoutInflater;
     private final List<Result> resultList;
+    private final Context context;
 
     public ResultsAdapter(Context context) {
+        this.context = context;
         layoutInflater = LayoutInflater.from(context);
         resultList = new ArrayList<>();
     }
@@ -37,6 +40,14 @@ public class ResultsAdapter extends RecyclerView.Adapter<ResultsAdapter.ViewHold
             if (resultList.get(i) != null) {
                 Result result = resultList.get(i);
                 viewHolder.resultItemBinding.setResult(result);
+                viewHolder.resultItemBinding.archPackagesResultItemTextViewCompressedSize
+                        .setText(String.format(context.getString(R.string.formatted_compressed_size),
+                                result.getCompressedSize(),
+                                UtilStringConverters.convertBytesToMb(context, result.getCompressedSize())));
+                viewHolder.resultItemBinding.archPackagesResultItemTextViewInstalledSize
+                        .setText(String.format(context.getString(R.string.formatted_installed_size),
+                                result.getInstalledSize(),
+                                UtilStringConverters.convertBytesToMb(context, result.getInstalledSize())));
             }
         }
     }
