@@ -26,7 +26,7 @@
         app:cardUseCompatPadding="true">
 
         <android.support.constraint.ConstraintLayout
-            android:id="@+id/arch_packages_result_item_coordinator_layout"
+            android:id="@+id/result_item_coordinator_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="?attr/selectableItemBackground"
@@ -35,7 +35,7 @@
             android:padding="16dp">
 
             <TextView
-                android:id="@+id/arch_packages_result_item_text_view_pkgname"
+                android:id="@+id/result_item_text_view_pkgname"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@{result.pkgname}"
@@ -46,17 +46,17 @@
                 tools:text="pckgname" />
 
             <View
-                android:id="@+id/arch_packages_result_item_ruler"
+                android:id="@+id/result_item_ruler"
                 android:layout_width="0dp"
                 android:layout_height="1dp"
                 android:layout_marginTop="4dp"
                 android:background="?attr/colorAccent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/arch_packages_result_item_text_view_pkgname" />
+                app:layout_constraintTop_toBottomOf="@id/result_item_text_view_pkgname" />
 
             <TextView
-                android:id="@+id/arch_packages_result_item_text_view_pkgdescr"
+                android:id="@+id/result_item_text_view_pkgdescr"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
@@ -65,11 +65,11 @@
                 android:visibility="@{result.pkgdesc != null ? View.VISIBLE : View.GONE}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/arch_packages_result_item_ruler"
+                app:layout_constraintTop_toBottomOf="@+id/result_item_ruler"
                 tools:text="pkgdescr" />
 
             <TextView
-                android:id="@+id/arch_packages_result_item_text_view_pkgver"
+                android:id="@+id/result_item_text_view_pkgver"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
@@ -78,11 +78,11 @@
                 android:visibility="@{result.pkgver != null ? View.VISIBLE : View.GONE}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/arch_packages_result_item_text_view_pkgdescr"
+                app:layout_constraintTop_toBottomOf="@+id/result_item_text_view_pkgdescr"
                 tools:text="pkgver" />
 
             <TextView
-                android:id="@+id/arch_packages_result_item_text_view_arch"
+                android:id="@+id/result_item_text_view_arch"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@{@string/formatted_arch(result.arch)}"
@@ -91,11 +91,11 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/arch_packages_result_item_text_view_pkgver"
+                app:layout_constraintTop_toBottomOf="@+id/result_item_text_view_pkgver"
                 tools:text="arch" />
 
             <TextView
-                android:id="@+id/arch_packages_result_item_text_view_repo"
+                android:id="@+id/result_item_text_view_repo"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@{@string/formatted_repo(result.repo)}"
@@ -103,11 +103,11 @@
                 android:visibility="@{result.repo != null ? View.VISIBLE : View.GONE}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/arch_packages_result_item_text_view_arch"
+                app:layout_constraintTop_toBottomOf="@+id/result_item_text_view_arch"
                 tools:text="repo" />
 
             <TextView
-                android:id="@+id/arch_packages_result_item_text_view_last_update"
+                android:id="@+id/result_item_text_view_last_update"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@{@string/formatted_last_update(result.lastUpdate)}"
@@ -115,11 +115,11 @@
                 android:visibility="@{result.lastUpdate != null ? View.VISIBLE : View.GONE}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/arch_packages_result_item_text_view_repo"
+                app:layout_constraintTop_toBottomOf="@+id/result_item_text_view_repo"
                 tools:text="last update" />
 
             <TextView
-                android:id="@+id/arch_packages_result_item_text_view_flag_date"
+                android:id="@+id/result_item_text_view_flag_date"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@{@string/formatted_flag_date(result.flagDate)}"
@@ -128,29 +128,29 @@
                 android:visibility="@{result.flagDate != null ? View.VISIBLE : View.GONE}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/arch_packages_result_item_text_view_last_update"
+                app:layout_constraintTop_toBottomOf="@+id/result_item_text_view_last_update"
                 tools:text="Flag date" />
 
             <TextView
-                android:id="@+id/arch_packages_result_item_text_view_compressed_size"
+                android:id="@+id/result_item_text_view_compressed_size"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:textAppearance="@style/TextAppearance.AppCompat.Caption"
                 android:visibility="@{result.compressedSize != null ? View.VISIBLE : View.GONE}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/arch_packages_result_item_text_view_flag_date"
+                app:layout_constraintTop_toBottomOf="@+id/result_item_text_view_flag_date"
                 tools:text="Flag date" />
 
             <TextView
-                android:id="@+id/arch_packages_result_item_text_view_installed_size"
+                android:id="@+id/result_item_text_view_installed_size"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:textAppearance="@style/TextAppearance.AppCompat.Caption"
                 android:visibility="@{result.installedSize != null ? View.VISIBLE : View.GONE}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/arch_packages_result_item_text_view_compressed_size"
+                app:layout_constraintTop_toBottomOf="@+id/result_item_text_view_compressed_size"
                 tools:text="Flag date" />
 
         </android.support.constraint.ConstraintLayout>

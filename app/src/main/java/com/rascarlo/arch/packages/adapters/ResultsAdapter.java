@@ -40,11 +40,11 @@ public class ResultsAdapter extends RecyclerView.Adapter<ResultsAdapter.ViewHold
             if (resultList.get(i) != null) {
                 Result result = resultList.get(i);
                 viewHolder.resultItemBinding.setResult(result);
-                viewHolder.resultItemBinding.archPackagesResultItemTextViewCompressedSize
+                viewHolder.resultItemBinding.resultItemTextViewCompressedSize
                         .setText(String.format(context.getString(R.string.formatted_compressed_size),
                                 result.getCompressedSize(),
                                 UtilStringConverters.convertBytesToMb(context, result.getCompressedSize())));
-                viewHolder.resultItemBinding.archPackagesResultItemTextViewInstalledSize
+                viewHolder.resultItemBinding.resultItemTextViewInstalledSize
                         .setText(String.format(context.getString(R.string.formatted_installed_size),
                                 result.getInstalledSize(),
                                 UtilStringConverters.convertBytesToMb(context, result.getInstalledSize())));
