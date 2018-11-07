@@ -70,7 +70,7 @@ public class ArchPackagesRepository {
         archPackagesCall.enqueue(new Callback<Packages>() {
             @Override
             public void onResponse(Call<Packages> call, Response<Packages> response) {
-                if (response.body() != null && response.code() == 200)
+                if (response.isSuccessful() && response.body() != null && response.code() == 200)
                     archPackagesMutableLiveData.setValue(response.body());
             }
 
