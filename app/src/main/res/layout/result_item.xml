@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
@@ -10,6 +11,10 @@
         <variable
             name="result"
             type="com.rascarlo.arch.packages.api.model.Result" />
+
+        <variable
+            name="Handler"
+            type="com.rascarlo.arch.packages.callbacks.ResultsAdapterCallback"/>
 
         <variable
             name="stringConverters"
@@ -29,6 +34,7 @@
             android:id="@+id/result_item_coordinator_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:onClick="@{() -> Handler.onResultClicked(result)}"
             android:background="?attr/selectableItemBackground"
             android:clickable="true"
             android:focusable="true"

@@ -8,9 +8,18 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.rascarlo.arch.packages.api.model.Details;
+import com.rascarlo.arch.packages.api.model.Result;
+import com.rascarlo.arch.packages.callbacks.PackageSearchFragmentCallback;
+import com.rascarlo.arch.packages.callbacks.ResultsFragmentCallback;
+import com.rascarlo.arch.packages.data.ArchPackagesRepository;
+import com.rascarlo.arch.packages.ui.DetailsFragment;
+import com.rascarlo.arch.packages.ui.ResultsFragment;
+import com.rascarlo.arch.packages.ui.SearchFragment;
+
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements SearchFragment.PackageSearchFragmentCallback {
+public class MainActivity extends AppCompatActivity implements PackageSearchFragmentCallback, ResultsFragmentCallback {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +74,19 @@ public class MainActivity extends AppCompatActivity implements SearchFragment.Pa
                 listArch,
                 listFlagged);
         fragmentTransaction.replace(R.id.content_main_fragment_container, resultsFragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+    }
+
+    @Override
+    public void onResultClicked(Result result) {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        DetailsFragment detailsFragment = DetailsFragment.newInstance(
+                result.getRepo(),
+                result.getArch(),
+                result.getPkgname());
+        fragmentTransaction.replace(R.id.content_main_fragment_container, detailsFragment);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
     }

@@ -1,4 +1,4 @@
-package com.rascarlo.arch.packages;
+package com.rascarlo.arch.packages.ui;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -16,6 +16,8 @@ import android.widget.CompoundButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import com.rascarlo.arch.packages.R;
+import com.rascarlo.arch.packages.callbacks.PackageSearchFragmentCallback;
 import com.rascarlo.arch.packages.util.UtilConstants;
 import com.rascarlo.arch.packages.util.UtilSharedPreferences;
 
@@ -273,14 +275,5 @@ public class SearchFragment extends Fragment implements CompoundButton.OnChecked
 
     private void setSharedPreferenceBoolean(String string, boolean b) {
         UtilSharedPreferences.setSharedPreferenceBoolean(context, string, b);
-    }
-
-    public interface PackageSearchFragmentCallback {
-
-        void onSearchFragmentCallbackFabClicked(int keywordsParameter,
-                                                String keywords,
-                                                ArrayList<String> listRepo,
-                                                ArrayList<String> listArch,
-                                                ArrayList<String> listFlagged);
     }
 }

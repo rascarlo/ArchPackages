@@ -1,9 +1,10 @@
-package com.rascarlo.arch.packages;
+package com.rascarlo.arch.packages.data;
 
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 
 import com.rascarlo.arch.packages.api.ArchPackagesService;
+import com.rascarlo.arch.packages.api.model.Details;
 import com.rascarlo.arch.packages.api.model.Packages;
 import com.rascarlo.arch.packages.util.UtilConstants;
 
@@ -72,6 +73,7 @@ public class ArchPackagesRepository {
             public void onResponse(Call<Packages> call, Response<Packages> response) {
                 if (response.isSuccessful() && response.body() != null && response.code() == 200)
                     archPackagesMutableLiveData.setValue(response.body());
+                else archPackagesMutableLiveData.setValue(null);
             }
 
             @Override
@@ -80,5 +82,26 @@ public class ArchPackagesRepository {
             }
         });
         return archPackagesMutableLiveData;
+    }
+
+    public LiveData<Details> getDetailsLiveData(final String repo,
+                                                String arch,
+                                                String pkgname) {
+        final MutableLiveData<Details> detailsMutableLiveData = new MutableLiveData<>();
+        Call<Details> detailsCall = archPackagesService.searchDetails(repo, arch, pkgname);
+        detailsCall.enqueue(new Callback<Details>() {
+            @Override
+            public void onResponse(Call<Details> call, Response<Details> response) {
+                if (response.isSuccessful() && response.body() != null && response.code() == 200)
+                    detailsMutableLiveData.setValue(response.body());
+                else detailsMutableLiveData.setValue(null);
+            }
+
+            @Override
+            public void onFailure(Call<Details> call, Throwable t) {
+                detailsMutableLiveData.setValue(null);
+            }
+        });
+        return detailsMutableLiveData;
     }
 }

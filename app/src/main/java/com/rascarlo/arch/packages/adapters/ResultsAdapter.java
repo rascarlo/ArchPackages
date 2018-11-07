@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 
 import com.rascarlo.arch.packages.R;
 import com.rascarlo.arch.packages.api.model.Result;
+import com.rascarlo.arch.packages.callbacks.ResultsAdapterCallback;
 import com.rascarlo.arch.packages.databinding.ResultItemBinding;
 import com.rascarlo.arch.packages.util.UtilStringConverters;
 
@@ -20,9 +21,11 @@ public class ResultsAdapter extends RecyclerView.Adapter<ResultsAdapter.ViewHold
     private final LayoutInflater layoutInflater;
     private final List<Result> resultList;
     private final Context context;
+    private final ResultsAdapterCallback resultsAdapterCallback;
 
-    public ResultsAdapter(Context context) {
+    public ResultsAdapter(Context context, ResultsAdapterCallback resultsAdapterCallback) {
         this.context = context;
+        this.resultsAdapterCallback = resultsAdapterCallback;
         layoutInflater = LayoutInflater.from(context);
         resultList = new ArrayList<>();
     }
@@ -31,6 +34,7 @@ public class ResultsAdapter extends RecyclerView.Adapter<ResultsAdapter.ViewHold
     @Override
     public ResultsAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         ResultItemBinding resultItemBinding = DataBindingUtil.inflate(layoutInflater, R.layout.result_item, viewGroup, false);
+        resultItemBinding.setHandler(resultsAdapterCallback);
         return new ViewHolder(resultItemBinding);
     }
 

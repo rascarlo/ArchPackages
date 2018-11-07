@@ -1,4 +1,4 @@
-package com.rascarlo.arch.packages;
+package com.rascarlo.arch.packages.ui;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
@@ -14,14 +14,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
+import com.rascarlo.arch.packages.R;
 import com.rascarlo.arch.packages.adapters.ResultsAdapter;
 import com.rascarlo.arch.packages.api.model.Packages;
+import com.rascarlo.arch.packages.api.model.Result;
+import com.rascarlo.arch.packages.callbacks.ResultsAdapterCallback;
+import com.rascarlo.arch.packages.callbacks.ResultsFragmentCallback;
 import com.rascarlo.arch.packages.viewmodel.PackagesViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ResultsFragment extends Fragment {
+public class ResultsFragment extends Fragment implements ResultsAdapterCallback {
 
     private static final String LOG_TAG = ResultsFragment.class.getSimpleName();
     private static final String BUNDLE_KEYWORDS_PARAMETER = "bundle_keywords_parameter";
@@ -35,6 +39,7 @@ public class ResultsFragment extends Fragment {
     private List<String> bundleListRepo;
     private List<String> bundleListArch;
     private List<String> bundleListFlagged;
+    private ResultsFragmentCallback resultsFragmentCallback;
 
     public ResultsFragment() {
     }
@@ -71,6 +76,18 @@ public class ResultsFragment extends Fragment {
     public void onAttach(Context context) {
         super.onAttach(context);
         this.context = context;
+        if (context instanceof ResultsFragmentCallback) {
+            resultsFragmentCallback = (ResultsFragmentCallback) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement ResultsFragmentCallback");
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        resultsFragmentCallback = null;
     }
 
     @Override
@@ -79,7 +96,7 @@ public class ResultsFragment extends Fragment {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
         final RecyclerView recyclerView = rootView.findViewById(R.id.fragment_results_recycler_view);
         final ProgressBar progressBar = rootView.findViewById(R.id.fragment_results_progress_bar);
-        final ResultsAdapter resultsAdapter = new ResultsAdapter(context);
+        final ResultsAdapter resultsAdapter = new ResultsAdapter(context, this);
         progressBar.setVisibility(View.VISIBLE);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(linearLayoutManager);
@@ -103,5 +120,12 @@ public class ResultsFragment extends Fragment {
             }
         });
         return rootView;
+    }
+
+    @Override
+    public void onResultClicked(Result result) {
+        if (resultsFragmentCallback!=null) {
+            resultsFragmentCallback.onResultClicked(result);
+        }
     }
 }
