@@ -148,6 +148,29 @@
                 bind:layout_constraintStart_toStartOf="@id/fragment_details_check_dependencies_ruler"
                 bind:layout_constraintTop_toBottomOf="@id/fragment_details_check_dependencies_ruler" />
 
+            <View
+                android:id="@+id/fragment_details_opt_dependencies_ruler"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="8dp"
+                android:background="@color/ruler_divider"
+                android:visibility="@{Details.pkgname != null ? View.VISIBLE : View.GONE}"
+                bind:layout_constraintEnd_toEndOf="@id/fragment_details_opt_dependencies_layout"
+                bind:layout_constraintStart_toStartOf="@id/fragment_details_opt_dependencies_layout"
+                bind:layout_constraintTop_toBottomOf="@id/fragment_details_opt_dependencies_layout" />
+
+            <include
+                android:id="@+id/fragment_details_conflicts_layout"
+                layout="@layout/fragment_details_conflicts"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:visibility="@{Details.pkgname != null ? View.VISIBLE : View.GONE}"
+                bind:Details="@{Details}"
+                bind:layout_constraintEnd_toEndOf="@id/fragment_details_opt_dependencies_ruler"
+                bind:layout_constraintStart_toStartOf="@id/fragment_details_opt_dependencies_ruler"
+                bind:layout_constraintTop_toBottomOf="@id/fragment_details_opt_dependencies_ruler" />
+
         </android.support.constraint.ConstraintLayout>
 
     </ScrollView>

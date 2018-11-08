@@ -18,6 +18,7 @@
     <string name="opt_dependencies">Optional dependencies</string>
     <string name="make_dependencies">Make dependencies</string>
     <string name="check_dependencies">Check dependencies</string>
+    <string name="conflicts">Conflicts</string>
 
     <string name="keywords">Keywords</string>
     <string name="name_or_description">Name or description</string>

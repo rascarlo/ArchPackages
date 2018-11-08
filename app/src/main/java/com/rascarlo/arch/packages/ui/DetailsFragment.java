@@ -111,6 +111,8 @@ public class DetailsFragment extends BottomSheetDialogFragment {
         bindCheckDepends(details);
         // opt dependencies
         bindOptDepends(details);
+        // conflicts
+        bindConflicts(details);
     }
 
     private void bindLicense(Details details) {
@@ -187,6 +189,17 @@ public class DetailsFragment extends BottomSheetDialogFragment {
                         .setText(UtilStringConverters.convertListToNewLineSeparatedString(details.optdepends));
             } else {
                 fragmentDetailsBinding.fragmentDetailsOptDependenciesLayout.fragmentDetailsTextViewOptDependencies.setText("-");
+            }
+        }
+    }
+
+    private void bindConflicts(Details details) {
+        if (details.conflicts != null) {
+            if (details.conflicts.size() > 0) {
+                fragmentDetailsBinding.fragmentDetailsConflictsLayout.fragmentDetailsTextViewConflicts
+                        .setText(UtilStringConverters.convertListToNewLineSeparatedString(details.conflicts));
+            } else {
+                fragmentDetailsBinding.fragmentDetailsConflictsLayout.fragmentDetailsTextViewConflicts.setText("-");
             }
         }
     }
