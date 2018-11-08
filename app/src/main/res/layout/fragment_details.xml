@@ -17,7 +17,7 @@
             type="com.rascarlo.arch.packages.api.model.Files" />
     </data>
 
-    <ScrollView
+    <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -245,6 +245,6 @@
 
         </android.support.constraint.ConstraintLayout>
 
-    </ScrollView>
+    </android.support.v4.widget.NestedScrollView>
 
 </layout>

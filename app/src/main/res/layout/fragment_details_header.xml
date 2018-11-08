@@ -23,6 +23,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@{Details.pkgname}"
+            android:textStyle="bold"
             android:textColor="?attr/colorAccent"
             android:textAppearance="@style/TextAppearance.AppCompat.Headline"
             android:visibility="@{Details.pkgname != null ? View.VISIBLE : View.GONE}"
