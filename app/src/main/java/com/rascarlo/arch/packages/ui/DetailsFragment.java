@@ -6,7 +6,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
+import android.support.design.widget.BottomSheetDialogFragment;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -19,7 +19,7 @@ import com.rascarlo.arch.packages.databinding.FragmentDetailsBinding;
 import com.rascarlo.arch.packages.util.UtilStringConverters;
 import com.rascarlo.arch.packages.viewmodel.DetailsViewModel;
 
-public class DetailsFragment extends Fragment {
+public class DetailsFragment extends BottomSheetDialogFragment {
 
     private static final String BUNDLE_REPO = "bundle_repo";
     private static final String BUNDLE_ARCH = "bundle_arch";
@@ -31,6 +31,11 @@ public class DetailsFragment extends Fragment {
     private FragmentDetailsBinding fragmentDetailsBinding;
 
     public DetailsFragment() {
+    }
+
+    @Override
+    public int getTheme() {
+        return R.style.AppTheme_BottomSheet;
     }
 
     public static DetailsFragment newInstance(String repo,
@@ -91,32 +96,58 @@ public class DetailsFragment extends Fragment {
 
     private void bindViewModel(Details details) {
         // license
+        bindLicense(details);
+        // maintainers
+        bindMaintainers(details);
+        // compressed size
+        bindCompressedSize(details);
+        // installed size
+        bindInstalledSize(details);
+        // dependencies
+        bindDepends(details);
+        // make dependencies
+        bindMakeDepends(details);
+        // check dependencies
+        bindCheckDepends(details);
+        // opt dependencies
+        bindOptDepends(details);
+    }
+
+    private void bindLicense(Details details) {
         if (details.licenses != null) {
             fragmentDetailsBinding.fragmentDetailsBodyLayout.fragmentDetailsTextViewLicense
                     .setText(String.format(getString(R.string.formatted_license),
                             UtilStringConverters.convertListToCommaSeparatedString(details.licenses)));
         }
-        // maintainers
+    }
+
+    private void bindMaintainers(Details details) {
         if (details.maintainers != null) {
             fragmentDetailsBinding.fragmentDetailsBodyLayout.fragmentDetailsTextViewMaintainers
                     .setText(String.format(getString(R.string.formatted_maintainers),
                             UtilStringConverters.convertListToCommaSeparatedString(details.maintainers)));
         }
-        // compressed size
+    }
+
+    private void bindCompressedSize(Details details) {
         if (details.compressedSize != null && !TextUtils.isEmpty(details.compressedSize)) {
             fragmentDetailsBinding.fragmentDetailsBodyLayout.fragmentDetailsTextViewCompressedSize
                     .setText(String.format(getString(R.string.formatted_compressed_size),
                             details.compressedSize,
                             UtilStringConverters.convertBytesToMb(context, details.compressedSize)));
         }
-        // installed size
+    }
+
+    private void bindInstalledSize(Details details) {
         if (details.installedSize != null && !TextUtils.isEmpty(details.installedSize)) {
             fragmentDetailsBinding.fragmentDetailsBodyLayout.fragmentDetailsTextViewInstalledSize
                     .setText(String.format(getString(R.string.formatted_installed_size),
                             details.installedSize,
                             UtilStringConverters.convertBytesToMb(context, details.installedSize)));
         }
-        // dependencies
+    }
+
+    private void bindDepends(Details details) {
         if (details.depends != null) {
             if (details.depends.size() > 0) {
                 fragmentDetailsBinding.fragmentDetailsDependenciesLayout.fragmentDetailsTextViewDependencies
@@ -125,7 +156,9 @@ public class DetailsFragment extends Fragment {
                 fragmentDetailsBinding.fragmentDetailsDependenciesLayout.fragmentDetailsTextViewDependencies.setText("-");
             }
         }
-        // make dependencies
+    }
+
+    private void bindMakeDepends(Details details) {
         if (details.makedepends != null) {
             if (details.makedepends.size() > 0) {
                 fragmentDetailsBinding.fragmentDetailsMakeDependenciesLayout.fragmentDetailsTextViewMakeDependencies
@@ -134,7 +167,9 @@ public class DetailsFragment extends Fragment {
                 fragmentDetailsBinding.fragmentDetailsMakeDependenciesLayout.fragmentDetailsTextViewMakeDependencies.setText("-");
             }
         }
-        // check dependencies
+    }
+
+    private void bindCheckDepends(Details details) {
         if (details.checkdepends != null) {
             if (details.checkdepends.size() > 0) {
                 fragmentDetailsBinding.fragmentDetailsCheckDependenciesLayout.fragmentDetailsTextViewCheckDependencies
@@ -143,7 +178,9 @@ public class DetailsFragment extends Fragment {
                 fragmentDetailsBinding.fragmentDetailsCheckDependenciesLayout.fragmentDetailsTextViewCheckDependencies.setText("-");
             }
         }
-        // opt dependencies
+    }
+
+    private void bindOptDepends(Details details) {
         if (details.optdepends != null) {
             if (details.optdepends.size() > 0) {
                 fragmentDetailsBinding.fragmentDetailsOptDependenciesLayout.fragmentDetailsTextViewOptDependencies

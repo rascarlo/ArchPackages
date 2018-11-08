@@ -8,11 +8,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.rascarlo.arch.packages.api.model.Details;
 import com.rascarlo.arch.packages.api.model.Result;
 import com.rascarlo.arch.packages.callbacks.PackageSearchFragmentCallback;
 import com.rascarlo.arch.packages.callbacks.ResultsFragmentCallback;
-import com.rascarlo.arch.packages.data.ArchPackagesRepository;
 import com.rascarlo.arch.packages.ui.DetailsFragment;
 import com.rascarlo.arch.packages.ui.ResultsFragment;
 import com.rascarlo.arch.packages.ui.SearchFragment;
@@ -86,8 +84,6 @@ public class MainActivity extends AppCompatActivity implements PackageSearchFrag
                 result.getRepo(),
                 result.getArch(),
                 result.getPkgname());
-        fragmentTransaction.replace(R.id.content_main_fragment_container, detailsFragment);
-        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.commit();
+        detailsFragment.show(fragmentTransaction, detailsFragment.getTag());
     }
 }
