@@ -170,5 +170,19 @@
             app:layout_constraintTop_toBottomOf="@id/fragment_details_text_view_build_date"
             tools:text="@string/formatted_last_update" />
 
+        <TextView
+            android:id="@+id/fragment_details_text_view_flag_update"
+            android:layout_width="0dp"
+            android:textColor="@color/text_alert_red"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/text_view_spacing_small"
+            android:text="@{@string/formatted_flag_date(Details.flagDate)}"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:visibility="@{Details.flagDate != null ? View.VISIBLE : View.GONE}"
+            app:layout_constraintEnd_toEndOf="@+id/fragment_details_text_view_last_update"
+            app:layout_constraintStart_toStartOf="@+id/fragment_details_text_view_last_update"
+            app:layout_constraintTop_toBottomOf="@id/fragment_details_text_view_last_update"
+            tools:text="@string/formatted_build_date" />
+
     </android.support.constraint.ConstraintLayout>
 </layout>
