@@ -19,6 +19,7 @@
     <string name="make_dependencies">Make dependencies</string>
     <string name="check_dependencies">Check dependencies</string>
     <string name="conflicts">Conflicts</string>
+    <string name="provides">Provides</string>
 
     <string name="keywords">Keywords</string>
     <string name="name_or_description">Name or description</string>
