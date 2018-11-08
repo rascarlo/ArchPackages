@@ -11,14 +11,14 @@ import java.util.List;
 
 public class PackagesViewModel extends AndroidViewModel {
 
-    private LiveData<Packages> archPackagesLiveData;
+    private LiveData<Packages> packagesLiveData;
 
     public PackagesViewModel(Application application) {
         super(application);
     }
 
-    public LiveData<Packages> getArchPackagesLiveData() {
-        return archPackagesLiveData;
+    public LiveData<Packages> getPackagesLiveData() {
+        return packagesLiveData;
     }
 
     public void init(int keywordsParameter,
@@ -27,7 +27,7 @@ public class PackagesViewModel extends AndroidViewModel {
                      List<String> listArch,
                      String flagged,
                      int numPage) {
-        archPackagesLiveData = ArchPackagesRepository.getArchPackagesRepositoryInstance().getArchPackagesLiveData(
+        packagesLiveData = ArchPackagesRepository.getArchPackagesRepositoryInstance().getPackagesLiveData(
                 keywordsParameter,
                 keywords,
                 listRepo,

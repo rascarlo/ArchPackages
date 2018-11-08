@@ -112,7 +112,7 @@ public class ResultsFragment extends Fragment implements ResultsAdapterCallback 
                     bundleStringFlagged,
                     1);
         }
-        packagesViewModel.getArchPackagesLiveData().observe(this, new Observer<Packages>() {
+        packagesViewModel.getPackagesLiveData().observe(this, new Observer<Packages>() {
             @Override
             public void onChanged(@Nullable Packages packages) {
                 if (packages != null) {

@@ -48,13 +48,13 @@ public class ArchPackagesRepository {
         return archPackagesRepository;
     }
 
-    public LiveData<Packages> getArchPackagesLiveData(int keywordsParameter,
-                                                      String keywords,
-                                                      List<String> listRepo,
-                                                      List<String> listArch,
-                                                      String flagged,
-                                                      int numPage) {
-        final MutableLiveData<Packages> archPackagesMutableLiveData = new MutableLiveData<>();
+    public LiveData<Packages> getPackagesLiveData(int keywordsParameter,
+                                                  String keywords,
+                                                  List<String> listRepo,
+                                                  List<String> listArch,
+                                                  String flagged,
+                                                  int numPage) {
+        final MutableLiveData<Packages> packagesMutableLiveData = new MutableLiveData<>();
         Call<Packages> archPackagesCall;
         // by name or description
         if (keywordsParameter == UtilConstants.SEARCH_KEYWORDS_PARAMETER_NAME_OR_DESCRIPTION) {
@@ -73,16 +73,16 @@ public class ArchPackagesRepository {
             @Override
             public void onResponse(Call<Packages> call, Response<Packages> response) {
                 if (response.isSuccessful() && response.body() != null && response.code() == 200)
-                    archPackagesMutableLiveData.setValue(response.body());
-                else archPackagesMutableLiveData.setValue(null);
+                    packagesMutableLiveData.setValue(response.body());
+                else packagesMutableLiveData.setValue(null);
             }
 
             @Override
             public void onFailure(Call<Packages> call, Throwable t) {
-                archPackagesMutableLiveData.setValue(null);
+                packagesMutableLiveData.setValue(null);
             }
         });
-        return archPackagesMutableLiveData;
+        return packagesMutableLiveData;
     }
 
     public LiveData<Details> getDetailsLiveData(final String repo,
