@@ -29,7 +29,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:lineSpacingMultiplier="1.2"
+            android:lineSpacingMultiplier="@dimen/string_list_multiplier"
             android:id="@+id/fragment_details_text_view_provides"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
