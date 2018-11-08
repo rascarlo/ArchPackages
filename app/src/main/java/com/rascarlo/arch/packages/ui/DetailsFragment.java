@@ -89,6 +89,7 @@ public class DetailsFragment extends BottomSheetDialogFragment {
                     Log.e("LOG", "REPLACES:" + details.replaces);
                     Log.e("LOG", "CONFLICTS:" + details.conflicts);
                     Log.e("LOG", "GROUPS:" + details.groups);
+                    Log.e("LOG", "PROVIDES:" + details.provides);
                 }
             }
         });
@@ -115,6 +116,8 @@ public class DetailsFragment extends BottomSheetDialogFragment {
         bindConflicts(details);
         // provides
         bindProvides(details);
+        // replaces
+        bindReplaces(details);
     }
 
     private void bindLicense(Details details) {
@@ -213,6 +216,17 @@ public class DetailsFragment extends BottomSheetDialogFragment {
                         .setText(UtilStringConverters.convertListToNewLineSeparatedString(details.provides));
             } else {
                 fragmentDetailsBinding.fragmentDetailsProvidesLayout.fragmentDetailsTextViewProvides.setText("-");
+            }
+        }
+    }
+
+    private void bindReplaces(Details details) {
+        if (details.replaces != null) {
+            if (details.replaces.size() > 0) {
+                fragmentDetailsBinding.fragmentDetailsReplacesLayout.fragmentDetailsTextViewReplaces
+                        .setText(UtilStringConverters.convertListToNewLineSeparatedString(details.replaces));
+            } else {
+                fragmentDetailsBinding.fragmentDetailsReplacesLayout.fragmentDetailsTextViewReplaces.setText("-");
             }
         }
     }
