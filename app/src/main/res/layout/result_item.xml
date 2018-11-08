@@ -49,7 +49,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:text="pckgname" />
+                tools:text="@string/app_name" />
 
             <View
                 android:id="@+id/result_item_ruler"
@@ -72,7 +72,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/result_item_ruler"
-                tools:text="pkgdescr" />
+                tools:text="@string/description" />
 
             <TextView
                 android:id="@+id/result_item_text_view_pkgver"
@@ -85,7 +85,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/result_item_text_view_pkgdescr"
-                tools:text="pkgver" />
+                tools:text="@string/formatted_version" />
 
             <TextView
                 android:id="@+id/result_item_text_view_arch"
@@ -98,7 +98,7 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/result_item_text_view_pkgver"
-                tools:text="arch" />
+                tools:text="@string/formatted_arch" />
 
             <TextView
                 android:id="@+id/result_item_text_view_repo"
@@ -110,8 +110,29 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/result_item_text_view_arch"
-                tools:text="repo" />
+                tools:text="@string/formatted_repo" />
 
+            <TextView
+                android:id="@+id/result_item_text_view_compressed_size"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                android:visibility="@{result.compressedSize != null ? View.VISIBLE : View.GONE}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/result_item_text_view_repo"
+                tools:text="@string/formatted_compressed_size" />
+
+            <TextView
+                android:id="@+id/result_item_text_view_installed_size"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                android:visibility="@{result.installedSize != null ? View.VISIBLE : View.GONE}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/result_item_text_view_compressed_size"
+                tools:text="@string/formatted_installed_size" />
             <TextView
                 android:id="@+id/result_item_text_view_last_update"
                 android:layout_width="0dp"
@@ -121,8 +142,8 @@
                 android:visibility="@{result.lastUpdate != null ? View.VISIBLE : View.GONE}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/result_item_text_view_repo"
-                tools:text="last update" />
+                app:layout_constraintTop_toBottomOf="@+id/result_item_text_view_installed_size"
+                tools:text="@string/formatted_last_update" />
 
             <TextView
                 android:id="@+id/result_item_text_view_flag_date"
@@ -135,29 +156,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/result_item_text_view_last_update"
-                tools:text="Flag date" />
-
-            <TextView
-                android:id="@+id/result_item_text_view_compressed_size"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-                android:visibility="@{result.compressedSize != null ? View.VISIBLE : View.GONE}"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/result_item_text_view_flag_date"
-                tools:text="Flag date" />
-
-            <TextView
-                android:id="@+id/result_item_text_view_installed_size"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-                android:visibility="@{result.installedSize != null ? View.VISIBLE : View.GONE}"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/result_item_text_view_compressed_size"
-                tools:text="Flag date" />
+                tools:text="@string/formatted_flag_date" />
 
         </android.support.constraint.ConstraintLayout>
 
