@@ -40,8 +40,8 @@
     <string name="architecture_hint">It is possible to use this parameter more than once in order to search for more than one architecture (but note that omitting it altogether will search for all architectures).</string>
     <string name="arch_any">any</string>
     <string name="arch_x86_64">x86_64</string>
+    <string name="all">All</string>
     <string name="flagged">Flagged</string>
-    <string name="flagged_hint">It is possible to use this parameter more than once in order to search for more than one flag (but note that omitting it altogether will search for all flags).</string>
     <string name="not_flagged">Not Flagged</string>
 
     <string name="key_repo_core">key_repo_core</string>
@@ -54,5 +54,11 @@
     <string name="key_arch_any">key_arch_any</string>
     <string name="key_arch_x86_64">key_arch_x86_64</string>
     <string name="key_flagged">key_flagged</string>
-    <string name="key_not_flagged">key_not_flagged</string>
+    <string name="key_flagged_all">key_flagged_all</string>
+    <string name="key_flagged_flagged">key_flagged_flagged</string>
+    <string name="key_flagged_not_flagged">key_flagged_not_flagged</string>
+    <string name="key_keywords">key_keywords</string>
+    <string name="key_keywords_name_or_description">key_keywords_name_or_description</string>
+    <string name="key_keywords_exact_name">key_keywords_exact_name</string>
+    <string name="key_keywords_description">key_keywords_description</string>
 </resources>

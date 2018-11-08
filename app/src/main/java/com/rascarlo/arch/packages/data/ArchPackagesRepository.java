@@ -52,22 +52,22 @@ public class ArchPackagesRepository {
                                                       String keywords,
                                                       List<String> listRepo,
                                                       List<String> listArch,
-                                                      List<String> listFlagged,
+                                                      String flagged,
                                                       int numPage) {
         final MutableLiveData<Packages> archPackagesMutableLiveData = new MutableLiveData<>();
         Call<Packages> archPackagesCall;
         // by name or description
         if (keywordsParameter == UtilConstants.SEARCH_KEYWORDS_PARAMETER_NAME_OR_DESCRIPTION) {
-            archPackagesCall = archPackagesService.searchByNameOrDescription(keywords, listRepo, listArch, listFlagged, numPage);
+            archPackagesCall = archPackagesService.searchByNameOrDescription(keywords, listRepo, listArch, flagged, numPage);
             // by exact name
         } else if (keywordsParameter == UtilConstants.SEARCH_KEYWORDS_PARAMETER_EXACT_NAME) {
-            archPackagesCall = archPackagesService.searchByExactName(keywords, listRepo, listArch, listFlagged, numPage);
+            archPackagesCall = archPackagesService.searchByExactName(keywords, listRepo, listArch, flagged, numPage);
             // by description
         } else if (keywordsParameter == UtilConstants.SEARCH_KEYWORDS_PARAMETER_DESCRIPTION) {
-            archPackagesCall = archPackagesService.searchByDescription(keywords, listRepo, listArch, listFlagged, numPage);
+            archPackagesCall = archPackagesService.searchByDescription(keywords, listRepo, listArch, flagged, numPage);
             // DEFAULT by name or description
         } else {
-            archPackagesCall = archPackagesService.searchByNameOrDescription(keywords, listRepo, listArch, listFlagged, numPage);
+            archPackagesCall = archPackagesService.searchByNameOrDescription(keywords, listRepo, listArch, flagged, numPage);
         }
         archPackagesCall.enqueue(new Callback<Packages>() {
             @Override

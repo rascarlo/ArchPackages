@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity implements PackageSearchFrag
                                                    String keywords,
                                                    ArrayList<String> listRepo,
                                                    ArrayList<String> listArch,
-                                                   ArrayList<String> listFlagged) {
+                                                   String flagged) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         ResultsFragment resultsFragment = ResultsFragment.newInstance(
@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity implements PackageSearchFrag
                 keywords,
                 listRepo,
                 listArch,
-                listFlagged);
+                flagged);
         fragmentTransaction.replace(R.id.content_main_fragment_container, resultsFragment);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();

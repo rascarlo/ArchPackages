@@ -8,5 +8,5 @@ public interface PackageSearchFragmentCallback {
                                             String keywords,
                                             ArrayList<String> listRepo,
                                             ArrayList<String> listArch,
-                                            ArrayList<String> listFlagged);
+                                            String flagged);
 }

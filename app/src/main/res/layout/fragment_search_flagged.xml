@@ -5,7 +5,7 @@
     android:layout_height="wrap_content">
 
     <TextView
-        android:id="@+id/fragment_search_flagged_label_text_view"
+        android:id="@+id/fragment_search_flagged_text_view_label"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/flagged"
@@ -14,35 +14,33 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/fragment_search_flagged_hint_text_view"
+    <RadioGroup
+        android:id="@+id/fragment_search_flagged_radio_group"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:text="@string/flagged_hint"
-        android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-        app:layout_constraintEnd_toEndOf="@+id/fragment_search_flagged_label_text_view"
-        app:layout_constraintStart_toStartOf="@+id/fragment_search_flagged_label_text_view"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_search_flagged_label_text_view" />
+        app:layout_constraintEnd_toEndOf="@+id/fragment_search_flagged_text_view_label"
+        app:layout_constraintStart_toStartOf="@+id/fragment_search_flagged_text_view_label"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_search_flagged_text_view_label">
 
-    <CheckBox
-        android:id="@+id/fragment_search_flagged_check_box"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="@string/flagged"
-        app:layout_constraintEnd_toEndOf="@+id/fragment_search_flagged_hint_text_view"
-        app:layout_constraintStart_toStartOf="@+id/fragment_search_flagged_hint_text_view"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_search_flagged_hint_text_view" />
+        <RadioButton
+            android:id="@+id/fragment_search_radio_button_flagged_all"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/all" />
 
-    <CheckBox
-        android:id="@+id/fragment_search_not_flagged_check_box"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/not_flagged"
-        app:layout_constraintEnd_toEndOf="@+id/fragment_search_flagged_check_box"
-        app:layout_constraintStart_toStartOf="@+id/fragment_search_flagged_check_box"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_search_flagged_check_box" />
+        <RadioButton
+            android:id="@+id/fragment_search_radio_button_flagged_flagged"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/flagged" />
+
+        <RadioButton
+            android:id="@+id/fragment_search_radio_button_flagged_not_flagged"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/not_flagged" />
+
+    </RadioGroup>
 
 
 </android.support.constraint.ConstraintLayout>

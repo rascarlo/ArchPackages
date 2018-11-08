@@ -27,7 +27,7 @@
         app:layout_constraintTop_toBottomOf="@+id/fragment_search_arch_label_text_view" />
 
     <CheckBox
-        android:id="@+id/fragment_search_arch_any_check_box"
+        android:id="@+id/fragment_search_check_box_arch_any"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -37,12 +37,12 @@
         app:layout_constraintTop_toBottomOf="@+id/fragment_search_arch_hint_text_view" />
 
     <CheckBox
-        android:id="@+id/fragment_search_arch_x86_64_check_box"
+        android:id="@+id/fragment_search_check_box_arch_x86_64"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/arch_x86_64"
-        app:layout_constraintEnd_toEndOf="@+id/fragment_search_arch_any_check_box"
-        app:layout_constraintStart_toStartOf="@+id/fragment_search_arch_any_check_box"
-        app:layout_constraintTop_toBottomOf="@id/fragment_search_arch_any_check_box" />
+        app:layout_constraintEnd_toEndOf="@+id/fragment_search_check_box_arch_any"
+        app:layout_constraintStart_toStartOf="@+id/fragment_search_check_box_arch_any"
+        app:layout_constraintTop_toBottomOf="@id/fragment_search_check_box_arch_any" />
 
 </android.support.constraint.ConstraintLayout>

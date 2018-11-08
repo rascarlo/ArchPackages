@@ -26,25 +26,25 @@
         android:id="@+id/fragment_search_keywords_radio_group"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:checkedButton="@id/fragment_search_name_or_description_radio_button"
+        android:checkedButton="@id/fragment_search_radio_button_name_or_description"
         app:layout_constraintEnd_toEndOf="@+id/fragment_search_keywords_text_input_layout"
         app:layout_constraintStart_toStartOf="@+id/fragment_search_keywords_text_input_layout"
         app:layout_constraintTop_toBottomOf="@+id/fragment_search_keywords_text_input_layout">
 
         <RadioButton
-            android:id="@+id/fragment_search_name_or_description_radio_button"
+            android:id="@+id/fragment_search_radio_button_name_or_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/name_or_description" />
 
         <RadioButton
-            android:id="@+id/fragment_search_exact_name_radio_button"
+            android:id="@+id/fragment_search_radio_button_exact_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/exact_name" />
 
         <RadioButton
-            android:id="@+id/fragment_search_description_radio_button"
+            android:id="@+id/fragment_search_radio_button_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/description" />

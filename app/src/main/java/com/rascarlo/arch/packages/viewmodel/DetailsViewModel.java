@@ -4,8 +4,8 @@ import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
 
-import com.rascarlo.arch.packages.data.ArchPackagesRepository;
 import com.rascarlo.arch.packages.api.model.Details;
+import com.rascarlo.arch.packages.data.ArchPackagesRepository;
 
 public class DetailsViewModel extends AndroidViewModel {
 

@@ -32,13 +32,13 @@ public class ResultsFragment extends Fragment implements ResultsAdapterCallback 
     private static final String BUNDLE_KEYWORDS = "bundle_keywords";
     private static final String BUNDLE_LIST_REPO = "bundle_list_repo";
     private static final String BUNDLE_LIST_ARCH = "bundle_list_arch";
-    private static final String BUNDLE_LIST_FLAGGED = "bundle_list_flagged";
+    private static final String BUNDLE_STRING_FLAGGED = "bundle_string_flagged";
     private Context context;
     private int bundleKeywordsParameter;
     private String bundleKeywords;
     private List<String> bundleListRepo;
     private List<String> bundleListArch;
-    private List<String> bundleListFlagged;
+    private String bundleStringFlagged;
     private ResultsFragmentCallback resultsFragmentCallback;
 
     public ResultsFragment() {
@@ -48,14 +48,14 @@ public class ResultsFragment extends Fragment implements ResultsAdapterCallback 
                                               String keywords,
                                               ArrayList<String> listRepo,
                                               ArrayList<String> listArch,
-                                              ArrayList<String> listFlagged) {
+                                              String flagged) {
         ResultsFragment resultsFragment = new ResultsFragment();
         Bundle bundle = new Bundle();
         bundle.putInt(BUNDLE_KEYWORDS_PARAMETER, keywordsParameter);
         bundle.putString(BUNDLE_KEYWORDS, keywords);
         bundle.putStringArrayList(BUNDLE_LIST_REPO, listRepo);
         bundle.putStringArrayList(BUNDLE_LIST_ARCH, listArch);
-        bundle.putStringArrayList(BUNDLE_LIST_FLAGGED, listFlagged);
+        bundle.putString(BUNDLE_STRING_FLAGGED, flagged);
         resultsFragment.setArguments(bundle);
         return resultsFragment;
     }
@@ -70,7 +70,7 @@ public class ResultsFragment extends Fragment implements ResultsAdapterCallback 
             bundleKeywords = getArguments().getString(BUNDLE_KEYWORDS);
             bundleListRepo = getArguments().getStringArrayList(BUNDLE_LIST_REPO);
             bundleListArch = getArguments().getStringArrayList(BUNDLE_LIST_ARCH);
-            bundleListFlagged = getArguments().getStringArrayList(BUNDLE_LIST_FLAGGED);
+            bundleStringFlagged = getArguments().getString(BUNDLE_STRING_FLAGGED);
         }
     }
 
@@ -109,7 +109,7 @@ public class ResultsFragment extends Fragment implements ResultsAdapterCallback 
                     bundleKeywords,
                     bundleListRepo,
                     bundleListArch,
-                    bundleListFlagged,
+                    bundleStringFlagged,
                     1);
         }
         packagesViewModel.getArchPackagesLiveData().observe(this, new Observer<Packages>() {
@@ -126,7 +126,7 @@ public class ResultsFragment extends Fragment implements ResultsAdapterCallback 
 
     @Override
     public void onResultClicked(Result result) {
-        if (resultsFragmentCallback!=null) {
+        if (resultsFragmentCallback != null) {
             resultsFragmentCallback.onResultClicked(result);
         }
     }

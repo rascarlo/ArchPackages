@@ -23,15 +23,13 @@ import com.rascarlo.arch.packages.util.UtilSharedPreferences;
 
 import java.util.ArrayList;
 
-public class SearchFragment extends Fragment implements CompoundButton.OnCheckedChangeListener {
+public class SearchFragment extends Fragment implements CompoundButton.OnCheckedChangeListener, RadioGroup.OnCheckedChangeListener {
     private Context context;
     private PackageSearchFragmentCallback packageSearchFragmentCallback;
     private TextInputLayout textInputLayout;
     private FloatingActionButton floatingActionButton;
     // keywords radio group
-    private RadioButton radioButtonNameOrDescription;
-    private RadioButton radioButtonExactName;
-    private RadioButton radioButtonDescription;
+    private RadioGroup radioGroupKeywords;
     // repo check boxes
     private CheckBox checkBoxRepoCommunityTesting;
     private CheckBox checkBoxRepoCore;
@@ -44,8 +42,7 @@ public class SearchFragment extends Fragment implements CompoundButton.OnChecked
     private CheckBox checkBoxArchAny;
     private CheckBox checkBoxArchX84_64;
     // flagged check boxes
-    private CheckBox checkBoxFlagged;
-    private CheckBox checkBoxNotFlagged;
+    private RadioGroup radioGroupFlagged;
 
     public SearchFragment() {
         // Required empty public constructor
@@ -57,68 +54,15 @@ public class SearchFragment extends Fragment implements CompoundButton.OnChecked
         textInputLayout = rootView.findViewById(R.id.fragment_search_keywords_text_input_layout);
         floatingActionButton = rootView.findViewById(R.id.fragment_search_fab);
         // keywords radio group
-        RadioGroup radioGroup = rootView.findViewById(R.id.fragment_search_keywords_radio_group);
-        radioButtonNameOrDescription = radioGroup.findViewById(R.id.fragment_search_name_or_description_radio_button);
-        radioButtonExactName = radioGroup.findViewById(R.id.fragment_search_exact_name_radio_button);
-        radioButtonDescription = radioGroup.findViewById(R.id.fragment_search_description_radio_button);
+        radioGroupKeywords = rootView.findViewById(R.id.fragment_search_keywords_radio_group);
+        setUpKeywords();
         // repo check boxes
-        // core
-        checkBoxRepoCore = rootView.findViewById(R.id.fragment_search_repo_core_check_box);
-        checkBoxRepoCore.setOnCheckedChangeListener(this);
-        checkBoxRepoCore.setChecked(getSharedPreferenceBoolean(getString(R.string.key_repo_core),
-                context.getResources().getBoolean(R.bool.key_repo_core_default_value)));
-        // extra
-        checkBoxRepoExtra = rootView.findViewById(R.id.fragment_search_repo_extra_check_box);
-        checkBoxRepoExtra.setOnCheckedChangeListener(this);
-        checkBoxRepoExtra.setChecked(getSharedPreferenceBoolean(getString(R.string.key_repo_extra),
-                context.getResources().getBoolean(R.bool.key_repo_extra_default_value)));
-        // testing
-        checkBoxRepoTesting = rootView.findViewById(R.id.fragment_search_repo_testing_check_box);
-        checkBoxRepoTesting.setOnCheckedChangeListener(this);
-        checkBoxRepoTesting.setChecked(getSharedPreferenceBoolean(getString(R.string.key_repo_testing),
-                context.getResources().getBoolean(R.bool.key_repo_testing_default_value)));
-        // multilib
-        checkBoxRepoMultilib = rootView.findViewById(R.id.fragment_search_repo_multilib_check_box);
-        checkBoxRepoMultilib.setOnCheckedChangeListener(this);
-        checkBoxRepoMultilib.setChecked(getSharedPreferenceBoolean(getString(R.string.key_repo_multilib),
-                context.getResources().getBoolean(R.bool.key_repo_multilib_default_value)));
-        // multilib-testing
-        checkBoxRepoMultilibTesting = rootView.findViewById(R.id.fragment_search_repo_multilib_testing_check_box);
-        checkBoxRepoMultilibTesting.setOnCheckedChangeListener(this);
-        checkBoxRepoMultilibTesting.setChecked(getSharedPreferenceBoolean(getString(R.string.key_repo_multilib_testing),
-                context.getResources().getBoolean(R.bool.key_repo_multilib_testing_default_value)));
-        // community
-        checkBoxRepoCommunity = rootView.findViewById(R.id.fragment_search_repo_community_check_box);
-        checkBoxRepoCommunity.setOnCheckedChangeListener(this);
-        checkBoxRepoCommunity.setChecked(getSharedPreferenceBoolean(getString(R.string.key_repo_community),
-                context.getResources().getBoolean(R.bool.key_repo_community_default_value)));
-        // community-testing
-        checkBoxRepoCommunityTesting = rootView.findViewById(R.id.fragment_search_repo_community_testing_check_box);
-        checkBoxRepoCommunityTesting.setOnCheckedChangeListener(this);
-        checkBoxRepoCommunityTesting.setChecked(getSharedPreferenceBoolean(getString(R.string.key_repo_community_testing),
-                context.getResources().getBoolean(R.bool.key_repo_community_testing_default_value)));
+        setUpRepo(rootView);
         // arch check boxes
-        // arch any
-        checkBoxArchAny = rootView.findViewById(R.id.fragment_search_arch_any_check_box);
-        checkBoxArchAny.setOnCheckedChangeListener(this);
-        checkBoxArchAny.setChecked(getSharedPreferenceBoolean(getString(R.string.key_arch_any),
-                context.getResources().getBoolean(R.bool.key_arch_any_default_value)));
-        // arch x86_64
-        checkBoxArchX84_64 = rootView.findViewById(R.id.fragment_search_arch_x86_64_check_box);
-        checkBoxArchX84_64.setOnCheckedChangeListener(this);
-        checkBoxArchX84_64.setChecked(getSharedPreferenceBoolean(getString(R.string.key_arch_x86_64),
-                context.getResources().getBoolean(R.bool.key_arch_x86_64_default_value)));
-        // flagged check boxes
-        // flagged
-        checkBoxFlagged = rootView.findViewById(R.id.fragment_search_flagged_check_box);
-        checkBoxFlagged.setOnCheckedChangeListener(this);
-        checkBoxFlagged.setChecked(getSharedPreferenceBoolean(getString(R.string.key_flagged),
-                context.getResources().getBoolean(R.bool.key_flagged_default_value)));
-        // not flagged
-        checkBoxNotFlagged = rootView.findViewById(R.id.fragment_search_not_flagged_check_box);
-        checkBoxNotFlagged.setOnCheckedChangeListener(this);
-        checkBoxNotFlagged.setChecked(getSharedPreferenceBoolean(getString(R.string.key_not_flagged),
-                context.getResources().getBoolean(R.bool.key_not_flagged_default_value)));
+        setUpArch(rootView);
+        // flagged radio buttons
+        radioGroupFlagged = rootView.findViewById(R.id.fragment_search_flagged_radio_group);
+        setUpFlagged();
         return rootView;
     }
 
@@ -137,25 +81,10 @@ public class SearchFragment extends Fragment implements CompoundButton.OnChecked
                             textInputLayout.getEditText().getText().toString(),
                             getListRepo(),
                             getListArch(),
-                            getListFlagged());
+                            getFlagged());
                 }
             }
         });
-    }
-
-    private void onFabClicked(int keywordsParameter,
-                              String keywords,
-                              ArrayList<String> listRepo,
-                              ArrayList<String> listArch,
-                              ArrayList<String> listFlagged) {
-        if (packageSearchFragmentCallback != null) {
-            packageSearchFragmentCallback.onSearchFragmentCallbackFabClicked(
-                    keywordsParameter,
-                    keywords,
-                    listRepo,
-                    listArch,
-                    listFlagged);
-        }
     }
 
     @Override
@@ -178,42 +107,197 @@ public class SearchFragment extends Fragment implements CompoundButton.OnChecked
 
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-        if (buttonView == checkBoxRepoCore) {
-            setSharedPreferenceBoolean(getString(R.string.key_repo_core), isChecked);
-        } else if (buttonView == checkBoxRepoExtra) {
-            setSharedPreferenceBoolean(getString(R.string.key_repo_extra), isChecked);
-        } else if (buttonView == checkBoxRepoTesting) {
-            setSharedPreferenceBoolean(getString(R.string.key_repo_testing), isChecked);
-        } else if (buttonView == checkBoxRepoMultilib) {
-            setSharedPreferenceBoolean(getString(R.string.key_repo_multilib), isChecked);
-        } else if (buttonView == checkBoxRepoMultilibTesting) {
-            setSharedPreferenceBoolean(getString(R.string.key_repo_multilib_testing), isChecked);
-        } else if (buttonView == checkBoxRepoCommunity) {
-            setSharedPreferenceBoolean(getString(R.string.key_repo_community), isChecked);
-        } else if (buttonView == checkBoxRepoCommunityTesting) {
-            setSharedPreferenceBoolean(getString(R.string.key_repo_community_testing), isChecked);
-        } else if (buttonView == checkBoxArchAny) {
-            setSharedPreferenceBoolean(getString(R.string.key_arch_any), isChecked);
-        } else if (buttonView == checkBoxArchX84_64) {
-            setSharedPreferenceBoolean(getString(R.string.key_arch_x86_64), isChecked);
-        } else if (buttonView == checkBoxFlagged) {
-            setSharedPreferenceBoolean(getString(R.string.key_flagged), isChecked);
-        } else if (buttonView == checkBoxNotFlagged) {
-            setSharedPreferenceBoolean(getString(R.string.key_not_flagged), isChecked);
+        switch (buttonView.getId()) {
+            case R.id.fragment_search_check_box_repo_core:
+                setSharedPreferenceBoolean(getString(R.string.key_repo_core), isChecked);
+                break;
+            case R.id.fragment_search_check_box_repo_extra:
+                setSharedPreferenceBoolean(getString(R.string.key_repo_extra), isChecked);
+                break;
+            case R.id.fragment_search_check_box_repo_testing:
+                setSharedPreferenceBoolean(getString(R.string.key_repo_testing), isChecked);
+                break;
+            case R.id.fragment_search_check_box_repo_multilib:
+                setSharedPreferenceBoolean(getString(R.string.key_repo_multilib), isChecked);
+                break;
+            case R.id.fragment_search_check_box_repo_multilib_testing:
+                setSharedPreferenceBoolean(getString(R.string.key_repo_multilib_testing), isChecked);
+                break;
+            case R.id.fragment_search_check_box_repo_community:
+                setSharedPreferenceBoolean(getString(R.string.key_repo_community), isChecked);
+                break;
+            case R.id.fragment_search_check_box_repo_community_testing:
+                setSharedPreferenceBoolean(getString(R.string.key_repo_community_testing), isChecked);
+                break;
+            case R.id.fragment_search_check_box_arch_any:
+                setSharedPreferenceBoolean(getString(R.string.key_arch_any), isChecked);
+                break;
+            case R.id.fragment_search_check_box_arch_x86_64:
+                setSharedPreferenceBoolean(getString(R.string.key_arch_x86_64), isChecked);
+                break;
+        }
+    }
+
+    @Override
+    public void onCheckedChanged(RadioGroup group, int checkedId) {
+        switch (group.getId()) {
+            // keywords
+            case R.id.fragment_search_keywords_radio_group:
+                switch (checkedId) {
+                    case R.id.fragment_search_radio_button_name_or_description:
+                        UtilSharedPreferences.setSharedPreferenceString(context,
+                                getString(R.string.key_keywords),
+                                getString(R.string.key_keywords_name_or_description));
+                        break;
+                    case R.id.fragment_search_radio_button_exact_name:
+                        UtilSharedPreferences.setSharedPreferenceString(context,
+                                getString(R.string.key_keywords),
+                                getString(R.string.key_keywords_exact_name));
+                        break;
+                    case R.id.fragment_search_radio_button_description:
+                        UtilSharedPreferences.setSharedPreferenceString(context,
+                                getString(R.string.key_keywords),
+                                getString(R.string.key_keywords_description));
+                        break;
+                }
+                break;
+            // flagged
+            case R.id.fragment_search_flagged_radio_group:
+                switch (checkedId) {
+                    case R.id.fragment_search_radio_button_flagged_all:
+                        UtilSharedPreferences.setSharedPreferenceString(context,
+                                getString(R.string.key_flagged),
+                                getString(R.string.key_flagged_all));
+                        break;
+                    case R.id.fragment_search_radio_button_flagged_flagged:
+                        UtilSharedPreferences.setSharedPreferenceString(context,
+                                getString(R.string.key_flagged),
+                                getString(R.string.key_flagged_flagged));
+                        break;
+                    case R.id.fragment_search_radio_button_flagged_not_flagged:
+                        UtilSharedPreferences.setSharedPreferenceString(context,
+                                getString(R.string.key_flagged),
+                                getString(R.string.key_flagged_not_flagged));
+                        break;
+                }
+                break;
+        }
+    }
+
+    private void setUpKeywords() {
+        RadioButton radioButtonNameOrDescription = radioGroupKeywords.findViewById(R.id.fragment_search_radio_button_name_or_description);
+        RadioButton radioButtonExactName = radioGroupKeywords.findViewById(R.id.fragment_search_radio_button_exact_name);
+        RadioButton radioButtonDescription = radioGroupKeywords.findViewById(R.id.fragment_search_radio_button_description);
+        String sharedPreferenceKeywords = UtilSharedPreferences.getSharedPreferenceString(context,
+                getString(R.string.key_keywords), getString(R.string.key_keywords_name_or_description));
+        if (TextUtils.equals(sharedPreferenceKeywords, getString(R.string.key_keywords_name_or_description))) {
+            radioButtonNameOrDescription.setChecked(true);
+        } else if (TextUtils.equals(sharedPreferenceKeywords, getString(R.string.key_keywords_exact_name))) {
+            radioButtonExactName.setChecked(true);
+        } else if (TextUtils.equals(sharedPreferenceKeywords, getString(R.string.key_keywords_description))) {
+            radioButtonDescription.setChecked(true);
+        }
+        radioGroupKeywords.setOnCheckedChangeListener(this);
+    }
+
+    private void setUpRepo(View rootView) {
+        // core
+        checkBoxRepoCore = rootView.findViewById(R.id.fragment_search_check_box_repo_core);
+        checkBoxRepoCore.setOnCheckedChangeListener(this);
+        checkBoxRepoCore.setChecked(getSharedPreferenceBoolean(getString(R.string.key_repo_core),
+                getResources().getBoolean(R.bool.key_repo_core_default_value)));
+        // extra
+        checkBoxRepoExtra = rootView.findViewById(R.id.fragment_search_check_box_repo_extra);
+        checkBoxRepoExtra.setOnCheckedChangeListener(this);
+        checkBoxRepoExtra.setChecked(getSharedPreferenceBoolean(getString(R.string.key_repo_extra),
+                getResources().getBoolean(R.bool.key_repo_extra_default_value)));
+        // testing
+        checkBoxRepoTesting = rootView.findViewById(R.id.fragment_search_check_box_repo_testing);
+        checkBoxRepoTesting.setOnCheckedChangeListener(this);
+        checkBoxRepoTesting.setChecked(getSharedPreferenceBoolean(getString(R.string.key_repo_testing),
+                getResources().getBoolean(R.bool.key_repo_testing_default_value)));
+        // multilib
+        checkBoxRepoMultilib = rootView.findViewById(R.id.fragment_search_check_box_repo_multilib);
+        checkBoxRepoMultilib.setOnCheckedChangeListener(this);
+        checkBoxRepoMultilib.setChecked(getSharedPreferenceBoolean(getString(R.string.key_repo_multilib),
+                getResources().getBoolean(R.bool.key_repo_multilib_default_value)));
+        // multilib-testing
+        checkBoxRepoMultilibTesting = rootView.findViewById(R.id.fragment_search_check_box_repo_multilib_testing);
+        checkBoxRepoMultilibTesting.setOnCheckedChangeListener(this);
+        checkBoxRepoMultilibTesting.setChecked(getSharedPreferenceBoolean(getString(R.string.key_repo_multilib_testing),
+                getResources().getBoolean(R.bool.key_repo_multilib_testing_default_value)));
+        // community
+        checkBoxRepoCommunity = rootView.findViewById(R.id.fragment_search_check_box_repo_community);
+        checkBoxRepoCommunity.setOnCheckedChangeListener(this);
+        checkBoxRepoCommunity.setChecked(getSharedPreferenceBoolean(getString(R.string.key_repo_community),
+                getResources().getBoolean(R.bool.key_repo_community_default_value)));
+        // community-testing
+        checkBoxRepoCommunityTesting = rootView.findViewById(R.id.fragment_search_check_box_repo_community_testing);
+        checkBoxRepoCommunityTesting.setOnCheckedChangeListener(this);
+        checkBoxRepoCommunityTesting.setChecked(getSharedPreferenceBoolean(getString(R.string.key_repo_community_testing),
+                getResources().getBoolean(R.bool.key_repo_community_testing_default_value)));
+    }
+
+    private void setUpArch(View rootView) {
+        // arch any
+        checkBoxArchAny = rootView.findViewById(R.id.fragment_search_check_box_arch_any);
+        checkBoxArchAny.setOnCheckedChangeListener(this);
+        checkBoxArchAny.setChecked(getSharedPreferenceBoolean(getString(R.string.key_arch_any),
+                getResources().getBoolean(R.bool.key_arch_any_default_value)));
+        // arch x86_64
+        checkBoxArchX84_64 = rootView.findViewById(R.id.fragment_search_check_box_arch_x86_64);
+        checkBoxArchX84_64.setOnCheckedChangeListener(this);
+        checkBoxArchX84_64.setChecked(getSharedPreferenceBoolean(getString(R.string.key_arch_x86_64),
+                getResources().getBoolean(R.bool.key_arch_x86_64_default_value)));
+    }
+
+    private void setUpFlagged() {
+        RadioButton radioButtonFlaggedAll = radioGroupFlagged.findViewById(R.id.fragment_search_radio_button_flagged_all);
+        RadioButton radioButtonFlaggedFlagged = radioGroupFlagged.findViewById(R.id.fragment_search_radio_button_flagged_flagged);
+        RadioButton radioButtonFlaggedNotFlagged = radioGroupFlagged.findViewById(R.id.fragment_search_radio_button_flagged_not_flagged);
+        String sharedPreferenceFlagged = UtilSharedPreferences.getSharedPreferenceString(context,
+                getString(R.string.key_flagged), getString(R.string.key_flagged_all));
+        if (TextUtils.equals(sharedPreferenceFlagged, getString(R.string.key_flagged_all))) {
+            radioButtonFlaggedAll.setChecked(true);
+        } else if (TextUtils.equals(sharedPreferenceFlagged, getString(R.string.key_flagged_flagged))) {
+            radioButtonFlaggedFlagged.setChecked(true);
+        } else if (TextUtils.equals(sharedPreferenceFlagged, getString(R.string.key_flagged_not_flagged))) {
+            radioButtonFlaggedNotFlagged.setChecked(true);
+        }
+        radioGroupFlagged.setOnCheckedChangeListener(this);
+    }
+
+    private void onFabClicked(int keywordsParameter,
+                              String keywords,
+                              ArrayList<String> listRepo,
+                              ArrayList<String> listArch,
+                              String flagged) {
+        if (packageSearchFragmentCallback != null) {
+            packageSearchFragmentCallback.onSearchFragmentCallbackFabClicked(
+                    keywordsParameter,
+                    keywords,
+                    listRepo,
+                    listArch,
+                    flagged);
         }
     }
 
     private int getKeywordsParameter() {
         // keywords parameter
         int keywordParameter;
-        if (radioButtonNameOrDescription.isChecked()) {
-            keywordParameter = UtilConstants.SEARCH_KEYWORDS_PARAMETER_NAME_OR_DESCRIPTION;
-        } else if (radioButtonExactName.isChecked()) {
-            keywordParameter = UtilConstants.SEARCH_KEYWORDS_PARAMETER_EXACT_NAME;
-        } else if (radioButtonDescription.isChecked()) {
-            keywordParameter = UtilConstants.SEARCH_KEYWORDS_PARAMETER_DESCRIPTION;
-        } else {
-            keywordParameter = UtilConstants.SEARCH_KEYWORDS_PARAMETER_NAME_OR_DESCRIPTION;
+        switch (radioGroupKeywords.getCheckedRadioButtonId()) {
+            case R.id.fragment_search_radio_button_name_or_description:
+                keywordParameter = UtilConstants.SEARCH_KEYWORDS_PARAMETER_NAME_OR_DESCRIPTION;
+                break;
+            case R.id.fragment_search_radio_button_exact_name:
+                keywordParameter = UtilConstants.SEARCH_KEYWORDS_PARAMETER_EXACT_NAME;
+                break;
+            case R.id.fragment_search_radio_button_description:
+                keywordParameter = UtilConstants.SEARCH_KEYWORDS_PARAMETER_DESCRIPTION;
+                break;
+            default:
+                keywordParameter = UtilConstants.SEARCH_KEYWORDS_PARAMETER_NAME_OR_DESCRIPTION;
+                break;
         }
         return keywordParameter;
     }
@@ -257,23 +341,29 @@ public class SearchFragment extends Fragment implements CompoundButton.OnChecked
         return listArch;
     }
 
-    private ArrayList<String> getListFlagged() {
-        // flagged list
-        ArrayList<String> listFlagged = new ArrayList<>();
-        if (checkBoxFlagged.isChecked()) {
-            listFlagged.add(getString(R.string.flagged));
+    private String getFlagged() {
+        String flagged;
+        switch (radioGroupFlagged.getCheckedRadioButtonId()) {
+            case R.id.fragment_search_radio_button_flagged_all:
+                flagged = null;
+                break;
+            case R.id.fragment_search_radio_button_flagged_flagged:
+                flagged = getString(R.string.flagged);
+                break;
+            case R.id.fragment_search_radio_button_flagged_not_flagged:
+                flagged = getString(R.string.not_flagged);
+                break;
+            default:
+                flagged = null;
         }
-        if (checkBoxNotFlagged.isChecked()) {
-            listFlagged.add(getString(R.string.not_flagged));
-        }
-        return listFlagged;
+        return flagged;
     }
 
-    private boolean getSharedPreferenceBoolean(String string, boolean b) {
-        return UtilSharedPreferences.getSharedPreferenceBoolean(context, string, b);
+    private boolean getSharedPreferenceBoolean(String string, boolean defaultValue) {
+        return UtilSharedPreferences.getSharedPreferenceBoolean(context, string, defaultValue);
     }
 
-    private void setSharedPreferenceBoolean(String string, boolean b) {
-        UtilSharedPreferences.setSharedPreferenceBoolean(context, string, b);
+    private void setSharedPreferenceBoolean(String string, boolean value) {
+        UtilSharedPreferences.setSharedPreferenceBoolean(context, string, value);
     }
 }

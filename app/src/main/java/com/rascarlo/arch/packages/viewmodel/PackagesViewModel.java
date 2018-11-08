@@ -4,8 +4,8 @@ import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
 
-import com.rascarlo.arch.packages.data.ArchPackagesRepository;
 import com.rascarlo.arch.packages.api.model.Packages;
+import com.rascarlo.arch.packages.data.ArchPackagesRepository;
 
 import java.util.List;
 
@@ -25,14 +25,14 @@ public class PackagesViewModel extends AndroidViewModel {
                      String keywords,
                      List<String> listRepo,
                      List<String> listArch,
-                     List<String> listFlagged,
+                     String flagged,
                      int numPage) {
         archPackagesLiveData = ArchPackagesRepository.getArchPackagesRepositoryInstance().getArchPackagesLiveData(
                 keywordsParameter,
                 keywords,
                 listRepo,
                 listArch,
-                listFlagged,
+                flagged,
                 numPage);
 
     }
