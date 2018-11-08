@@ -63,6 +63,8 @@ public class ResultsFragment extends Fragment implements ResultsAdapterCallback 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setHasOptionsMenu(false);
+        setRetainInstance(true);
         if (getArguments() != null) {
             bundleKeywordsParameter = getArguments().getInt(BUNDLE_KEYWORDS_PARAMETER);
             bundleKeywords = getArguments().getString(BUNDLE_KEYWORDS);

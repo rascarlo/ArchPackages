@@ -6,8 +6,18 @@
     <string name="formatted_repo">Repo: %1$s</string>
     <string name="formatted_last_update">Last updated: %1$s</string>
     <string name="formatted_flag_date">Flag date: %1$s</string>
+    <string name="formatted_build_date">Build date: %1$s</string>
     <string name="formatted_compressed_size">Package size: %1$s B (%2$s)</string>
     <string name="formatted_installed_size">Installed size: %1$s B (%2$s)</string>
+    <string name="formatted_url">Upstream URL: %1$s</string>
+    <string name="formatted_packager">Packager: %1$s</string>
+    <string name="formatted_license">License: %1$s</string>
+    <string name="formatted_filename">Filename: %1$s</string>
+    <string name="formatted_maintainers">Maintainers: %1$s</string>
+    <string name="dependencies">Dependencies</string>
+    <string name="opt_dependencies">Optional dependencies</string>
+    <string name="make_dependencies">Make dependencies</string>
+    <string name="check_dependencies">Check dependencies</string>
 
     <string name="keywords">Keywords</string>
     <string name="name_or_description">Name or description</string>

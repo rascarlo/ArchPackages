@@ -32,11 +32,11 @@ public class Details implements Parcelable {
 
     @SerializedName("compressed_size")
     @Expose
-    public int compressedSize;
+    public String compressedSize;
 
     @SerializedName("installed_size")
     @Expose
-    public int installedSize;
+    public String installedSize;
 
     @SerializedName("filename")
     @Expose
@@ -134,11 +134,11 @@ public class Details implements Parcelable {
         return buildDate;
     }
 
-    public int getCompressedSize() {
+    public String getCompressedSize() {
         return compressedSize;
     }
 
-    public int getInstalledSize() {
+    public String getInstalledSize() {
         return installedSize;
     }
 
@@ -230,8 +230,8 @@ public class Details implements Parcelable {
         dest.writeStringList(this.licenses);
         dest.writeString(this.lastUpdate);
         dest.writeString(this.buildDate);
-        dest.writeInt(this.compressedSize);
-        dest.writeInt(this.installedSize);
+        dest.writeString(this.compressedSize);
+        dest.writeString(this.installedSize);
         dest.writeString(this.filename);
         dest.writeInt(this.epoch);
         dest.writeStringList(this.provides);
@@ -262,8 +262,8 @@ public class Details implements Parcelable {
         this.licenses = in.createStringArrayList();
         this.lastUpdate = in.readString();
         this.buildDate = in.readString();
-        this.compressedSize = in.readInt();
-        this.installedSize = in.readInt();
+        this.compressedSize = in.readString();
+        this.installedSize = in.readString();
         this.filename = in.readString();
         this.epoch = in.readInt();
         this.provides = in.createStringArrayList();
