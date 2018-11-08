@@ -1,6 +1,7 @@
 package com.rascarlo.arch.packages.api;
 
 import com.rascarlo.arch.packages.api.model.Details;
+import com.rascarlo.arch.packages.api.model.Files;
 import com.rascarlo.arch.packages.api.model.Packages;
 
 import java.util.List;
@@ -37,4 +38,9 @@ public interface ArchPackagesService {
     Call<Details> searchDetails(@Path("repository") String repo,
                                 @Path("architecture") String arch,
                                 @Path("package") String pkgname);
+
+    @GET("{repository}/{architecture}/{package}/files/json")
+    Call<Files> searchFiles(@Path("repository") String repo,
+                            @Path("architecture") String arch,
+                            @Path("package") String pkgname);
 }

@@ -5,6 +5,7 @@ import android.arch.lifecycle.MutableLiveData;
 
 import com.rascarlo.arch.packages.api.ArchPackagesService;
 import com.rascarlo.arch.packages.api.model.Details;
+import com.rascarlo.arch.packages.api.model.Files;
 import com.rascarlo.arch.packages.api.model.Packages;
 import com.rascarlo.arch.packages.util.UtilConstants;
 
@@ -103,5 +104,26 @@ public class ArchPackagesRepository {
             }
         });
         return detailsMutableLiveData;
+    }
+
+    public LiveData<Files> getFilesLiveData(final String repo,
+                                            String arch,
+                                            String pkgname) {
+        final MutableLiveData<Files> filesMutableLiveData = new MutableLiveData<>();
+        Call<Files> filesCall = archPackagesService.searchFiles(repo, arch, pkgname);
+        filesCall.enqueue(new Callback<Files>() {
+            @Override
+            public void onResponse(Call<Files> call, Response<Files> response) {
+                if (response.isSuccessful() && response.body() != null && response.code() == 200)
+                    filesMutableLiveData.setValue(response.body());
+                else filesMutableLiveData.setValue(null);
+            }
+
+            @Override
+            public void onFailure(Call<Files> call, Throwable t) {
+                filesMutableLiveData.setValue(null);
+            }
+        });
+        return filesMutableLiveData;
     }
 }

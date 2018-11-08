@@ -8,16 +8,17 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomSheetDialogFragment;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.rascarlo.arch.packages.R;
 import com.rascarlo.arch.packages.api.model.Details;
+import com.rascarlo.arch.packages.api.model.Files;
 import com.rascarlo.arch.packages.databinding.FragmentDetailsBinding;
 import com.rascarlo.arch.packages.util.UtilStringConverters;
 import com.rascarlo.arch.packages.viewmodel.DetailsViewModel;
+import com.rascarlo.arch.packages.viewmodel.FilesViewModel;
 
 public class DetailsFragment extends BottomSheetDialogFragment {
 
@@ -76,48 +77,62 @@ public class DetailsFragment extends BottomSheetDialogFragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         DetailsViewModel detailsViewModel = ViewModelProviders.of(this).get(DetailsViewModel.class);
+        FilesViewModel filesViewModel = ViewModelProviders.of(this).get(FilesViewModel.class);
         if (savedInstanceState == null) {
             detailsViewModel.init(bundleRepo, bundleArch, bundlePkgname);
+            filesViewModel.init(bundleRepo, bundleArch, bundlePkgname);
         }
         detailsViewModel.getDetailsLiveData().observe(this, new Observer<Details>() {
             @Override
             public void onChanged(@Nullable Details details) {
                 if (details != null && fragmentDetailsBinding != null) {
                     fragmentDetailsBinding.setDetails(details);
-                    bindViewModel(details);
-                    Log.e("LOG", "REL:" + details.pkgrel);
-                    Log.e("LOG", "REPLACES:" + details.replaces);
-                    Log.e("LOG", "CONFLICTS:" + details.conflicts);
-                    Log.e("LOG", "GROUPS:" + details.groups);
-                    Log.e("LOG", "PROVIDES:" + details.provides);
+                    bindDetailsViewModel(details);
+                }
+            }
+        });
+        filesViewModel.getFilesLiveData().observe(this, new Observer<Files>() {
+            @Override
+            public void onChanged(@Nullable Files files) {
+                if (files != null && fragmentDetailsBinding != null) {
+                    bindFilesViewModel(files);
                 }
             }
         });
     }
 
-    private void bindViewModel(Details details) {
-        // license
-        bindLicense(details);
-        // maintainers
-        bindMaintainers(details);
-        // compressed size
-        bindCompressedSize(details);
-        // installed size
-        bindInstalledSize(details);
-        // dependencies
-        bindDepends(details);
-        // make dependencies
-        bindMakeDepends(details);
-        // check dependencies
-        bindCheckDepends(details);
-        // opt dependencies
-        bindOptDepends(details);
-        // conflicts
-        bindConflicts(details);
-        // provides
-        bindProvides(details);
-        // replaces
-        bindReplaces(details);
+    private void bindDetailsViewModel(Details details) {
+        if (fragmentDetailsBinding != null && details != null) {
+            // license
+            bindLicense(details);
+            // maintainers
+            bindMaintainers(details);
+            // compressed size
+            bindCompressedSize(details);
+            // installed size
+            bindInstalledSize(details);
+            // dependencies
+            bindDepends(details);
+            // make dependencies
+            bindMakeDepends(details);
+            // check dependencies
+            bindCheckDepends(details);
+            // opt dependencies
+            bindOptDepends(details);
+            // conflicts
+            bindConflicts(details);
+            // provides
+            bindProvides(details);
+            // replaces
+            bindReplaces(details);
+        }
+    }
+
+    private void bindFilesViewModel(Files files) {
+        if (fragmentDetailsBinding != null && files != null) {
+            // files
+            bindFiles(files);
+        }
     }
 
     private void bindLicense(Details details) {
@@ -227,6 +242,17 @@ public class DetailsFragment extends BottomSheetDialogFragment {
                         .setText(UtilStringConverters.convertListToNewLineSeparatedString(details.replaces));
             } else {
                 fragmentDetailsBinding.fragmentDetailsReplacesLayout.fragmentDetailsTextViewReplaces.setText("-");
+            }
+        }
+    }
+
+    private void bindFiles(Files files) {
+        if (files.files != null) {
+            if (files.files.size() > 0) {
+                fragmentDetailsBinding.fragmentDetailsFilesLayout.fragmentDetailsTextViewFiles
+                        .setText(UtilStringConverters.convertListToNewLineSeparatedString(files.files));
+            } else {
+                fragmentDetailsBinding.fragmentDetailsFilesLayout.fragmentDetailsTextViewFiles.setText("-");
             }
         }
     }
