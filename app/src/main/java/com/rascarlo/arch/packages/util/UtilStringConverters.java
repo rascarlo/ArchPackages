@@ -31,7 +31,7 @@ public class UtilStringConverters {
                 if (i > 0) {
                     stringBuilder.append("\n");
                 }
-                stringBuilder.append(stringList.get(i));
+                stringBuilder.append("- ").append(stringList.get(i));
             }
         }
         return stringBuilder.toString();
