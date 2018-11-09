@@ -116,7 +116,7 @@ public class ResultsFragment extends Fragment implements ResultsAdapterCallback 
             @Override
             public void onChanged(@Nullable Packages packages) {
                 if (packages != null) {
-                    resultsAdapter.addResults(packages.getResults());
+                    resultsAdapter.submitList(packages.getResults());
                 }
                 progressBar.setVisibility(View.GONE);
             }
