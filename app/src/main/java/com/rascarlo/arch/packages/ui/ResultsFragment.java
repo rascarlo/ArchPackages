@@ -125,9 +125,9 @@ public class ResultsFragment extends Fragment implements ResultsAdapterCallback 
     }
 
     @Override
-    public void onResultClicked(Result result) {
+    public void onResultsAdapterCallbackResultClicked(Result result) {
         if (resultsFragmentCallback != null) {
-            resultsFragmentCallback.onResultClicked(result);
+            resultsFragmentCallback.onResultFragmentCallbackResultClicked(result);
         }
     }
 }

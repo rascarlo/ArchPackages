@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity implements SearchFragmentCal
     }
 
     @Override
-    public void onResultClicked(Result result) {
+    public void onResultFragmentCallbackResultClicked(Result result) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         DetailsFragment detailsFragment = DetailsFragment.newInstance(
