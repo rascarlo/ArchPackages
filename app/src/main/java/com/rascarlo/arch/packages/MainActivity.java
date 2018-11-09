@@ -9,7 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.rascarlo.arch.packages.api.model.Result;
-import com.rascarlo.arch.packages.callbacks.PackageSearchFragmentCallback;
+import com.rascarlo.arch.packages.callbacks.SearchFragmentCallback;
 import com.rascarlo.arch.packages.callbacks.ResultsFragmentCallback;
 import com.rascarlo.arch.packages.ui.DetailsFragment;
 import com.rascarlo.arch.packages.ui.ResultsFragment;
@@ -17,7 +17,7 @@ import com.rascarlo.arch.packages.ui.SearchFragment;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements PackageSearchFragmentCallback, ResultsFragmentCallback {
+public class MainActivity extends AppCompatActivity implements SearchFragmentCallback, ResultsFragmentCallback {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -17,7 +17,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.rascarlo.arch.packages.R;
-import com.rascarlo.arch.packages.callbacks.PackageSearchFragmentCallback;
+import com.rascarlo.arch.packages.callbacks.SearchFragmentCallback;
 import com.rascarlo.arch.packages.util.UtilConstants;
 import com.rascarlo.arch.packages.util.UtilSharedPreferences;
 
@@ -25,7 +25,7 @@ import java.util.ArrayList;
 
 public class SearchFragment extends Fragment implements CompoundButton.OnCheckedChangeListener, RadioGroup.OnCheckedChangeListener {
     private Context context;
-    private PackageSearchFragmentCallback packageSearchFragmentCallback;
+    private SearchFragmentCallback searchFragmentCallback;
     private TextInputLayout textInputLayout;
     private FloatingActionButton floatingActionButton;
     // keywords radio group
@@ -91,18 +91,18 @@ public class SearchFragment extends Fragment implements CompoundButton.OnChecked
     public void onAttach(Context context) {
         super.onAttach(context);
         this.context = context;
-        if (context instanceof PackageSearchFragmentCallback) {
-            packageSearchFragmentCallback = (PackageSearchFragmentCallback) context;
+        if (context instanceof SearchFragmentCallback) {
+            searchFragmentCallback = (SearchFragmentCallback) context;
         } else {
             throw new RuntimeException(context.toString()
-                    + " must implement PackageSearchFragmentCallback");
+                    + " must implement SearchFragmentCallback");
         }
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
-        packageSearchFragmentCallback = null;
+        searchFragmentCallback = null;
     }
 
     @Override
@@ -272,8 +272,8 @@ public class SearchFragment extends Fragment implements CompoundButton.OnChecked
                               ArrayList<String> listRepo,
                               ArrayList<String> listArch,
                               String flagged) {
-        if (packageSearchFragmentCallback != null) {
-            packageSearchFragmentCallback.onSearchFragmentCallbackFabClicked(
+        if (searchFragmentCallback != null) {
+            searchFragmentCallback.onSearchFragmentCallbackFabClicked(
                     keywordsParameter,
                     keywords,
                     listRepo,

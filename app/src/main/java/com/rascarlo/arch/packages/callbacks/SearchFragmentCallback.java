@@ -2,7 +2,7 @@ package com.rascarlo.arch.packages.callbacks;
 
 import java.util.ArrayList;
 
-public interface PackageSearchFragmentCallback {
+public interface SearchFragmentCallback {
 
     void onSearchFragmentCallbackFabClicked(int keywordsParameter,
                                             String keywords,
