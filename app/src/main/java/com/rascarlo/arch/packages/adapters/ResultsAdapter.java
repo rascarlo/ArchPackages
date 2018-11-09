@@ -18,12 +18,11 @@ import com.rascarlo.arch.packages.util.UtilStringConverters;
 
 public class ResultsAdapter extends ListAdapter<Result, ResultsAdapter.ViewHolder> {
 
-    private final Context context;
+    private Context context;
     private final ResultsAdapterCallback resultsAdapterCallback;
 
-    public ResultsAdapter(Context context, ResultsAdapterCallback resultsAdapterCallback) {
+    public ResultsAdapter(ResultsAdapterCallback resultsAdapterCallback) {
         super(DIFF_CALLBACK);
-        this.context = context;
         this.resultsAdapterCallback = resultsAdapterCallback;
     }
 
@@ -50,6 +49,7 @@ public class ResultsAdapter extends ListAdapter<Result, ResultsAdapter.ViewHolde
     @NonNull
     @Override
     public ResultsAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+        context = viewGroup.getContext();
         ResultItemBinding resultItemBinding = DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.result_item, viewGroup, false);
         resultItemBinding.setHandler(resultsAdapterCallback);
         return new ViewHolder(resultItemBinding);
@@ -59,25 +59,33 @@ public class ResultsAdapter extends ListAdapter<Result, ResultsAdapter.ViewHolde
     public void onBindViewHolder(@NonNull ResultsAdapter.ViewHolder viewHolder, int i) {
         if (getItem(i) != null) {
             Result result = getItem(i);
-            viewHolder.resultItemBinding.setResult(result);
-            viewHolder.resultItemBinding.resultItemTextViewCompressedSize
-                    .setText(String.format(context.getString(R.string.formatted_compressed_size),
-                            result.getCompressedSize(),
-                            UtilStringConverters.convertBytesToMb(context, result.getCompressedSize())));
-            viewHolder.resultItemBinding.resultItemTextViewInstalledSize
-                    .setText(String.format(context.getString(R.string.formatted_installed_size),
-                            result.getInstalledSize(),
-                            UtilStringConverters.convertBytesToMb(context, result.getInstalledSize())));
+            viewHolder.binding.setResult(result);
+            viewHolder.bind(result);
         }
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
-        private final ResultItemBinding resultItemBinding;
+        private final ResultItemBinding binding;
 
-        ViewHolder(@NonNull ResultItemBinding resultItemBinding) {
-            super(resultItemBinding.getRoot());
-            this.resultItemBinding = resultItemBinding;
+        ViewHolder(@NonNull ResultItemBinding binding) {
+            super(binding.getRoot());
+            this.binding = binding;
+        }
+
+        public void bind(Result result) {
+            binding.setResult(result);
+            binding.executePendingBindings();
+            binding.executePendingBindings();
+            binding.resultItemTextViewCompressedSize
+                    .setText(String.format(context.getString(R.string.formatted_compressed_size),
+                            result.getCompressedSize(),
+                            UtilStringConverters.convertBytesToMb(context, result.getCompressedSize())));
+            binding.resultItemTextViewInstalledSize
+                    .setText(String.format(context.getString(R.string.formatted_installed_size),
+                            result.getInstalledSize(),
+                            UtilStringConverters.convertBytesToMb(context, result.getInstalledSize())));
+
         }
     }
 }

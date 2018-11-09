@@ -98,7 +98,7 @@ public class ResultsFragment extends Fragment implements ResultsAdapterCallback 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
         final RecyclerView recyclerView = rootView.findViewById(R.id.fragment_results_recycler_view);
         final ProgressBar progressBar = rootView.findViewById(R.id.fragment_results_progress_bar);
-        final ResultsAdapter resultsAdapter = new ResultsAdapter(context, this);
+        final ResultsAdapter resultsAdapter = new ResultsAdapter(this);
         progressBar.setVisibility(View.VISIBLE);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(linearLayoutManager);
