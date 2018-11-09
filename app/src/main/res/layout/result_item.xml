@@ -36,7 +36,7 @@
             android:background="?attr/selectableItemBackground"
             android:clickable="true"
             android:focusable="true"
-            android:onClick="@{() -> Handler.onResultClicked(result)}"
+            android:onClick="@{() -> Handler.onResultsAdapterCallbackResultClicked(result)}"
             android:padding="16dp">
 
             <TextView
