@@ -22,23 +22,23 @@
             android:id="@+id/fragment_details_text_view_opt_dependencies_label"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/opt_dependencies"
+            android:text="@{@string/formatted_opt_dependencies(Details.optdepends.size())}"
             android:textAppearance="@style/TextAppearance.AppCompat.Title"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:lineSpacingMultiplier="@dimen/string_list_multiplier"
             android:id="@+id/fragment_details_text_view_opt_dependencies"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/text_view_spacing_small"
+            android:lineSpacingMultiplier="@dimen/string_list_multiplier"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             app:layout_constraintEnd_toEndOf="@id/fragment_details_text_view_opt_dependencies_label"
             app:layout_constraintStart_toStartOf="@id/fragment_details_text_view_opt_dependencies_label"
             app:layout_constraintTop_toBottomOf="@id/fragment_details_text_view_opt_dependencies_label"
-            tools:text="@string/opt_dependencies" />
+            tools:text="@string/formatted_opt_dependencies" />
 
     </android.support.constraint.ConstraintLayout>
 </layout>

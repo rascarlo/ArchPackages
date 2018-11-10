@@ -14,13 +14,13 @@
     <string name="formatted_license">License: %1$s</string>
     <string name="formatted_filename">Filename: %1$s</string>
     <string name="formatted_maintainers">Maintainers: %1$s</string>
-    <string name="dependencies">Dependencies</string>
-    <string name="opt_dependencies">Optional dependencies</string>
-    <string name="make_dependencies">Make dependencies</string>
-    <string name="check_dependencies">Check dependencies</string>
-    <string name="conflicts">Conflicts</string>
-    <string name="provides">Provides</string>
-    <string name="replaces">Replaces</string>
+    <string name="formatted_dependencies">Dependencies: (%1$d)</string>
+    <string name="formatted_opt_dependencies">Optional dependencies: (%1$d)</string>
+    <string name="formatted_make_dependencies">Make dependencies: (%1$d)</string>
+    <string name="formatted_check_dependencies">Check dependencies: (%1$d)</string>
+    <string name="formatted_conflicts">Conflicts: (%1$d)</string>
+    <string name="formatted_provides">Provides: (%1$d)</string>
+    <string name="formatted_replaces">Replaces: (%1$d)</string>
     <string name="files">Files</string>
 
     <string name="keywords">Keywords</string>
