@@ -76,7 +76,6 @@ public class ResultsAdapter extends ListAdapter<Result, ResultsAdapter.ViewHolde
         public void bind(Result result) {
             binding.setResult(result);
             binding.executePendingBindings();
-            binding.executePendingBindings();
             binding.resultItemTextViewCompressedSize
                     .setText(String.format(context.getString(R.string.formatted_compressed_size),
                             result.getCompressedSize(),
