@@ -15,7 +15,7 @@ public class Files implements Parcelable {
 
     @SerializedName("dir_count")
     @Expose
-    public int dirCount;
+    public String dirCount;
 
     @SerializedName("pkgname")
     @Expose
@@ -39,13 +39,13 @@ public class Files implements Parcelable {
 
     @SerializedName("files_count")
     @Expose
-    public int filesCount;
+    public String filesCount;
 
     public String getRepo() {
         return repo;
     }
 
-    public int getDirCount() {
+    public String getDirCount() {
         return dirCount;
     }
 
@@ -69,7 +69,7 @@ public class Files implements Parcelable {
         return files;
     }
 
-    public int getFilesCount() {
+    public String getFilesCount() {
         return filesCount;
     }
 
@@ -81,13 +81,13 @@ public class Files implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(this.repo);
-        dest.writeInt(this.dirCount);
+        dest.writeString(this.dirCount);
         dest.writeString(this.pkgname);
         dest.writeString(this.filesLastUpdate);
         dest.writeString(this.pkgLastUpdate);
         dest.writeString(this.arch);
         dest.writeStringList(this.files);
-        dest.writeInt(this.filesCount);
+        dest.writeString(this.filesCount);
     }
 
     public Files() {
@@ -95,13 +95,13 @@ public class Files implements Parcelable {
 
     protected Files(Parcel in) {
         this.repo = in.readString();
-        this.dirCount = in.readInt();
+        this.dirCount = in.readString();
         this.pkgname = in.readString();
         this.filesLastUpdate = in.readString();
         this.pkgLastUpdate = in.readString();
         this.arch = in.readString();
         this.files = in.createStringArrayList();
-        this.filesCount = in.readInt();
+        this.filesCount = in.readString();
     }
 
     public static final Parcelable.Creator<Files> CREATOR = new Parcelable.Creator<Files>() {

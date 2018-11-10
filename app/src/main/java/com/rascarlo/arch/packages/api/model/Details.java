@@ -44,7 +44,7 @@ public class Details implements Parcelable {
 
     @SerializedName("epoch")
     @Expose
-    public int epoch;
+    public String epoch;
 
     @SerializedName("provides")
     @Expose
@@ -146,7 +146,7 @@ public class Details implements Parcelable {
         return filename;
     }
 
-    public int getEpoch() {
+    public String getEpoch() {
         return epoch;
     }
 
@@ -233,7 +233,7 @@ public class Details implements Parcelable {
         dest.writeString(this.compressedSize);
         dest.writeString(this.installedSize);
         dest.writeString(this.filename);
-        dest.writeInt(this.epoch);
+        dest.writeString(this.epoch);
         dest.writeStringList(this.provides);
         dest.writeStringList(this.makedepends);
         dest.writeStringList(this.checkdepends);
@@ -265,7 +265,7 @@ public class Details implements Parcelable {
         this.compressedSize = in.readString();
         this.installedSize = in.readString();
         this.filename = in.readString();
-        this.epoch = in.readInt();
+        this.epoch = in.readString();
         this.provides = in.createStringArrayList();
         this.makedepends = in.createStringArrayList();
         this.checkdepends = in.createStringArrayList();

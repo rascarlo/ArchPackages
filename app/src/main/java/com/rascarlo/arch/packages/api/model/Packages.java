@@ -12,7 +12,7 @@ public class Packages implements Parcelable {
 
     @SerializedName("num_pages")
     @Expose
-    private int numPages;
+    private String numPages;
 
     @SerializedName("results")
     @Expose
@@ -20,21 +20,21 @@ public class Packages implements Parcelable {
 
     @SerializedName("page")
     @Expose
-    private int page;
+    private String page;
 
     @SerializedName("version")
     @Expose
-    private int version;
+    private String version;
 
     @SerializedName("limit")
     @Expose
-    private int limit;
+    private String limit;
 
     @SerializedName("valid")
     @Expose
     private boolean valid;
 
-    public int getNumPages() {
+    public String getNumPages() {
         return numPages;
     }
 
@@ -42,15 +42,15 @@ public class Packages implements Parcelable {
         return results;
     }
 
-    public int getPage() {
+    public String getPage() {
         return page;
     }
 
-    public int getVersion() {
+    public String getVersion() {
         return version;
     }
 
-    public int getLimit() {
+    public String getLimit() {
         return limit;
     }
 
@@ -65,23 +65,23 @@ public class Packages implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(this.numPages);
+        dest.writeString(this.numPages);
         dest.writeTypedList(this.results);
-        dest.writeInt(this.page);
-        dest.writeInt(this.version);
-        dest.writeInt(this.limit);
+        dest.writeString(this.page);
+        dest.writeString(this.version);
+        dest.writeString(this.limit);
         dest.writeByte(this.valid ? (byte) 1 : (byte) 0);
     }
 
     public Packages() {
     }
 
-    private Packages(Parcel in) {
-        this.numPages = in.readInt();
+    protected Packages(Parcel in) {
+        this.numPages = in.readString();
         this.results = in.createTypedArrayList(Result.CREATOR);
-        this.page = in.readInt();
-        this.version = in.readInt();
-        this.limit = in.readInt();
+        this.page = in.readString();
+        this.version = in.readString();
+        this.limit = in.readString();
         this.valid = in.readByte() != 0;
     }
 
