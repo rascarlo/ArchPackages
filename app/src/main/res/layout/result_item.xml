@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
@@ -21,7 +20,7 @@
 
     </data>
 
-    <android.support.constraint.ConstraintLayout
+    <LinearLayout
         android:id="@+id/result_item_coordinator_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -29,129 +28,99 @@
         android:clickable="true"
         android:focusable="true"
         android:onClick="@{() -> Handler.onResultsAdapterCallbackResultClicked(result)}"
+        android:orientation="vertical"
         android:padding="16dp">
 
         <TextView
             android:id="@+id/result_item_text_view_pkgname"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@{result.pkgname}"
             android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Title"
             android:textColor="?attr/colorAccent"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
             tools:text="@string/app_name" />
 
         <View
             android:id="@+id/result_item_ruler"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginTop="4dp"
-            android:background="?attr/colorAccent"
-            app:layout_constraintEnd_toEndOf="@+id/result_item_text_view_pkgname"
-            app:layout_constraintStart_toStartOf="@+id/result_item_text_view_pkgname"
-            app:layout_constraintTop_toBottomOf="@id/result_item_text_view_pkgname" />
+            android:background="?attr/colorAccent" />
 
         <TextView
             android:id="@+id/result_item_text_view_pkgdescr"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:text="@{result.pkgdesc}"
             android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Subtitle"
             android:visibility="@{result.pkgdesc != null ? View.VISIBLE : View.GONE}"
-            app:layout_constraintEnd_toEndOf="@+id/result_item_ruler"
-            app:layout_constraintStart_toStartOf="@+id/result_item_ruler"
-            app:layout_constraintTop_toBottomOf="@+id/result_item_ruler"
             tools:text="@string/description" />
 
         <TextView
             android:id="@+id/result_item_text_view_pkgver"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:text="@{@string/formatted_version(result.pkgver)}"
             android:textAppearance="@style/TextAppearance.AppCompat.Caption"
             android:visibility="@{result.pkgver != null ? View.VISIBLE : View.GONE}"
-            app:layout_constraintEnd_toEndOf="@+id/result_item_text_view_pkgdescr"
-            app:layout_constraintStart_toStartOf="@+id/result_item_text_view_pkgdescr"
-            app:layout_constraintTop_toBottomOf="@+id/result_item_text_view_pkgdescr"
             tools:text="@string/formatted_version" />
 
         <TextView
             android:id="@+id/result_item_text_view_arch"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@{@string/formatted_arch(result.arch)}"
             android:textAppearance="@style/TextAppearance.AppCompat.Caption"
             android:visibility="@{result.arch != null ? View.VISIBLE : View.GONE}"
-            app:layout_constraintEnd_toEndOf="@+id/result_item_text_view_pkgver"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/result_item_text_view_pkgver"
-            app:layout_constraintTop_toBottomOf="@+id/result_item_text_view_pkgver"
             tools:text="@string/formatted_arch" />
 
         <TextView
             android:id="@+id/result_item_text_view_repo"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@{@string/formatted_repo(result.repo)}"
             android:textAppearance="@style/TextAppearance.AppCompat.Caption"
             android:visibility="@{result.repo != null ? View.VISIBLE : View.GONE}"
-            app:layout_constraintEnd_toEndOf="@+id/result_item_text_view_arch"
-            app:layout_constraintStart_toStartOf="@+id/result_item_text_view_arch"
-            app:layout_constraintTop_toBottomOf="@+id/result_item_text_view_arch"
             tools:text="@string/formatted_repo" />
 
         <TextView
             android:id="@+id/result_item_text_view_compressed_size"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="@style/TextAppearance.AppCompat.Caption"
             android:visibility="@{result.compressedSize != null ? View.VISIBLE : View.GONE}"
-            app:layout_constraintEnd_toEndOf="@+id/result_item_text_view_repo"
-            app:layout_constraintStart_toStartOf="@+id/result_item_text_view_repo"
-            app:layout_constraintTop_toBottomOf="@+id/result_item_text_view_repo"
             tools:text="@string/formatted_compressed_size" />
 
         <TextView
             android:id="@+id/result_item_text_view_installed_size"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="@style/TextAppearance.AppCompat.Caption"
             android:visibility="@{result.installedSize != null ? View.VISIBLE : View.GONE}"
-            app:layout_constraintEnd_toEndOf="@+id/result_item_text_view_compressed_size"
-            app:layout_constraintStart_toStartOf="@+id/result_item_text_view_compressed_size"
-            app:layout_constraintTop_toBottomOf="@+id/result_item_text_view_compressed_size"
             tools:text="@string/formatted_installed_size" />
 
         <TextView
             android:id="@+id/result_item_text_view_last_update"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@{@string/formatted_last_update(result.lastUpdate)}"
             android:textAppearance="@style/TextAppearance.AppCompat.Caption"
             android:visibility="@{result.lastUpdate != null ? View.VISIBLE : View.GONE}"
-            app:layout_constraintEnd_toEndOf="@+id/result_item_text_view_installed_size"
-            app:layout_constraintStart_toStartOf="@+id/result_item_text_view_installed_size"
-            app:layout_constraintTop_toBottomOf="@+id/result_item_text_view_installed_size"
             tools:text="@string/formatted_last_update" />
 
         <TextView
             android:id="@+id/result_item_text_view_flag_date"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@{@string/formatted_flag_date(result.flagDate)}"
             android:textAppearance="@style/TextAppearance.AppCompat.Caption"
             android:textColor="@color/text_alert_red"
             android:visibility="@{result.flagDate != null ? View.VISIBLE : View.GONE}"
-            app:layout_constraintEnd_toEndOf="@+id/result_item_text_view_last_update"
-            app:layout_constraintStart_toStartOf="@+id/result_item_text_view_last_update"
-            app:layout_constraintTop_toBottomOf="@+id/result_item_text_view_last_update"
             tools:text="@string/formatted_flag_date" />
 
-    </android.support.constraint.ConstraintLayout>
+    </LinearLayout>
 
 </layout>

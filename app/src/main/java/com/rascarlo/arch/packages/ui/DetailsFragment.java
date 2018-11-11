@@ -3,22 +3,30 @@ package com.rascarlo.arch.packages.ui;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
+import android.content.res.Resources;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomSheetDialogFragment;
+import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.rascarlo.arch.packages.R;
+import com.rascarlo.arch.packages.adapters.StringListAdapter;
 import com.rascarlo.arch.packages.api.model.Details;
 import com.rascarlo.arch.packages.api.model.Files;
 import com.rascarlo.arch.packages.databinding.FragmentDetailsBinding;
 import com.rascarlo.arch.packages.util.UtilStringConverters;
 import com.rascarlo.arch.packages.viewmodel.DetailsViewModel;
 import com.rascarlo.arch.packages.viewmodel.FilesViewModel;
+
+import java.util.List;
 
 public class DetailsFragment extends BottomSheetDialogFragment {
 
@@ -170,90 +178,53 @@ public class DetailsFragment extends BottomSheetDialogFragment {
     }
 
     private void bindDepends(Details details) {
-        if (details.depends != null) {
-            if (details.depends.size() > 0) {
-                fragmentDetailsBinding.fragmentDetailsDependenciesLayout.fragmentDetailsTextViewDependencies
-                        .setText(UtilStringConverters.convertListToNewLineSeparatedString(details.depends));
-            } else {
-                fragmentDetailsBinding.fragmentDetailsDependenciesLayout.fragmentDetailsTextViewDependencies.setText("-");
-            }
-        }
+        populateRecyclerView(fragmentDetailsBinding.fragmentDetailsDependenciesLayout.fragmentDetailsDependenciesRecyclerView, details.depends);
     }
 
     private void bindMakeDepends(Details details) {
-        if (details.makedepends != null) {
-            if (details.makedepends.size() > 0) {
-                fragmentDetailsBinding.fragmentDetailsMakeDependenciesLayout.fragmentDetailsTextViewMakeDependencies
-                        .setText(UtilStringConverters.convertListToNewLineSeparatedString(details.makedepends));
-            } else {
-                fragmentDetailsBinding.fragmentDetailsMakeDependenciesLayout.fragmentDetailsTextViewMakeDependencies.setText("-");
-            }
-        }
+        populateRecyclerView(fragmentDetailsBinding.fragmentDetailsMakeDependenciesLayout.fragmentDetailsMakeDependenciesRecyclerView, details.makedepends);
     }
 
     private void bindCheckDepends(Details details) {
-        if (details.checkdepends != null) {
-            if (details.checkdepends.size() > 0) {
-                fragmentDetailsBinding.fragmentDetailsCheckDependenciesLayout.fragmentDetailsTextViewCheckDependencies
-                        .setText(UtilStringConverters.convertListToNewLineSeparatedString(details.checkdepends));
-            } else {
-                fragmentDetailsBinding.fragmentDetailsCheckDependenciesLayout.fragmentDetailsTextViewCheckDependencies.setText("-");
-            }
-        }
+        populateRecyclerView(fragmentDetailsBinding.fragmentDetailsCheckDependenciesLayout.fragmentDetailsCheckDependenciesRecyclerView, details.checkdepends);
     }
 
     private void bindOptDepends(Details details) {
-        if (details.optdepends != null) {
-            if (details.optdepends.size() > 0) {
-                fragmentDetailsBinding.fragmentDetailsOptDependenciesLayout.fragmentDetailsTextViewOptDependencies
-                        .setText(UtilStringConverters.convertListToNewLineSeparatedString(details.optdepends));
-            } else {
-                fragmentDetailsBinding.fragmentDetailsOptDependenciesLayout.fragmentDetailsTextViewOptDependencies.setText("-");
-            }
-        }
+        populateRecyclerView(fragmentDetailsBinding.fragmentDetailsOptDependenciesLayout.fragmentDetailsOptDependenciesRecyclerView, details.optdepends);
     }
 
     private void bindConflicts(Details details) {
-        if (details.conflicts != null) {
-            if (details.conflicts.size() > 0) {
-                fragmentDetailsBinding.fragmentDetailsConflictsLayout.fragmentDetailsTextViewConflicts
-                        .setText(UtilStringConverters.convertListToNewLineSeparatedString(details.conflicts));
-            } else {
-                fragmentDetailsBinding.fragmentDetailsConflictsLayout.fragmentDetailsTextViewConflicts.setText("-");
-            }
-        }
+        populateRecyclerView(fragmentDetailsBinding.fragmentDetailsConflictsLayout.fragmentDetailsConflictsRecyclerView, details.conflicts);
     }
 
     private void bindProvides(Details details) {
-        if (details.provides != null) {
-            if (details.provides.size() > 0) {
-                fragmentDetailsBinding.fragmentDetailsProvidesLayout.fragmentDetailsTextViewProvides
-                        .setText(UtilStringConverters.convertListToNewLineSeparatedString(details.provides));
-            } else {
-                fragmentDetailsBinding.fragmentDetailsProvidesLayout.fragmentDetailsTextViewProvides.setText("-");
-            }
-        }
+        populateRecyclerView(fragmentDetailsBinding.fragmentDetailsProvidesLayout.fragmentDetailsProvidesRecyclerView, details.provides);
     }
 
     private void bindReplaces(Details details) {
-        if (details.replaces != null) {
-            if (details.replaces.size() > 0) {
-                fragmentDetailsBinding.fragmentDetailsReplacesLayout.fragmentDetailsTextViewReplaces
-                        .setText(UtilStringConverters.convertListToNewLineSeparatedString(details.replaces));
-            } else {
-                fragmentDetailsBinding.fragmentDetailsReplacesLayout.fragmentDetailsTextViewReplaces.setText("-");
-            }
-        }
+        populateRecyclerView(fragmentDetailsBinding.fragmentDetailsReplacesLayout.fragmentDetailsReplacesRecyclerView, details.replaces);
     }
 
     private void bindFiles(Files files) {
-        if (files.files != null) {
-            if (files.files.size() > 0) {
-                fragmentDetailsBinding.fragmentDetailsFilesLayout.fragmentDetailsTextViewFiles
-                        .setText(UtilStringConverters.convertListToNewLineSeparatedString(files.files));
-            } else {
-                fragmentDetailsBinding.fragmentDetailsFilesLayout.fragmentDetailsTextViewFiles.setText("-");
-            }
+        populateRecyclerView(fragmentDetailsBinding.fragmentDetailsFilesLayout.fragmentDetailsFilesRecyclerView, files.files);
+    }
+
+    private void populateRecyclerView(RecyclerView recyclerView, List<String> stringList) {
+        if (stringList != null && !stringList.isEmpty()) {
+            StringListAdapter stringListAdapter = new StringListAdapter();
+            stringListAdapter.submitList(stringList);
+            recyclerView.setAdapter(stringListAdapter);
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
+            recyclerView.setLayoutManager(linearLayoutManager);
+            recyclerView.setHasFixedSize(true);
+            recyclerView.addItemDecoration(new DividerItemDecoration(context, DividerItemDecoration.VERTICAL));
+            recyclerView.addItemDecoration(new RecyclerView.ItemDecoration() {
+                @Override
+                public void getItemOffsets(@NonNull Rect outRect, @NonNull View view, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
+                    outRect.top = (int) (2 * Resources.getSystem().getDisplayMetrics().density);
+                    outRect.bottom = (int) (2 * Resources.getSystem().getDisplayMetrics().density);
+                }
+            });
         }
     }
 }

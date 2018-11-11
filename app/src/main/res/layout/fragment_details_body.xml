@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
@@ -14,175 +13,138 @@
             type="com.rascarlo.arch.packages.api.model.Details" />
     </data>
 
-    <android.support.constraint.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/fragment_details_text_view_filename"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@{@string/formatted_filename(Details.filename)}"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:visibility="@{Details.filename != null ? View.VISIBLE : View.GONE}"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
             tools:text="@string/formatted_filename" />
 
         <TextView
             android:id="@+id/fragment_details_text_view_version"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/text_view_spacing_small"
             android:text="@{@string/formatted_version(Details.pkgver)}"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:visibility="@{Details.pkgver != null ? View.VISIBLE : View.GONE}"
-            app:layout_constraintEnd_toEndOf="@id/fragment_details_text_view_filename"
-            app:layout_constraintStart_toStartOf="@id/fragment_details_text_view_filename"
-            app:layout_constraintTop_toBottomOf="@id/fragment_details_text_view_filename"
             tools:text="@string/formatted_version" />
 
         <TextView
             android:id="@+id/fragment_details_text_view_arch"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/text_view_spacing_small"
             android:text="@{@string/formatted_arch(Details.arch)}"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:visibility="@{Details.arch != null ? View.VISIBLE : View.GONE}"
-            app:layout_constraintEnd_toEndOf="@id/fragment_details_text_view_version"
-            app:layout_constraintStart_toStartOf="@+id/fragment_details_text_view_version"
-            app:layout_constraintTop_toBottomOf="@id/fragment_details_text_view_version"
             tools:text="@string/formatted_arch" />
 
         <TextView
             android:id="@+id/fragment_details_text_view_repo"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/text_view_spacing_small"
             android:text="@{@string/formatted_repo(Details.repo)}"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:visibility="@{Details.repo != null ? View.VISIBLE : View.GONE}"
-            app:layout_constraintEnd_toEndOf="@+id/fragment_details_text_view_arch"
-            app:layout_constraintStart_toStartOf="@+id/fragment_details_text_view_arch"
-            app:layout_constraintTop_toBottomOf="@id/fragment_details_text_view_arch"
             tools:text="@string/formatted_repo" />
 
         <TextView
             android:id="@+id/fragment_details_text_view_url"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/text_view_spacing_small"
             android:autoLink="all"
             android:text="@{@string/formatted_url(Details.url)}"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:visibility="@{Details.url != null ? View.VISIBLE : View.GONE}"
-            app:layout_constraintEnd_toEndOf="@id/fragment_details_text_view_repo"
-            app:layout_constraintStart_toStartOf="@id/fragment_details_text_view_repo"
-            app:layout_constraintTop_toBottomOf="@id/fragment_details_text_view_repo"
             tools:text="@string/formatted_url" />
 
         <TextView
             android:id="@+id/fragment_details_text_view_license"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/text_view_spacing_small"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:visibility="@{Details.licenses != null ? View.VISIBLE : View.GONE}"
-            app:layout_constraintEnd_toEndOf="@id/fragment_details_text_view_url"
-            app:layout_constraintStart_toStartOf="@id/fragment_details_text_view_url"
-            app:layout_constraintTop_toBottomOf="@id/fragment_details_text_view_url"
             tools:text="@string/formatted_license" />
 
         <TextView
             android:id="@+id/fragment_details_text_view_maintainers"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/text_view_spacing_small"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:visibility="@{Details.maintainers != null ? View.VISIBLE : View.GONE}"
-            app:layout_constraintEnd_toEndOf="@id/fragment_details_text_view_license"
-            app:layout_constraintStart_toStartOf="@id/fragment_details_text_view_license"
-            app:layout_constraintTop_toBottomOf="@id/fragment_details_text_view_license"
             tools:text="@string/formatted_maintainers" />
 
         <TextView
             android:id="@+id/fragment_details_text_view_packager"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/text_view_spacing_small"
             android:text="@{@string/formatted_packager(Details.packager)}"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:visibility="@{Details.packager != null ? View.VISIBLE : View.GONE}"
-            app:layout_constraintEnd_toEndOf="@+id/fragment_details_text_view_maintainers"
-            app:layout_constraintStart_toStartOf="@+id/fragment_details_text_view_maintainers"
-            app:layout_constraintTop_toBottomOf="@id/fragment_details_text_view_maintainers"
             tools:text="@string/formatted_packager" />
 
         <TextView
             android:id="@+id/fragment_details_text_view_compressed_size"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/text_view_spacing_small"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:visibility="@{Details.compressedSize != null ? View.VISIBLE : View.GONE}"
-            app:layout_constraintEnd_toEndOf="@id/fragment_details_text_view_packager"
-            app:layout_constraintStart_toStartOf="@id/fragment_details_text_view_packager"
-            app:layout_constraintTop_toBottomOf="@id/fragment_details_text_view_packager"
             tools:text="@string/formatted_compressed_size" />
 
         <TextView
             android:id="@+id/fragment_details_text_view_installed_size"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/text_view_spacing_small"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:visibility="@{Details.installedSize != null ? View.VISIBLE : View.GONE}"
-            app:layout_constraintEnd_toEndOf="@id/fragment_details_text_view_compressed_size"
-            app:layout_constraintStart_toStartOf="@id/fragment_details_text_view_compressed_size"
-            app:layout_constraintTop_toBottomOf="@id/fragment_details_text_view_compressed_size"
             tools:text="@string/formatted_installed_size" />
 
         <TextView
             android:id="@+id/fragment_details_text_view_build_date"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/text_view_spacing_small"
             android:text="@{@string/formatted_build_date(Details.buildDate)}"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:visibility="@{Details.buildDate != null ? View.VISIBLE : View.GONE}"
-            app:layout_constraintEnd_toEndOf="@+id/fragment_details_text_view_installed_size"
-            app:layout_constraintStart_toStartOf="@+id/fragment_details_text_view_installed_size"
-            app:layout_constraintTop_toBottomOf="@id/fragment_details_text_view_installed_size"
             tools:text="@string/formatted_build_date" />
 
         <TextView
             android:id="@+id/fragment_details_text_view_last_update"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/text_view_spacing_small"
             android:text="@{@string/formatted_last_update(Details.lastUpdate)}"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:visibility="@{Details.lastUpdate != null ? View.VISIBLE : View.GONE}"
-            app:layout_constraintEnd_toEndOf="@+id/fragment_details_text_view_build_date"
-            app:layout_constraintStart_toStartOf="@+id/fragment_details_text_view_build_date"
-            app:layout_constraintTop_toBottomOf="@id/fragment_details_text_view_build_date"
             tools:text="@string/formatted_last_update" />
 
         <TextView
             android:id="@+id/fragment_details_text_view_flag_update"
-            android:layout_width="0dp"
-            android:textColor="@color/text_alert_red"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/text_view_spacing_small"
             android:text="@{@string/formatted_flag_date(Details.flagDate)}"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textColor="@color/text_alert_red"
             android:visibility="@{Details.flagDate != null ? View.VISIBLE : View.GONE}"
-            app:layout_constraintEnd_toEndOf="@+id/fragment_details_text_view_last_update"
-            app:layout_constraintStart_toStartOf="@+id/fragment_details_text_view_last_update"
-            app:layout_constraintTop_toBottomOf="@id/fragment_details_text_view_last_update"
             tools:text="@string/formatted_build_date" />
 
-    </android.support.constraint.ConstraintLayout>
+    </LinearLayout>
+
 </layout>

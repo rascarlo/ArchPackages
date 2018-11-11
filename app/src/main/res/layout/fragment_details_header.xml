@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
@@ -14,47 +13,40 @@
             type="com.rascarlo.arch.packages.api.model.Details" />
     </data>
 
-    <android.support.constraint.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/fragment_details_text_view_pkgname"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@{Details.pkgname}"
-            android:textStyle="bold"
-            android:textColor="?attr/colorAccent"
             android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+            android:textColor="?attr/colorAccent"
+            android:textStyle="bold"
             android:visibility="@{Details.pkgname != null ? View.VISIBLE : View.GONE}"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
             tools:text="Pkgname" />
 
         <View
             android:id="@+id/fragment_details_ruler_pkgname"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginTop="8dp"
             android:background="?attr/colorAccent"
-            android:visibility="@{Details.pkgname != null ? View.VISIBLE : View.GONE}"
-            app:layout_constraintEnd_toEndOf="@+id/fragment_details_text_view_pkgname"
-            app:layout_constraintStart_toStartOf="@+id/fragment_details_text_view_pkgname"
-            app:layout_constraintTop_toBottomOf="@+id/fragment_details_text_view_pkgname" />
+            android:visibility="@{Details.pkgname != null ? View.VISIBLE : View.GONE}" />
 
         <TextView
             android:id="@+id/fragment_details_text_view_description"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="@{Details.pkgdesc}"
             android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
             android:visibility="@{Details.pkgdesc != null ? View.VISIBLE : View.GONE}"
-            app:layout_constraintEnd_toEndOf="@+id/fragment_details_ruler_pkgname"
-            app:layout_constraintStart_toStartOf="@+id/fragment_details_ruler_pkgname"
-            app:layout_constraintTop_toBottomOf="@+id/fragment_details_ruler_pkgname"
             tools:text="@string/description" />
 
-    </android.support.constraint.ConstraintLayout>
+    </LinearLayout>
+
 </layout>

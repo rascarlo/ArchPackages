@@ -21,229 +21,203 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <android.support.constraint.ConstraintLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="16dp">
+            android:orientation="vertical">
+
+            <ProgressBar
+                android:id="@+id/fragment_details_progress_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="16dp"
+                android:indeterminate="true"
+                android:indeterminateBehavior="cycle"
+                android:visibility="@{Details.pkgname == null ? View.VISIBLE : View.GONE}" />
 
             <include
                 android:id="@+id/fragment_details_header_layout"
                 layout="@layout/fragment_details_header"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
                 android:visibility="@{Details.pkgname != null ? View.VISIBLE : View.GONE}"
-                bind:Details="@{Details}"
-                bind:layout_constraintEnd_toEndOf="parent"
-                bind:layout_constraintStart_toStartOf="parent"
-                bind:layout_constraintTop_toTopOf="parent" />
+                bind:Details="@{Details}" />
 
             <View
                 android:id="@+id/fragment_details_header_ruler"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:background="@color/ruler_divider"
-                android:visibility="@{Details.pkgname != null ? View.VISIBLE : View.GONE}"
-                bind:layout_constraintEnd_toEndOf="@id/fragment_details_header_layout"
-                bind:layout_constraintStart_toStartOf="@id/fragment_details_header_layout"
-                bind:layout_constraintTop_toBottomOf="@id/fragment_details_header_layout" />
+                android:visibility="@{Details.pkgname != null ? View.VISIBLE : View.GONE}" />
 
             <include
                 android:id="@+id/fragment_details_body_layout"
                 layout="@layout/fragment_details_body"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
                 android:visibility="@{Details.pkgname != null ? View.VISIBLE : View.GONE}"
-                bind:Details="@{Details}"
-                bind:layout_constraintEnd_toEndOf="@id/fragment_details_header_ruler"
-                bind:layout_constraintStart_toStartOf="@id/fragment_details_header_ruler"
-                bind:layout_constraintTop_toBottomOf="@id/fragment_details_header_ruler" />
+                bind:Details="@{Details}" />
 
             <View
                 android:id="@+id/fragment_details_body_ruler"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:background="@color/ruler_divider"
-                android:visibility="@{Details.pkgname != null ? View.VISIBLE : View.GONE}"
-                bind:layout_constraintEnd_toEndOf="@id/fragment_details_body_layout"
-                bind:layout_constraintStart_toStartOf="@id/fragment_details_body_layout"
-                bind:layout_constraintTop_toBottomOf="@id/fragment_details_body_layout" />
+                android:visibility="@{Details.pkgname != null ? View.VISIBLE : View.GONE}" />
 
             <include
                 android:id="@+id/fragment_details_dependencies_layout"
                 layout="@layout/fragment_details_dependencies"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
                 android:visibility="@{Details.pkgname != null ? View.VISIBLE : View.GONE}"
-                bind:Details="@{Details}"
-                bind:layout_constraintEnd_toEndOf="@id/fragment_details_body_ruler"
-                bind:layout_constraintStart_toStartOf="@id/fragment_details_body_ruler"
-                bind:layout_constraintTop_toBottomOf="@id/fragment_details_body_ruler" />
+                bind:Details="@{Details}" />
 
             <View
                 android:id="@+id/fragment_details_dependencies_ruler"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:background="@color/ruler_divider"
-                android:visibility="@{Details.pkgname != null ? View.VISIBLE : View.GONE}"
-                bind:layout_constraintEnd_toEndOf="@id/fragment_details_dependencies_layout"
-                bind:layout_constraintStart_toStartOf="@id/fragment_details_dependencies_layout"
-                bind:layout_constraintTop_toBottomOf="@id/fragment_details_dependencies_layout" />
+                android:visibility="@{Details.pkgname != null ? View.VISIBLE : View.GONE}" />
 
             <include
                 android:id="@+id/fragment_details_make_dependencies_layout"
                 layout="@layout/fragment_details_make_dependencies"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
                 android:visibility="@{Details.pkgname != null ? View.VISIBLE : View.GONE}"
-                bind:Details="@{Details}"
-                bind:layout_constraintEnd_toEndOf="@id/fragment_details_dependencies_ruler"
-                bind:layout_constraintStart_toStartOf="@id/fragment_details_dependencies_ruler"
-                bind:layout_constraintTop_toBottomOf="@id/fragment_details_dependencies_ruler" />
+                bind:Details="@{Details}" />
 
             <View
                 android:id="@+id/fragment_details_make_dependencies_ruler"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:background="@color/ruler_divider"
-                android:visibility="@{Details.pkgname != null ? View.VISIBLE : View.GONE}"
-                bind:layout_constraintEnd_toEndOf="@id/fragment_details_make_dependencies_layout"
-                bind:layout_constraintStart_toStartOf="@id/fragment_details_make_dependencies_layout"
-                bind:layout_constraintTop_toBottomOf="@id/fragment_details_make_dependencies_layout" />
+                android:visibility="@{Details.pkgname != null ? View.VISIBLE : View.GONE}" />
 
             <include
                 android:id="@+id/fragment_details_check_dependencies_layout"
                 layout="@layout/fragment_details_check_dependencies"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
                 android:visibility="@{Details.pkgname != null ? View.VISIBLE : View.GONE}"
-                bind:Details="@{Details}"
-                bind:layout_constraintEnd_toEndOf="@id/fragment_details_dependencies_ruler"
-                bind:layout_constraintStart_toStartOf="@id/fragment_details_make_dependencies_ruler"
-                bind:layout_constraintTop_toBottomOf="@id/fragment_details_make_dependencies_ruler" />
+                bind:Details="@{Details}" />
 
             <View
                 android:id="@+id/fragment_details_check_dependencies_ruler"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:background="@color/ruler_divider"
-                android:visibility="@{Details.pkgname != null ? View.VISIBLE : View.GONE}"
-                bind:layout_constraintEnd_toEndOf="@id/fragment_details_check_dependencies_layout"
-                bind:layout_constraintStart_toStartOf="@id/fragment_details_check_dependencies_layout"
-                bind:layout_constraintTop_toBottomOf="@id/fragment_details_check_dependencies_layout" />
+                android:visibility="@{Details.pkgname != null ? View.VISIBLE : View.GONE}" />
 
             <include
                 android:id="@+id/fragment_details_opt_dependencies_layout"
                 layout="@layout/fragment_details_opt_dependencies"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
                 android:visibility="@{Details.pkgname != null ? View.VISIBLE : View.GONE}"
-                bind:Details="@{Details}"
-                bind:layout_constraintEnd_toEndOf="@id/fragment_details_check_dependencies_ruler"
-                bind:layout_constraintStart_toStartOf="@id/fragment_details_check_dependencies_ruler"
-                bind:layout_constraintTop_toBottomOf="@id/fragment_details_check_dependencies_ruler" />
+                bind:Details="@{Details}" />
 
             <View
                 android:id="@+id/fragment_details_opt_dependencies_ruler"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:background="@color/ruler_divider"
-                android:visibility="@{Details.pkgname != null ? View.VISIBLE : View.GONE}"
-                bind:layout_constraintEnd_toEndOf="@id/fragment_details_opt_dependencies_layout"
-                bind:layout_constraintStart_toStartOf="@id/fragment_details_opt_dependencies_layout"
-                bind:layout_constraintTop_toBottomOf="@id/fragment_details_opt_dependencies_layout" />
+                android:visibility="@{Details.pkgname != null ? View.VISIBLE : View.GONE}" />
 
             <include
                 android:id="@+id/fragment_details_conflicts_layout"
                 layout="@layout/fragment_details_conflicts"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
                 android:visibility="@{Details.pkgname != null ? View.VISIBLE : View.GONE}"
-                bind:Details="@{Details}"
-                bind:layout_constraintEnd_toEndOf="@id/fragment_details_opt_dependencies_ruler"
-                bind:layout_constraintStart_toStartOf="@id/fragment_details_opt_dependencies_ruler"
-                bind:layout_constraintTop_toBottomOf="@id/fragment_details_opt_dependencies_ruler" />
+                bind:Details="@{Details}" />
 
             <View
                 android:id="@+id/fragment_details_conflicts_dependencies_ruler"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:background="@color/ruler_divider"
-                android:visibility="@{Details.pkgname != null ? View.VISIBLE : View.GONE}"
-                bind:layout_constraintEnd_toEndOf="@id/fragment_details_conflicts_layout"
-                bind:layout_constraintStart_toStartOf="@id/fragment_details_conflicts_layout"
-                bind:layout_constraintTop_toBottomOf="@id/fragment_details_conflicts_layout" />
+                android:visibility="@{Details.pkgname != null ? View.VISIBLE : View.GONE}" />
 
             <include
                 android:id="@+id/fragment_details_provides_layout"
                 layout="@layout/fragment_details_provides"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
                 android:visibility="@{Details.pkgname != null ? View.VISIBLE : View.GONE}"
-                bind:Details="@{Details}"
-                bind:layout_constraintEnd_toEndOf="@id/fragment_details_conflicts_dependencies_ruler"
-                bind:layout_constraintStart_toStartOf="@id/fragment_details_conflicts_dependencies_ruler"
-                bind:layout_constraintTop_toBottomOf="@id/fragment_details_conflicts_dependencies_ruler" />
+                bind:Details="@{Details}" />
 
             <View
                 android:id="@+id/fragment_details_provides_ruler"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:background="@color/ruler_divider"
-                android:visibility="@{Details.pkgname != null ? View.VISIBLE : View.GONE}"
-                bind:layout_constraintEnd_toEndOf="@id/fragment_details_provides_layout"
-                bind:layout_constraintStart_toStartOf="@id/fragment_details_provides_layout"
-                bind:layout_constraintTop_toBottomOf="@id/fragment_details_provides_layout" />
+                android:visibility="@{Details.pkgname != null ? View.VISIBLE : View.GONE}" />
 
             <include
                 android:id="@+id/fragment_details_replaces_layout"
                 layout="@layout/fragment_details_replaces"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
                 android:visibility="@{Details.pkgname != null ? View.VISIBLE : View.GONE}"
-                bind:Details="@{Details}"
-                bind:layout_constraintEnd_toEndOf="@id/fragment_details_provides_ruler"
-                bind:layout_constraintStart_toStartOf="@id/fragment_details_provides_ruler"
-                bind:layout_constraintTop_toBottomOf="@id/fragment_details_provides_ruler" />
+                bind:Details="@{Details}" />
 
             <View
                 android:id="@+id/fragment_details_replaces_ruler"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:background="@color/ruler_divider"
-                android:visibility="@{Details.pkgname != null ? View.VISIBLE : View.GONE}"
-                bind:layout_constraintEnd_toEndOf="@id/fragment_details_replaces_layout"
-                bind:layout_constraintStart_toStartOf="@id/fragment_details_replaces_layout"
-                bind:layout_constraintTop_toBottomOf="@id/fragment_details_replaces_layout" />
+                android:visibility="@{Details.pkgname != null ? View.VISIBLE : View.GONE}" />
 
             <include
                 android:id="@+id/fragment_details_files_layout"
                 layout="@layout/fragment_details_files"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:visibility="@{Details.pkgname != null ? View.VISIBLE : View.GONE}"
-                bind:layout_constraintEnd_toEndOf="@id/fragment_details_replaces_ruler"
-                bind:layout_constraintStart_toStartOf="@id/fragment_details_replaces_ruler"
-                bind:layout_constraintTop_toBottomOf="@id/fragment_details_replaces_ruler" />
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:visibility="@{Details.pkgname != null ? View.VISIBLE : View.GONE}" />
 
-        </android.support.constraint.ConstraintLayout>
+        </LinearLayout>
 
     </android.support.v4.widget.NestedScrollView>
 

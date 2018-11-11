@@ -20,7 +20,7 @@
 
         <TextView
             android:id="@+id/fragment_details_text_view_check_dependencies_label"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@{@string/formatted_check_dependencies(Details.checkdepends.size())}"
             android:textAppearance="@style/TextAppearance.AppCompat.Title"
@@ -28,17 +28,15 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/fragment_details_text_view_check_dependencies"
-            android:layout_width="0dp"
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/fragment_details_check_dependencies_recycler_view"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/text_view_spacing_small"
-            android:lineSpacingMultiplier="@dimen/string_list_multiplier"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            app:layout_constraintEnd_toEndOf="@id/fragment_details_text_view_check_dependencies_label"
-            app:layout_constraintStart_toStartOf="@id/fragment_details_text_view_check_dependencies_label"
-            app:layout_constraintTop_toBottomOf="@id/fragment_details_text_view_check_dependencies_label"
-            tools:text="@string/formatted_make_dependencies" />
+            app:layout_constraintEnd_toEndOf="@+id/fragment_details_text_view_check_dependencies_label"
+            app:layout_constraintStart_toStartOf="@+id/fragment_details_text_view_check_dependencies_label"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_details_text_view_check_dependencies_label"
+            tools:text="@string/formatted_check_dependencies" />
 
     </android.support.constraint.ConstraintLayout>
+
 </layout>

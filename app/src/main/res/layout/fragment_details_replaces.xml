@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
@@ -14,31 +13,24 @@
             type="com.rascarlo.arch.packages.api.model.Details" />
     </data>
 
-    <android.support.constraint.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/fragment_details_text_view_replaces_label"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@{@string/formatted_replaces(Details.replaces.size())}"
-            android:textAppearance="@style/TextAppearance.AppCompat.Title"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
-        <TextView
-            android:id="@+id/fragment_details_text_view_replaces"
-            android:layout_width="0dp"
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/fragment_details_replaces_recycler_view"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/text_view_spacing_small"
-            android:lineSpacingMultiplier="@dimen/string_list_multiplier"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            app:layout_constraintEnd_toEndOf="@id/fragment_details_text_view_replaces_label"
-            app:layout_constraintStart_toStartOf="@id/fragment_details_text_view_replaces_label"
-            app:layout_constraintTop_toBottomOf="@id/fragment_details_text_view_replaces_label"
             tools:text="@string/formatted_replaces" />
 
-    </android.support.constraint.ConstraintLayout>
+    </LinearLayout>
+
 </layout>
