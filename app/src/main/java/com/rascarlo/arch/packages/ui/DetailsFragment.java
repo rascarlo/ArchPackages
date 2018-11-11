@@ -111,10 +111,6 @@ public class DetailsFragment extends BottomSheetDialogFragment {
 
     private void bindDetailsViewModel(Details details) {
         if (fragmentDetailsBinding != null && details != null) {
-            // license
-            bindLicense(details);
-            // maintainers
-            bindMaintainers(details);
             // compressed size
             bindCompressedSize(details);
             // installed size
@@ -140,22 +136,6 @@ public class DetailsFragment extends BottomSheetDialogFragment {
         if (fragmentDetailsBinding != null && files != null) {
             // files
             bindFiles(files);
-        }
-    }
-
-    private void bindLicense(Details details) {
-        if (details.licenses != null) {
-            fragmentDetailsBinding.fragmentDetailsBodyLayout.fragmentDetailsTextViewLicense
-                    .setText(String.format(getString(R.string.formatted_license),
-                            UtilStringConverters.convertListToCommaSeparatedString(details.licenses)));
-        }
-    }
-
-    private void bindMaintainers(Details details) {
-        if (details.maintainers != null) {
-            fragmentDetailsBinding.fragmentDetailsBodyLayout.fragmentDetailsTextViewMaintainers
-                    .setText(String.format(getString(R.string.formatted_maintainers),
-                            UtilStringConverters.convertListToCommaSeparatedString(details.maintainers)));
         }
     }
 
