@@ -22,7 +22,7 @@
             android:id="@+id/fragment_details_text_view_opt_dependencies_label"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@{@string/formatted_dependencies(Details.optdepends.size())}"
+            android:text="@{@string/formatted_opt_dependencies(Details.optdepends.size())}"
             android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
         <android.support.v7.widget.RecyclerView

@@ -24,6 +24,8 @@
     <string name="formatted_provides">Provides (%1$d)</string>
     <string name="formatted_replaces">Replaces (%1$d)</string>
     <string name="files">Files</string>
+    <string name="formatted_dirs_count">Dirs (%1$s)</string>
+    <string name="formatted_files_count">Files (%1$s)</string>
 
     <string name="keywords">Keywords</string>
     <string name="name_or_description">Name or description</string>

@@ -92,11 +92,13 @@ public class DetailsFragment extends BottomSheetDialogFragment {
         detailsViewModel.getDetailsLiveData().observe(this, details -> {
             if (details != null && fragmentDetailsBinding != null) {
                 fragmentDetailsBinding.setDetails(details);
+                fragmentDetailsBinding.executePendingBindings();
                 bindDetailsViewModel(details);
             }
         });
         filesViewModel.getFilesLiveData().observe(this, files -> {
             if (files != null && fragmentDetailsBinding != null) {
+                fragmentDetailsBinding.fragmentDetailsFilesLayout.setFiles(files);
                 bindFilesViewModel(files);
             }
         });
