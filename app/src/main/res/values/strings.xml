@@ -48,6 +48,10 @@
     <string name="flagged">Flagged</string>
     <string name="not_flagged">Not Flagged</string>
 
+    <string name="night_mode">Night mode</string>
+    <string name="night">Night</string>
+    <string name="day">Day</string>
+
     <string name="key_repo_core">key_repo_core</string>
     <string name="key_repo_extra">key_repo_extra</string>
     <string name="key_repo_testing">key_repo_testing</string>

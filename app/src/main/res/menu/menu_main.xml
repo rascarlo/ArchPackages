@@ -7,4 +7,17 @@
         android:orderInCategory="100"
         android:title="@string/action_settings"
         app:showAsAction="never" />
+
+    <item android:title="@string/night_mode">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/action_main_night_mode_night"
+                    android:title="@string/night" />
+                <item
+                    android:id="@+id/action_main_night_mode_day"
+                    android:title="@string/day" />
+            </group>
+        </menu>
+    </item>
 </menu>
