@@ -18,8 +18,8 @@ import android.widget.RadioGroup;
 
 import com.rascarlo.arch.packages.R;
 import com.rascarlo.arch.packages.callbacks.SearchFragmentCallback;
-import com.rascarlo.arch.packages.util.UtilConstants;
-import com.rascarlo.arch.packages.util.UtilSharedPreferences;
+import com.rascarlo.arch.packages.util.ArchPackagesConstants;
+import com.rascarlo.arch.packages.util.ArchPackagesSharedPreferences;
 
 import java.util.ArrayList;
 
@@ -70,19 +70,16 @@ public class SearchFragment extends Fragment implements CompoundButton.OnChecked
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         // search action
-        floatingActionButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (textInputLayout.getEditText() != null
-                        && textInputLayout.getEditText().getText() != null
-                        && !TextUtils.isEmpty(textInputLayout.getEditText().getText().toString())) {
-                    onFabClicked(
-                            getKeywordsParameter(),
-                            textInputLayout.getEditText().getText().toString(),
-                            getListRepo(),
-                            getListArch(),
-                            getFlagged());
-                }
+        floatingActionButton.setOnClickListener(v -> {
+            if (textInputLayout.getEditText() != null
+                    && textInputLayout.getEditText().getText() != null
+                    && !TextUtils.isEmpty(textInputLayout.getEditText().getText().toString())) {
+                onFabClicked(
+                        getKeywordsParameter(),
+                        textInputLayout.getEditText().getText().toString(),
+                        getListRepo(),
+                        getListArch(),
+                        getFlagged());
             }
         });
     }
@@ -145,17 +142,17 @@ public class SearchFragment extends Fragment implements CompoundButton.OnChecked
             case R.id.fragment_search_keywords_radio_group:
                 switch (checkedId) {
                     case R.id.fragment_search_radio_button_name_or_description:
-                        UtilSharedPreferences.setSharedPreferenceString(context,
+                        ArchPackagesSharedPreferences.setSharedPreferenceString(context,
                                 getString(R.string.key_keywords),
                                 getString(R.string.key_keywords_name_or_description));
                         break;
                     case R.id.fragment_search_radio_button_exact_name:
-                        UtilSharedPreferences.setSharedPreferenceString(context,
+                        ArchPackagesSharedPreferences.setSharedPreferenceString(context,
                                 getString(R.string.key_keywords),
                                 getString(R.string.key_keywords_exact_name));
                         break;
                     case R.id.fragment_search_radio_button_description:
-                        UtilSharedPreferences.setSharedPreferenceString(context,
+                        ArchPackagesSharedPreferences.setSharedPreferenceString(context,
                                 getString(R.string.key_keywords),
                                 getString(R.string.key_keywords_description));
                         break;
@@ -165,17 +162,17 @@ public class SearchFragment extends Fragment implements CompoundButton.OnChecked
             case R.id.fragment_search_flagged_radio_group:
                 switch (checkedId) {
                     case R.id.fragment_search_radio_button_flagged_all:
-                        UtilSharedPreferences.setSharedPreferenceString(context,
+                        ArchPackagesSharedPreferences.setSharedPreferenceString(context,
                                 getString(R.string.key_flagged),
                                 getString(R.string.key_flagged_all));
                         break;
                     case R.id.fragment_search_radio_button_flagged_flagged:
-                        UtilSharedPreferences.setSharedPreferenceString(context,
+                        ArchPackagesSharedPreferences.setSharedPreferenceString(context,
                                 getString(R.string.key_flagged),
                                 getString(R.string.key_flagged_flagged));
                         break;
                     case R.id.fragment_search_radio_button_flagged_not_flagged:
-                        UtilSharedPreferences.setSharedPreferenceString(context,
+                        ArchPackagesSharedPreferences.setSharedPreferenceString(context,
                                 getString(R.string.key_flagged),
                                 getString(R.string.key_flagged_not_flagged));
                         break;
@@ -188,7 +185,7 @@ public class SearchFragment extends Fragment implements CompoundButton.OnChecked
         RadioButton radioButtonNameOrDescription = radioGroupKeywords.findViewById(R.id.fragment_search_radio_button_name_or_description);
         RadioButton radioButtonExactName = radioGroupKeywords.findViewById(R.id.fragment_search_radio_button_exact_name);
         RadioButton radioButtonDescription = radioGroupKeywords.findViewById(R.id.fragment_search_radio_button_description);
-        String sharedPreferenceKeywords = UtilSharedPreferences.getSharedPreferenceString(context,
+        String sharedPreferenceKeywords = ArchPackagesSharedPreferences.getSharedPreferenceString(context,
                 getString(R.string.key_keywords), getString(R.string.key_keywords_name_or_description));
         if (TextUtils.equals(sharedPreferenceKeywords, getString(R.string.key_keywords_name_or_description))) {
             radioButtonNameOrDescription.setChecked(true);
@@ -255,7 +252,7 @@ public class SearchFragment extends Fragment implements CompoundButton.OnChecked
         RadioButton radioButtonFlaggedAll = radioGroupFlagged.findViewById(R.id.fragment_search_radio_button_flagged_all);
         RadioButton radioButtonFlaggedFlagged = radioGroupFlagged.findViewById(R.id.fragment_search_radio_button_flagged_flagged);
         RadioButton radioButtonFlaggedNotFlagged = radioGroupFlagged.findViewById(R.id.fragment_search_radio_button_flagged_not_flagged);
-        String sharedPreferenceFlagged = UtilSharedPreferences.getSharedPreferenceString(context,
+        String sharedPreferenceFlagged = ArchPackagesSharedPreferences.getSharedPreferenceString(context,
                 getString(R.string.key_flagged), getString(R.string.key_flagged_all));
         if (TextUtils.equals(sharedPreferenceFlagged, getString(R.string.key_flagged_all))) {
             radioButtonFlaggedAll.setChecked(true);
@@ -287,16 +284,16 @@ public class SearchFragment extends Fragment implements CompoundButton.OnChecked
         int keywordParameter;
         switch (radioGroupKeywords.getCheckedRadioButtonId()) {
             case R.id.fragment_search_radio_button_name_or_description:
-                keywordParameter = UtilConstants.SEARCH_KEYWORDS_PARAMETER_NAME_OR_DESCRIPTION;
+                keywordParameter = ArchPackagesConstants.SEARCH_KEYWORDS_PARAMETER_NAME_OR_DESCRIPTION;
                 break;
             case R.id.fragment_search_radio_button_exact_name:
-                keywordParameter = UtilConstants.SEARCH_KEYWORDS_PARAMETER_EXACT_NAME;
+                keywordParameter = ArchPackagesConstants.SEARCH_KEYWORDS_PARAMETER_EXACT_NAME;
                 break;
             case R.id.fragment_search_radio_button_description:
-                keywordParameter = UtilConstants.SEARCH_KEYWORDS_PARAMETER_DESCRIPTION;
+                keywordParameter = ArchPackagesConstants.SEARCH_KEYWORDS_PARAMETER_DESCRIPTION;
                 break;
             default:
-                keywordParameter = UtilConstants.SEARCH_KEYWORDS_PARAMETER_NAME_OR_DESCRIPTION;
+                keywordParameter = ArchPackagesConstants.SEARCH_KEYWORDS_PARAMETER_NAME_OR_DESCRIPTION;
                 break;
         }
         return keywordParameter;
@@ -360,10 +357,10 @@ public class SearchFragment extends Fragment implements CompoundButton.OnChecked
     }
 
     private boolean getSharedPreferenceBoolean(String string, boolean defaultValue) {
-        return UtilSharedPreferences.getSharedPreferenceBoolean(context, string, defaultValue);
+        return ArchPackagesSharedPreferences.getSharedPreferenceBoolean(context, string, defaultValue);
     }
 
     private void setSharedPreferenceBoolean(String string, boolean value) {
-        UtilSharedPreferences.setSharedPreferenceBoolean(context, string, value);
+        ArchPackagesSharedPreferences.setSharedPreferenceBoolean(context, string, value);
     }
 }

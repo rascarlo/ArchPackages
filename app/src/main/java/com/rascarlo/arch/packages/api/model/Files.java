@@ -11,27 +11,27 @@ import java.util.List;
 public class Files implements Parcelable {
     @SerializedName("repo")
     @Expose
-    public String repo;
+    private String repo;
 
     @SerializedName("dir_count")
     @Expose
-    public String dirCount;
+    private String dirCount;
 
     @SerializedName("pkgname")
     @Expose
-    public String pkgname;
+    private String pkgname;
 
     @SerializedName("files_last_update")
     @Expose
-    public String filesLastUpdate;
+    private String filesLastUpdate;
 
     @SerializedName("pkg_last_update")
     @Expose
-    public String pkgLastUpdate;
+    private String pkgLastUpdate;
 
     @SerializedName("arch")
     @Expose
-    public String arch;
+    private String arch;
 
     @SerializedName("files")
     @Expose
@@ -39,7 +39,7 @@ public class Files implements Parcelable {
 
     @SerializedName("files_count")
     @Expose
-    public String filesCount;
+    private String filesCount;
 
     public String getRepo() {
         return repo;

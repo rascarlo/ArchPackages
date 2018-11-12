@@ -12,7 +12,7 @@ public class Details implements Parcelable {
 
     @SerializedName("pkgdesc")
     @Expose
-    public String pkgdesc;
+    private String pkgdesc;
 
     @SerializedName("depends")
     @Expose
@@ -20,15 +20,15 @@ public class Details implements Parcelable {
 
     @SerializedName("licenses")
     @Expose
-    public List<String> licenses = null;
+    private List<String> licenses = null;
 
     @SerializedName("last_update")
     @Expose
-    public String lastUpdate;
+    private String lastUpdate;
 
     @SerializedName("build_date")
     @Expose
-    public String buildDate;
+    private String buildDate;
 
     @SerializedName("compressed_size")
     @Expose
@@ -40,11 +40,11 @@ public class Details implements Parcelable {
 
     @SerializedName("filename")
     @Expose
-    public String filename;
+    private String filename;
 
     @SerializedName("epoch")
     @Expose
-    public String epoch;
+    private String epoch;
 
     @SerializedName("provides")
     @Expose
@@ -60,15 +60,15 @@ public class Details implements Parcelable {
 
     @SerializedName("repo")
     @Expose
-    public String repo;
+    private String repo;
 
     @SerializedName("maintainers")
     @Expose
-    public List<String> maintainers = null;
+    private List<String> maintainers = null;
 
     @SerializedName("groups")
     @Expose
-    public List<String> groups = null;
+    private List<String> groups = null;
 
     @SerializedName("conflicts")
     @Expose
@@ -76,15 +76,15 @@ public class Details implements Parcelable {
 
     @SerializedName("packager")
     @Expose
-    public String packager;
+    private String packager;
 
     @SerializedName("arch")
     @Expose
-    public String arch;
+    private String arch;
 
     @SerializedName("pkgver")
     @Expose
-    public String pkgver;
+    private String pkgver;
 
     @SerializedName("replaces")
     @Expose
@@ -92,7 +92,7 @@ public class Details implements Parcelable {
 
     @SerializedName("pkgname")
     @Expose
-    public String pkgname;
+    private String pkgname;
 
     @SerializedName("optdepends")
     @Expose
@@ -100,19 +100,19 @@ public class Details implements Parcelable {
 
     @SerializedName("url")
     @Expose
-    public String url;
+    private String url;
 
     @SerializedName("pkgbase")
     @Expose
-    public String pkgbase;
+    private String pkgbase;
 
     @SerializedName("pkgrel")
     @Expose
-    public String pkgrel;
+    private String pkgrel;
 
     @SerializedName("flag_date")
     @Expose
-    public String flagDate;
+    private String flagDate;
 
     public String getPkgdesc() {
         return pkgdesc;

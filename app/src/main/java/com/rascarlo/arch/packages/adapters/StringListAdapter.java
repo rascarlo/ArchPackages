@@ -54,7 +54,7 @@ public class StringListAdapter extends ListAdapter<String, StringListAdapter.Vie
             this.binding = binding;
         }
 
-        public void bind(String s) {
+        void bind(String s) {
             binding.setString(s);
             binding.executePendingBindings();
         }

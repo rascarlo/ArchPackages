@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
-public class UtilSharedPreferences {
+public class ArchPackagesSharedPreferences {
 
     public static void setSharedPreferenceString(Context context, String sharedPreferenceString, String value) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);

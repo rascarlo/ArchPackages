@@ -16,7 +16,7 @@
 
         <variable
             name="stringConverters"
-            type="com.rascarlo.arch.packages.util.UtilStringConverters" />
+            type="com.rascarlo.arch.packages.util.ArchPackagesStringConverters" />
 
     </data>
 

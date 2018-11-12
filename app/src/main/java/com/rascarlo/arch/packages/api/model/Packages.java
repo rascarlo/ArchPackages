@@ -76,7 +76,7 @@ public class Packages implements Parcelable {
     public Packages() {
     }
 
-    protected Packages(Parcel in) {
+    private Packages(Parcel in) {
         this.numPages = in.readString();
         this.results = in.createTypedArrayList(Result.CREATOR);
         this.page = in.readString();

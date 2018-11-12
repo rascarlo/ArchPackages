@@ -1,9 +1,7 @@
 package com.rascarlo.arch.packages.ui;
 
-import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
-import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -18,7 +16,6 @@ import android.widget.ProgressBar;
 
 import com.rascarlo.arch.packages.R;
 import com.rascarlo.arch.packages.adapters.ResultsAdapter;
-import com.rascarlo.arch.packages.api.model.Packages;
 import com.rascarlo.arch.packages.api.model.Result;
 import com.rascarlo.arch.packages.callbacks.ResultsAdapterCallback;
 import com.rascarlo.arch.packages.callbacks.ResultsFragmentCallback;
@@ -115,14 +112,11 @@ public class ResultsFragment extends Fragment implements ResultsAdapterCallback 
                     bundleStringFlagged,
                     1);
         }
-        packagesViewModel.getPackagesLiveData().observe(this, new Observer<Packages>() {
-            @Override
-            public void onChanged(@Nullable Packages packages) {
-                if (packages != null) {
-                    resultsAdapter.submitList(packages.getResults());
-                }
-                progressBar.setVisibility(View.GONE);
+        packagesViewModel.getPackagesLiveData().observe(this, packages -> {
+            if (packages != null) {
+                resultsAdapter.submitList(packages.getResults());
             }
+            progressBar.setVisibility(View.GONE);
         });
         return rootView;
     }

@@ -1,6 +1,5 @@
 package com.rascarlo.arch.packages.ui;
 
-import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.res.Resources;
@@ -22,7 +21,7 @@ import com.rascarlo.arch.packages.adapters.StringListAdapter;
 import com.rascarlo.arch.packages.api.model.Details;
 import com.rascarlo.arch.packages.api.model.Files;
 import com.rascarlo.arch.packages.databinding.FragmentDetailsBinding;
-import com.rascarlo.arch.packages.util.UtilStringConverters;
+import com.rascarlo.arch.packages.util.ArchPackagesStringConverters;
 import com.rascarlo.arch.packages.viewmodel.DetailsViewModel;
 import com.rascarlo.arch.packages.viewmodel.FilesViewModel;
 
@@ -90,21 +89,15 @@ public class DetailsFragment extends BottomSheetDialogFragment {
             detailsViewModel.init(bundleRepo, bundleArch, bundlePkgname);
             filesViewModel.init(bundleRepo, bundleArch, bundlePkgname);
         }
-        detailsViewModel.getDetailsLiveData().observe(this, new Observer<Details>() {
-            @Override
-            public void onChanged(@Nullable Details details) {
-                if (details != null && fragmentDetailsBinding != null) {
-                    fragmentDetailsBinding.setDetails(details);
-                    bindDetailsViewModel(details);
-                }
+        detailsViewModel.getDetailsLiveData().observe(this, details -> {
+            if (details != null && fragmentDetailsBinding != null) {
+                fragmentDetailsBinding.setDetails(details);
+                bindDetailsViewModel(details);
             }
         });
-        filesViewModel.getFilesLiveData().observe(this, new Observer<Files>() {
-            @Override
-            public void onChanged(@Nullable Files files) {
-                if (files != null && fragmentDetailsBinding != null) {
-                    bindFilesViewModel(files);
-                }
+        filesViewModel.getFilesLiveData().observe(this, files -> {
+            if (files != null && fragmentDetailsBinding != null) {
+                bindFilesViewModel(files);
             }
         });
     }
@@ -144,7 +137,7 @@ public class DetailsFragment extends BottomSheetDialogFragment {
             fragmentDetailsBinding.fragmentDetailsBodyLayout.fragmentDetailsTextViewCompressedSize
                     .setText(String.format(getString(R.string.formatted_compressed_size),
                             details.compressedSize,
-                            UtilStringConverters.convertBytesToMb(context, details.compressedSize)));
+                            ArchPackagesStringConverters.convertBytesToMb(context, details.compressedSize)));
         }
     }
 
@@ -153,7 +146,7 @@ public class DetailsFragment extends BottomSheetDialogFragment {
             fragmentDetailsBinding.fragmentDetailsBodyLayout.fragmentDetailsTextViewInstalledSize
                     .setText(String.format(getString(R.string.formatted_installed_size),
                             details.installedSize,
-                            UtilStringConverters.convertBytesToMb(context, details.installedSize)));
+                            ArchPackagesStringConverters.convertBytesToMb(context, details.installedSize)));
         }
     }
 

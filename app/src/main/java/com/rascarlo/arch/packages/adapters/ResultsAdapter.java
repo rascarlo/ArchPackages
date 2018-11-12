@@ -14,7 +14,7 @@ import com.rascarlo.arch.packages.R;
 import com.rascarlo.arch.packages.api.model.Result;
 import com.rascarlo.arch.packages.callbacks.ResultsAdapterCallback;
 import com.rascarlo.arch.packages.databinding.ResultItemBinding;
-import com.rascarlo.arch.packages.util.UtilStringConverters;
+import com.rascarlo.arch.packages.util.ArchPackagesStringConverters;
 
 public class ResultsAdapter extends ListAdapter<Result, ResultsAdapter.ViewHolder> {
 
@@ -73,17 +73,17 @@ public class ResultsAdapter extends ListAdapter<Result, ResultsAdapter.ViewHolde
             this.binding = binding;
         }
 
-        public void bind(Result result) {
+        void bind(Result result) {
             binding.setResult(result);
             binding.executePendingBindings();
             binding.resultItemTextViewCompressedSize
                     .setText(String.format(context.getString(R.string.formatted_compressed_size),
                             result.getCompressedSize(),
-                            UtilStringConverters.convertBytesToMb(context, result.getCompressedSize())));
+                            ArchPackagesStringConverters.convertBytesToMb(context, result.getCompressedSize())));
             binding.resultItemTextViewInstalledSize
                     .setText(String.format(context.getString(R.string.formatted_installed_size),
                             result.getInstalledSize(),
-                            UtilStringConverters.convertBytesToMb(context, result.getInstalledSize())));
+                            ArchPackagesStringConverters.convertBytesToMb(context, result.getInstalledSize())));
 
         }
     }

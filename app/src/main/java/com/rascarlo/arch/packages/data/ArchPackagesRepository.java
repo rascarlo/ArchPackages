@@ -7,7 +7,7 @@ import com.rascarlo.arch.packages.api.ArchPackagesService;
 import com.rascarlo.arch.packages.api.model.Details;
 import com.rascarlo.arch.packages.api.model.Files;
 import com.rascarlo.arch.packages.api.model.Packages;
-import com.rascarlo.arch.packages.util.UtilConstants;
+import com.rascarlo.arch.packages.util.ArchPackagesConstants;
 
 import java.util.List;
 
@@ -33,7 +33,7 @@ public class ArchPackagesRepository {
         okHttpClient.addInterceptor(httpLoggingInterceptor);
         // retrofit
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(UtilConstants.ARCH_PACKAGES_API_BASE_URL)
+                .baseUrl(ArchPackagesConstants.ARCH_PACKAGES_API_BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(okHttpClient.build())
                 .build();
@@ -57,13 +57,13 @@ public class ArchPackagesRepository {
         final MutableLiveData<Packages> packagesMutableLiveData = new MutableLiveData<>();
         Call<Packages> archPackagesCall;
         // by name or description
-        if (keywordsParameter == UtilConstants.SEARCH_KEYWORDS_PARAMETER_NAME_OR_DESCRIPTION) {
+        if (keywordsParameter == ArchPackagesConstants.SEARCH_KEYWORDS_PARAMETER_NAME_OR_DESCRIPTION) {
             archPackagesCall = archPackagesService.searchByNameOrDescription(keywords, listRepo, listArch, flagged, numPage);
             // by exact name
-        } else if (keywordsParameter == UtilConstants.SEARCH_KEYWORDS_PARAMETER_EXACT_NAME) {
+        } else if (keywordsParameter == ArchPackagesConstants.SEARCH_KEYWORDS_PARAMETER_EXACT_NAME) {
             archPackagesCall = archPackagesService.searchByExactName(keywords, listRepo, listArch, flagged, numPage);
             // by description
-        } else if (keywordsParameter == UtilConstants.SEARCH_KEYWORDS_PARAMETER_DESCRIPTION) {
+        } else if (keywordsParameter == ArchPackagesConstants.SEARCH_KEYWORDS_PARAMETER_DESCRIPTION) {
             archPackagesCall = archPackagesService.searchByDescription(keywords, listRepo, listArch, flagged, numPage);
             // DEFAULT by name or description
         } else {
