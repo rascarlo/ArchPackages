@@ -27,7 +27,9 @@
         <android.support.v7.widget.RecyclerView
             android:id="@+id/details_check_dependencies_recycler_view"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/text_view_spacing_small" />
+
     </LinearLayout>
 
 </layout>

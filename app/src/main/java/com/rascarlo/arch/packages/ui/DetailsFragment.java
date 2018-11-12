@@ -25,6 +25,7 @@ import com.rascarlo.arch.packages.util.ArchPackagesStringConverters;
 import com.rascarlo.arch.packages.viewmodel.DetailsViewModel;
 import com.rascarlo.arch.packages.viewmodel.FilesViewModel;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class DetailsFragment extends BottomSheetDialogFragment {
@@ -106,24 +107,28 @@ public class DetailsFragment extends BottomSheetDialogFragment {
 
     private void bindDetailsViewModel(Details details) {
         if (fragmentDetailsBinding != null && details != null) {
+            HashMap<RecyclerView, List<String>> hashMap = new HashMap<>();
             // compressed size
             bindCompressedSize(details);
             // installed size
             bindInstalledSize(details);
             // dependencies
-            bindDepends(details);
+            hashMap.put(fragmentDetailsBinding.detailsDependenciesLayout.detailsDependenciesRecyclerView, details.depends);
             // make dependencies
-            bindMakeDepends(details);
+            hashMap.put(fragmentDetailsBinding.detailsMakeDependenciesLayout.detailsMakeDependenciesRecyclerView, details.makedepends);
             // check dependencies
-            bindCheckDepends(details);
+            hashMap.put(fragmentDetailsBinding.detailsCheckDependenciesLayout.detailsCheckDependenciesRecyclerView, details.checkdepends);
             // opt dependencies
-            bindOptDepends(details);
+            hashMap.put(fragmentDetailsBinding.detailsOptDependenciesLayout.detailsOptDependenciesRecyclerView, details.optdepends);
             // conflicts
-            bindConflicts(details);
+            hashMap.put(fragmentDetailsBinding.detailsConflictsLayout.detailsConflictsRecyclerView, details.conflicts);
             // provides
-            bindProvides(details);
+            hashMap.put(fragmentDetailsBinding.detailsProvidesLayout.detailsProvidesRecyclerView, details.provides);
             // replaces
-            bindReplaces(details);
+            hashMap.put(fragmentDetailsBinding.detailsReplacesLayout.detailsReplacesRecyclerView, details.replaces);
+            for (HashMap.Entry<RecyclerView, List<String>> entry : hashMap.entrySet()) {
+                populateRecyclerView(entry.getKey(), entry.getValue());
+            }
         }
     }
 
@@ -150,34 +155,6 @@ public class DetailsFragment extends BottomSheetDialogFragment {
                             details.installedSize,
                             ArchPackagesStringConverters.convertBytesToMb(context, details.installedSize)));
         }
-    }
-
-    private void bindDepends(Details details) {
-        populateRecyclerView(fragmentDetailsBinding.detailsDependenciesLayout.detailsDependenciesRecyclerView, details.depends);
-    }
-
-    private void bindMakeDepends(Details details) {
-        populateRecyclerView(fragmentDetailsBinding.detailsMakeDependenciesLayout.detailsMakeDependenciesRecyclerView, details.makedepends);
-    }
-
-    private void bindCheckDepends(Details details) {
-        populateRecyclerView(fragmentDetailsBinding.detailsCheckDependenciesLayout.detailsCheckDependenciesRecyclerView, details.checkdepends);
-    }
-
-    private void bindOptDepends(Details details) {
-        populateRecyclerView(fragmentDetailsBinding.detailsOptDependenciesLayout.detailsOptDependenciesRecyclerView, details.optdepends);
-    }
-
-    private void bindConflicts(Details details) {
-        populateRecyclerView(fragmentDetailsBinding.detailsConflictsLayout.detailsConflictsRecyclerView, details.conflicts);
-    }
-
-    private void bindProvides(Details details) {
-        populateRecyclerView(fragmentDetailsBinding.detailsProvidesLayout.detailsProvidesRecyclerView, details.provides);
-    }
-
-    private void bindReplaces(Details details) {
-        populateRecyclerView(fragmentDetailsBinding.detailsReplacesLayout.detailsReplacesRecyclerView, details.replaces);
     }
 
     private void bindFiles(Files files) {
