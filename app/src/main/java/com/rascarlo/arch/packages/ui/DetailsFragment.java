@@ -30,11 +30,9 @@ import java.util.List;
 
 public class DetailsFragment extends BottomSheetDialogFragment {
 
-    private static final String BUNDLE_THEME = "bundle_theme";
     private static final String BUNDLE_REPO = "bundle_repo";
     private static final String BUNDLE_ARCH = "bundle_arch";
     private static final String BUNDLE_PKGNAME = "bundle_pkgname";
-    private int bundleTheme;
     private String bundleRepo;
     private String bundleArch;
     private String bundlePkgname;
@@ -46,16 +44,14 @@ public class DetailsFragment extends BottomSheetDialogFragment {
 
     @Override
     public int getTheme() {
-        return bundleTheme;
+        return R.style.AppTheme_BottomSheet;
     }
 
-    public static DetailsFragment newInstance(int theme,
-                                              String repo,
+    public static DetailsFragment newInstance(String repo,
                                               String arch,
                                               String pkgname) {
         DetailsFragment detailsFragment = new DetailsFragment();
         Bundle bundle = new Bundle();
-        bundle.putInt(BUNDLE_THEME, theme);
         bundle.putString(BUNDLE_REPO, repo);
         bundle.putString(BUNDLE_ARCH, arch);
         bundle.putString(BUNDLE_PKGNAME, pkgname);
@@ -67,7 +63,6 @@ public class DetailsFragment extends BottomSheetDialogFragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            bundleTheme = getArguments().getInt(BUNDLE_THEME);
             bundleRepo = getArguments().getString(BUNDLE_REPO);
             bundleArch = getArguments().getString(BUNDLE_ARCH);
             bundlePkgname = getArguments().getString(BUNDLE_PKGNAME);

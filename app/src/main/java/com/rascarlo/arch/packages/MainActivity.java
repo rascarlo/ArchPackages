@@ -4,14 +4,13 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.rascarlo.arch.packages.api.model.Result;
-import com.rascarlo.arch.packages.callbacks.ResultsFragmentCallback;
 import com.rascarlo.arch.packages.callbacks.SearchFragmentCallback;
+import com.rascarlo.arch.packages.callbacks.ResultsFragmentCallback;
 import com.rascarlo.arch.packages.ui.DetailsFragment;
 import com.rascarlo.arch.packages.ui.ResultsFragment;
 import com.rascarlo.arch.packages.ui.SearchFragment;
@@ -22,9 +21,6 @@ public class MainActivity extends AppCompatActivity implements SearchFragmentCal
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM) {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -41,33 +37,23 @@ public class MainActivity extends AppCompatActivity implements SearchFragmentCal
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
     @Override
-    public boolean onPrepareOptionsMenu(Menu menu) {
-        switch (AppCompatDelegate.getDefaultNightMode()) {
-            case AppCompatDelegate.MODE_NIGHT_YES:
-                menu.findItem(R.id.action_main_night_mode_night).setChecked(true);
-                break;
-            case AppCompatDelegate.MODE_NIGHT_NO:
-                menu.findItem(R.id.action_main_night_mode_day).setChecked(true);
-                break;
-        }
-        return true;
-    }
-
-    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_main_night_mode_day:
-                setNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-                break;
-            case R.id.action_main_night_mode_night:
-                setNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-                break;
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
         }
+
         return super.onOptionsItemSelected(item);
     }
 
@@ -95,15 +81,9 @@ public class MainActivity extends AppCompatActivity implements SearchFragmentCal
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         DetailsFragment detailsFragment = DetailsFragment.newInstance(
-                AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES ? R.style.AppTheme_BottomSheet_Dark : R.style.AppTheme_BottomSheet_Light,
                 result.getRepo(),
                 result.getArch(),
                 result.getPkgname());
         detailsFragment.show(fragmentTransaction, detailsFragment.getTag());
-    }
-
-    private void setNightMode(@AppCompatDelegate.NightMode int nightMode) {
-        AppCompatDelegate.setDefaultNightMode(nightMode);
-        recreate();
     }
 }
