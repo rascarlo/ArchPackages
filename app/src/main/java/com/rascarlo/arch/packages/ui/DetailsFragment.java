@@ -98,7 +98,7 @@ public class DetailsFragment extends BottomSheetDialogFragment {
         });
         filesViewModel.getFilesLiveData().observe(this, files -> {
             if (files != null && fragmentDetailsBinding != null) {
-                fragmentDetailsBinding.fragmentDetailsFilesLayout.setFiles(files);
+                fragmentDetailsBinding.detailsFilesLayout.setFiles(files);
                 bindFilesViewModel(files);
             }
         });
@@ -136,7 +136,7 @@ public class DetailsFragment extends BottomSheetDialogFragment {
 
     private void bindCompressedSize(Details details) {
         if (details.compressedSize != null && !TextUtils.isEmpty(details.compressedSize)) {
-            fragmentDetailsBinding.fragmentDetailsBodyLayout.fragmentDetailsTextViewCompressedSize
+            fragmentDetailsBinding.detailsBodyLayout.detailsTextViewCompressedSize
                     .setText(String.format(getString(R.string.formatted_compressed_size),
                             details.compressedSize,
                             ArchPackagesStringConverters.convertBytesToMb(context, details.compressedSize)));
@@ -145,7 +145,7 @@ public class DetailsFragment extends BottomSheetDialogFragment {
 
     private void bindInstalledSize(Details details) {
         if (details.installedSize != null && !TextUtils.isEmpty(details.installedSize)) {
-            fragmentDetailsBinding.fragmentDetailsBodyLayout.fragmentDetailsTextViewInstalledSize
+            fragmentDetailsBinding.detailsBodyLayout.detailsTextViewInstalledSize
                     .setText(String.format(getString(R.string.formatted_installed_size),
                             details.installedSize,
                             ArchPackagesStringConverters.convertBytesToMb(context, details.installedSize)));
@@ -153,35 +153,35 @@ public class DetailsFragment extends BottomSheetDialogFragment {
     }
 
     private void bindDepends(Details details) {
-        populateRecyclerView(fragmentDetailsBinding.fragmentDetailsDependenciesLayout.fragmentDetailsDependenciesRecyclerView, details.depends);
+        populateRecyclerView(fragmentDetailsBinding.detailsDependenciesLayout.detailsDependenciesRecyclerView, details.depends);
     }
 
     private void bindMakeDepends(Details details) {
-        populateRecyclerView(fragmentDetailsBinding.fragmentDetailsMakeDependenciesLayout.fragmentDetailsMakeDependenciesRecyclerView, details.makedepends);
+        populateRecyclerView(fragmentDetailsBinding.detailsMakeDependenciesLayout.detailsMakeDependenciesRecyclerView, details.makedepends);
     }
 
     private void bindCheckDepends(Details details) {
-        populateRecyclerView(fragmentDetailsBinding.fragmentDetailsCheckDependenciesLayout.fragmentDetailsCheckDependenciesRecyclerView, details.checkdepends);
+        populateRecyclerView(fragmentDetailsBinding.detailsCheckDependenciesLayout.detailsCheckDependenciesRecyclerView, details.checkdepends);
     }
 
     private void bindOptDepends(Details details) {
-        populateRecyclerView(fragmentDetailsBinding.fragmentDetailsOptDependenciesLayout.fragmentDetailsOptDependenciesRecyclerView, details.optdepends);
+        populateRecyclerView(fragmentDetailsBinding.detailsOptDependenciesLayout.detailsOptDependenciesRecyclerView, details.optdepends);
     }
 
     private void bindConflicts(Details details) {
-        populateRecyclerView(fragmentDetailsBinding.fragmentDetailsConflictsLayout.fragmentDetailsConflictsRecyclerView, details.conflicts);
+        populateRecyclerView(fragmentDetailsBinding.detailsConflictsLayout.detailsConflictsRecyclerView, details.conflicts);
     }
 
     private void bindProvides(Details details) {
-        populateRecyclerView(fragmentDetailsBinding.fragmentDetailsProvidesLayout.fragmentDetailsProvidesRecyclerView, details.provides);
+        populateRecyclerView(fragmentDetailsBinding.detailsProvidesLayout.detailsProvidesRecyclerView, details.provides);
     }
 
     private void bindReplaces(Details details) {
-        populateRecyclerView(fragmentDetailsBinding.fragmentDetailsReplacesLayout.fragmentDetailsReplacesRecyclerView, details.replaces);
+        populateRecyclerView(fragmentDetailsBinding.detailsReplacesLayout.detailsReplacesRecyclerView, details.replaces);
     }
 
     private void bindFiles(Files files) {
-        populateRecyclerView(fragmentDetailsBinding.fragmentDetailsFilesLayout.fragmentDetailsFilesRecyclerView, files.files);
+        populateRecyclerView(fragmentDetailsBinding.detailsFilesLayout.detailsFilesRecyclerView, files.files);
     }
 
     private void populateRecyclerView(RecyclerView recyclerView, List<String> stringList) {

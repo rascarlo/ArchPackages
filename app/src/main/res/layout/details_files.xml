@@ -21,14 +21,14 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/fragment_details_text_view_files_label"
+            android:id="@+id/details_text_view_files_label"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/files"
             android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
         <TextView
-            android:id="@+id/fragment_details_text_view_dirs_count"
+            android:id="@+id/details_text_view_dirs_count"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@{@string/formatted_dirs_count(Files.dirCount)}"
@@ -36,7 +36,7 @@
             tools:text="@string/formatted_dirs_count" />
 
         <TextView
-            android:id="@+id/fragment_details_text_view_files_count"
+            android:id="@+id/details_text_view_files_count"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@{@string/formatted_files_count(Files.filesCount)}"
@@ -44,10 +44,9 @@
             tools:text="@string/formatted_files_count" />
 
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/fragment_details_files_recycler_view"
+            android:id="@+id/details_files_recycler_view"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:text="@string/files" />
+            android:layout_height="wrap_content" />
 
     </LinearLayout>
 

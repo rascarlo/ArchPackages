@@ -19,7 +19,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/fragment_details_text_view_pkgname"
+            android:id="@+id/details_text_view_pkgname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@{Details.pkgname}"
@@ -30,7 +30,7 @@
             tools:text="Pkgname" />
 
         <View
-            android:id="@+id/fragment_details_ruler_pkgname"
+            android:id="@+id/details_ruler_pkgname"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginTop="8dp"
@@ -38,7 +38,7 @@
             android:visibility="@{Details.pkgname != null ? View.VISIBLE : View.GONE}" />
 
         <TextView
-            android:id="@+id/fragment_details_text_view_description"
+            android:id="@+id/details_text_view_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"

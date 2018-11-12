@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
 
@@ -19,18 +18,16 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/fragment_details_text_view_opt_dependencies_label"
+            android:id="@+id/details_text_view_conflicts_label"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@{@string/formatted_opt_dependencies(Details.optdepends.size())}"
+            android:text="@{@string/formatted_conflicts(Details.conflicts.size())}"
             android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/fragment_details_opt_dependencies_recycler_view"
+            android:id="@+id/details_conflicts_recycler_view"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:text="@string/formatted_opt_dependencies" />
-
+            android:layout_height="wrap_content" />
     </LinearLayout>
 
 </layout>

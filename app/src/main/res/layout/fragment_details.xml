@@ -38,7 +38,7 @@
 
             <include
                 android:id="@+id/fragment_details_header_layout"
-                layout="@layout/fragment_details_header"
+                layout="@layout/details_header"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -56,8 +56,8 @@
                 android:visibility="@{Details.pkgname != null ? View.VISIBLE : View.GONE}" />
 
             <include
-                android:id="@+id/fragment_details_body_layout"
-                layout="@layout/fragment_details_body"
+                android:id="@+id/details_body_layout"
+                layout="@layout/details_body"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -75,8 +75,8 @@
                 android:visibility="@{Details.pkgname != null ? View.VISIBLE : View.GONE}" />
 
             <include
-                android:id="@+id/fragment_details_dependencies_layout"
-                layout="@layout/fragment_details_dependencies"
+                android:id="@+id/details_dependencies_layout"
+                layout="@layout/details_dependencies"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -94,8 +94,8 @@
                 android:visibility="@{Details.pkgname != null ? View.VISIBLE : View.GONE}" />
 
             <include
-                android:id="@+id/fragment_details_make_dependencies_layout"
-                layout="@layout/fragment_details_make_dependencies"
+                android:id="@+id/details_make_dependencies_layout"
+                layout="@layout/details_make_dependencies"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -113,8 +113,8 @@
                 android:visibility="@{Details.pkgname != null ? View.VISIBLE : View.GONE}" />
 
             <include
-                android:id="@+id/fragment_details_check_dependencies_layout"
-                layout="@layout/fragment_details_check_dependencies"
+                android:id="@+id/details_check_dependencies_layout"
+                layout="@layout/details_check_dependencies"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -132,8 +132,8 @@
                 android:visibility="@{Details.pkgname != null ? View.VISIBLE : View.GONE}" />
 
             <include
-                android:id="@+id/fragment_details_opt_dependencies_layout"
-                layout="@layout/fragment_details_opt_dependencies"
+                android:id="@+id/details_opt_dependencies_layout"
+                layout="@layout/details_opt_dependencies"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -151,8 +151,8 @@
                 android:visibility="@{Details.pkgname != null ? View.VISIBLE : View.GONE}" />
 
             <include
-                android:id="@+id/fragment_details_conflicts_layout"
-                layout="@layout/fragment_details_conflicts"
+                android:id="@+id/details_conflicts_layout"
+                layout="@layout/details_conflicts"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -170,8 +170,8 @@
                 android:visibility="@{Details.pkgname != null ? View.VISIBLE : View.GONE}" />
 
             <include
-                android:id="@+id/fragment_details_provides_layout"
-                layout="@layout/fragment_details_provides"
+                android:id="@+id/details_provides_layout"
+                layout="@layout/details_provides"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -189,8 +189,8 @@
                 android:visibility="@{Details.pkgname != null ? View.VISIBLE : View.GONE}" />
 
             <include
-                android:id="@+id/fragment_details_replaces_layout"
-                layout="@layout/fragment_details_replaces"
+                android:id="@+id/details_replaces_layout"
+                layout="@layout/details_replaces"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -208,8 +208,8 @@
                 android:visibility="@{Details.pkgname != null ? View.VISIBLE : View.GONE}" />
 
             <include
-                android:id="@+id/fragment_details_files_layout"
-                layout="@layout/fragment_details_files"
+                android:id="@+id/details_files_layout"
+                layout="@layout/details_files"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
