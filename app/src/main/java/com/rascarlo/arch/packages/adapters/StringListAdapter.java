@@ -4,15 +4,15 @@ import android.databinding.DataBindingUtil;
 import android.support.annotation.NonNull;
 import android.support.v7.recyclerview.extensions.ListAdapter;
 import android.support.v7.util.DiffUtil;
-import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import com.rascarlo.arch.packages.R;
 import com.rascarlo.arch.packages.databinding.StringItemBinding;
+import com.rascarlo.arch.packages.viewholders.StringListAdapterViewHolder;
 
-public class StringListAdapter extends ListAdapter<String, StringListAdapter.ViewHolder> {
+public class StringListAdapter extends ListAdapter<String, StringListAdapterViewHolder> {
 
     public StringListAdapter() {
         super(DIFF_CALLBACK);
@@ -32,31 +32,16 @@ public class StringListAdapter extends ListAdapter<String, StringListAdapter.Vie
 
     @NonNull
     @Override
-    public StringListAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+    public StringListAdapterViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         StringItemBinding binding = DataBindingUtil.inflate(LayoutInflater.from(viewGroup.getContext()), R.layout.string_item, viewGroup, false);
-        return new ViewHolder(binding);
+        return new StringListAdapterViewHolder(binding);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull StringListAdapter.ViewHolder viewHolder, int i) {
+    public void onBindViewHolder(@NonNull StringListAdapterViewHolder stringListAdapterViewHolder, int i) {
         if (getItem(i) != null) {
             String s = getItem(i);
-            viewHolder.bind(s);
-        }
-    }
-
-    class ViewHolder extends RecyclerView.ViewHolder {
-
-        private final StringItemBinding binding;
-
-        ViewHolder(@NonNull StringItemBinding binding) {
-            super(binding.getRoot());
-            this.binding = binding;
-        }
-
-        void bind(String s) {
-            binding.setString(s);
-            binding.executePendingBindings();
+            stringListAdapterViewHolder.bindString(s);
         }
     }
 }

@@ -1,11 +1,9 @@
 package com.rascarlo.arch.packages.adapters;
 
-import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.support.annotation.NonNull;
 import android.support.v7.recyclerview.extensions.ListAdapter;
 import android.support.v7.util.DiffUtil;
-import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
@@ -14,9 +12,9 @@ import com.rascarlo.arch.packages.R;
 import com.rascarlo.arch.packages.api.model.Result;
 import com.rascarlo.arch.packages.callbacks.ResultsAdapterCallback;
 import com.rascarlo.arch.packages.databinding.ResultItemBinding;
-import com.rascarlo.arch.packages.util.ArchPackagesStringConverters;
+import com.rascarlo.arch.packages.viewholders.ResultAdapterViewHolder;
 
-public class ResultsAdapter extends ListAdapter<Result, ResultsAdapter.ViewHolder> {
+public class ResultsAdapter extends ListAdapter<Result, ResultAdapterViewHolder> {
 
     private final ResultsAdapterCallback resultsAdapterCallback;
 
@@ -47,43 +45,18 @@ public class ResultsAdapter extends ListAdapter<Result, ResultsAdapter.ViewHolde
 
     @NonNull
     @Override
-    public ResultsAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+    public ResultAdapterViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         ResultItemBinding resultItemBinding = DataBindingUtil.inflate(LayoutInflater.from(viewGroup.getContext()), R.layout.result_item, viewGroup, false);
         resultItemBinding.setHandler(resultsAdapterCallback);
-        return new ViewHolder(resultItemBinding);
+        return new ResultAdapterViewHolder(resultItemBinding);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ResultsAdapter.ViewHolder viewHolder, int i) {
+    public void onBindViewHolder(@NonNull ResultAdapterViewHolder resultAdapterViewHolder, int i) {
         if (getItem(i) != null) {
             Result result = getItem(i);
-            viewHolder.binding.setResult(result);
-            viewHolder.bind(result);
-        }
-    }
-
-    class ViewHolder extends RecyclerView.ViewHolder {
-
-        private final ResultItemBinding binding;
-
-        ViewHolder(@NonNull ResultItemBinding binding) {
-            super(binding.getRoot());
-            this.binding = binding;
-        }
-
-        void bind(Result result) {
-            Context context = binding.getRoot().getContext();
-            binding.setResult(result);
-            binding.executePendingBindings();
-            binding.resultItemTextViewCompressedSize
-                    .setText(String.format(context.getString(R.string.formatted_compressed_size),
-                            result.getCompressedSize(),
-                            ArchPackagesStringConverters.convertBytesToMb(context, result.getCompressedSize())));
-            binding.resultItemTextViewInstalledSize
-                    .setText(String.format(context.getString(R.string.formatted_installed_size),
-                            result.getInstalledSize(),
-                            ArchPackagesStringConverters.convertBytesToMb(context, result.getInstalledSize())));
-
+            resultAdapterViewHolder.binding.setResult(result);
+            resultAdapterViewHolder.bindResult(result);
         }
     }
 }
