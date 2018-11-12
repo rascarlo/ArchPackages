@@ -18,7 +18,6 @@ import com.rascarlo.arch.packages.util.ArchPackagesStringConverters;
 
 public class ResultsAdapter extends ListAdapter<Result, ResultsAdapter.ViewHolder> {
 
-    private Context context;
     private final ResultsAdapterCallback resultsAdapterCallback;
 
     public ResultsAdapter(ResultsAdapterCallback resultsAdapterCallback) {
@@ -49,8 +48,7 @@ public class ResultsAdapter extends ListAdapter<Result, ResultsAdapter.ViewHolde
     @NonNull
     @Override
     public ResultsAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        context = viewGroup.getContext();
-        ResultItemBinding resultItemBinding = DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.result_item, viewGroup, false);
+        ResultItemBinding resultItemBinding = DataBindingUtil.inflate(LayoutInflater.from(viewGroup.getContext()), R.layout.result_item, viewGroup, false);
         resultItemBinding.setHandler(resultsAdapterCallback);
         return new ViewHolder(resultItemBinding);
     }
@@ -74,6 +72,7 @@ public class ResultsAdapter extends ListAdapter<Result, ResultsAdapter.ViewHolde
         }
 
         void bind(Result result) {
+            Context context = binding.getRoot().getContext();
             binding.setResult(result);
             binding.executePendingBindings();
             binding.resultItemTextViewCompressedSize
