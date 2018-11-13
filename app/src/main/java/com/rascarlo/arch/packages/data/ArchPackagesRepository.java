@@ -25,7 +25,7 @@ public class ArchPackagesRepository {
     private ArchPackagesRepository() {
         // http logging interceptor
         HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
-        httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+        httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BASIC);
         // okhttp client
         OkHttpClient.Builder okHttpClient = new OkHttpClient.Builder();
         okHttpClient.addInterceptor(httpLoggingInterceptor);

@@ -110,7 +110,7 @@ public class ResultsFragment extends Fragment implements ResultsAdapterCallback 
                     bundleListArch,
                     bundleStringFlagged);
         }
-        packagesViewModel.pagedListLiveData.observe(this,
+        packagesViewModel.getPagedListLiveData().observe(this,
                 results -> {
                     resultsAdapter.submitList(results);
                     progressBar.setVisibility(View.GONE);

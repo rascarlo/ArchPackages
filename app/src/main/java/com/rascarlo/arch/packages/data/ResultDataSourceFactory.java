@@ -2,14 +2,14 @@ package com.rascarlo.arch.packages.data;
 
 import android.arch.lifecycle.MutableLiveData;
 import android.arch.paging.DataSource;
-import android.arch.paging.PageKeyedDataSource;
 
 import com.rascarlo.arch.packages.api.model.Result;
 
 import java.util.List;
 
 public class ResultDataSourceFactory extends DataSource.Factory {
-    private final MutableLiveData<PageKeyedDataSource<Integer, Result>> dataSourceMutableLiveData = new MutableLiveData<>();
+
+    private final MutableLiveData<ResultDataSource> mutableLiveData;
     private final int keywordsParameter;
     private final String query;
     private final List<String> listRepo;
@@ -26,6 +26,7 @@ public class ResultDataSourceFactory extends DataSource.Factory {
         this.listRepo = listRepo;
         this.listArch = listArch;
         this.flagged = flagged;
+        this.mutableLiveData = new MutableLiveData<>();
     }
 
     @Override
@@ -35,11 +36,7 @@ public class ResultDataSourceFactory extends DataSource.Factory {
                 this.listRepo,
                 this.listArch,
                 this.flagged);
-        dataSourceMutableLiveData.postValue(resultDataSource);
+        mutableLiveData.postValue(resultDataSource);
         return resultDataSource;
-    }
-
-    public MutableLiveData<PageKeyedDataSource<Integer, Result>> getDataSourceMutableLiveData() {
-        return dataSourceMutableLiveData;
     }
 }
