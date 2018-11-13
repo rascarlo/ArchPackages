@@ -7,16 +7,12 @@
         <import type="android.view.View" />
 
         <variable
-            name="result"
+            name="Result"
             type="com.rascarlo.arch.packages.api.model.Result" />
 
         <variable
-            name="Handler"
+            name="ResultsAdapterCallback"
             type="com.rascarlo.arch.packages.callbacks.ResultsAdapterCallback" />
-
-        <variable
-            name="stringConverters"
-            type="com.rascarlo.arch.packages.util.ArchPackagesStringConverters" />
 
     </data>
 
@@ -27,7 +23,7 @@
         android:background="?attr/selectableItemBackground"
         android:clickable="true"
         android:focusable="true"
-        android:onClick="@{() -> Handler.onResultsAdapterCallbackResultClicked(result)}"
+        android:onClick="@{() -> ResultsAdapterCallback.onResultsAdapterCallbackResultClicked(Result)}"
         android:orientation="vertical"
         android:padding="16dp">
 
@@ -35,10 +31,11 @@
             android:id="@+id/result_item_text_view_pkgname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@{result.pkgname}"
+            android:text="@{Result.pkgname}"
             android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Title"
             android:textColor="?attr/colorAccent"
             android:textStyle="bold"
+            android:visibility="@{Result.pkgname != null ? View.VISIBLE : View.GONE}"
             tools:text="@string/app_name" />
 
         <View
@@ -46,16 +43,17 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginTop="4dp"
-            android:background="?attr/colorAccent" />
+            android:background="?attr/colorAccent"
+            android:visibility="@{Result.pkgname != null ? View.VISIBLE : View.GONE}" />
 
         <TextView
             android:id="@+id/result_item_text_view_pkgdescr"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:text="@{result.pkgdesc}"
+            android:text="@{Result.pkgdesc}"
             android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Subtitle"
-            android:visibility="@{result.pkgdesc != null ? View.VISIBLE : View.GONE}"
+            android:visibility="@{Result.pkgdesc != null ? View.VISIBLE : View.GONE}"
             tools:text="@string/description" />
 
         <TextView
@@ -63,27 +61,27 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:text="@{@string/formatted_version(result.pkgver)}"
+            android:text="@{@string/formatted_version(Result.pkgver)}"
             android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-            android:visibility="@{result.pkgver != null ? View.VISIBLE : View.GONE}"
+            android:visibility="@{Result.pkgver != null ? View.VISIBLE : View.GONE}"
             tools:text="@string/formatted_version" />
 
         <TextView
             android:id="@+id/result_item_text_view_arch"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@{@string/formatted_arch(result.arch)}"
+            android:text="@{@string/formatted_arch(Result.arch)}"
             android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-            android:visibility="@{result.arch != null ? View.VISIBLE : View.GONE}"
+            android:visibility="@{Result.arch != null ? View.VISIBLE : View.GONE}"
             tools:text="@string/formatted_arch" />
 
         <TextView
             android:id="@+id/result_item_text_view_repo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@{@string/formatted_repo(result.repo)}"
+            android:text="@{@string/formatted_repo(Result.repo)}"
             android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-            android:visibility="@{result.repo != null ? View.VISIBLE : View.GONE}"
+            android:visibility="@{Result.repo != null ? View.VISIBLE : View.GONE}"
             tools:text="@string/formatted_repo" />
 
         <TextView
@@ -91,7 +89,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-            android:visibility="@{result.compressedSize != null ? View.VISIBLE : View.GONE}"
+            android:visibility="@{Result.compressedSize != null ? View.VISIBLE : View.GONE}"
             tools:text="@string/formatted_compressed_size" />
 
         <TextView
@@ -99,26 +97,26 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-            android:visibility="@{result.installedSize != null ? View.VISIBLE : View.GONE}"
+            android:visibility="@{Result.installedSize != null ? View.VISIBLE : View.GONE}"
             tools:text="@string/formatted_installed_size" />
 
         <TextView
             android:id="@+id/result_item_text_view_last_update"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@{@string/formatted_last_update(result.lastUpdate)}"
+            android:text="@{@string/formatted_last_update(Result.lastUpdate)}"
             android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-            android:visibility="@{result.lastUpdate != null ? View.VISIBLE : View.GONE}"
+            android:visibility="@{Result.lastUpdate != null ? View.VISIBLE : View.GONE}"
             tools:text="@string/formatted_last_update" />
 
         <TextView
             android:id="@+id/result_item_text_view_flag_date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@{@string/formatted_flag_date(result.flagDate)}"
+            android:text="@{@string/formatted_flag_date(Result.flagDate)}"
             android:textAppearance="@style/TextAppearance.AppCompat.Caption"
             android:textColor="@color/text_alert_red"
-            android:visibility="@{result.flagDate != null ? View.VISIBLE : View.GONE}"
+            android:visibility="@{Result.flagDate != null ? View.VISIBLE : View.GONE}"
             tools:text="@string/formatted_flag_date" />
 
     </LinearLayout>

@@ -43,7 +43,7 @@ public class ResultsAdapter extends PagedListAdapter<Result, ResultAdapterViewHo
     @Override
     public ResultAdapterViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         ResultItemBinding resultItemBinding = DataBindingUtil.inflate(LayoutInflater.from(viewGroup.getContext()), R.layout.result_item, viewGroup, false);
-        resultItemBinding.setHandler(resultsAdapterCallback);
+        resultItemBinding.setResultsAdapterCallback(resultsAdapterCallback);
         return new ResultAdapterViewHolder(resultItemBinding);
     }
 
