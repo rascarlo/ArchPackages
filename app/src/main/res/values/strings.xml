@@ -27,7 +27,9 @@
     <string name="formatted_dirs_count">Dirs (%1$s)</string>
     <string name="formatted_files_count">Files (%1$s)</string>
 
+    <string name="package_search">Package search</string>
     <string name="keywords">Keywords</string>
+    <string name="keywords_hint">Leave blank to search all packages.</string>
     <string name="name_or_description">Name or description</string>
     <string name="exact_name">Exact name</string>
     <string name="description">Description</string>

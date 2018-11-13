@@ -3,7 +3,6 @@ package com.rascarlo.arch.packages.ui;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
@@ -27,7 +26,6 @@ public class SearchFragment extends Fragment implements CompoundButton.OnChecked
     private Context context;
     private SearchFragmentCallback searchFragmentCallback;
     private TextInputLayout textInputLayout;
-    private FloatingActionButton floatingActionButton;
     // keywords radio group
     private RadioGroup radioGroupKeywords;
     // repo check boxes
@@ -52,7 +50,6 @@ public class SearchFragment extends Fragment implements CompoundButton.OnChecked
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_search, container, false);
         textInputLayout = rootView.findViewById(R.id.fragment_search_keywords_text_input_layout);
-        floatingActionButton = rootView.findViewById(R.id.fragment_search_fab);
         // keywords radio group
         radioGroupKeywords = rootView.findViewById(R.id.fragment_search_keywords_radio_group);
         setUpKeywords();
@@ -63,25 +60,15 @@ public class SearchFragment extends Fragment implements CompoundButton.OnChecked
         // flagged radio buttons
         radioGroupFlagged = rootView.findViewById(R.id.fragment_search_flagged_radio_group);
         setUpFlagged();
+        // search fab
+        FloatingActionButton floatingActionButton = rootView.findViewById(R.id.fragment_search_fab);
+        floatingActionButton.setOnClickListener(v -> onFabClicked(
+                getKeywordsParameter(),
+                getQuery(),
+                getListRepo(),
+                getListArch(),
+                getFlagged()));
         return rootView;
-    }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        // search action
-        floatingActionButton.setOnClickListener(v -> {
-            if (textInputLayout.getEditText() != null
-                    && textInputLayout.getEditText().getText() != null
-                    && !TextUtils.isEmpty(textInputLayout.getEditText().getText().toString())) {
-                onFabClicked(
-                        getKeywordsParameter(),
-                        textInputLayout.getEditText().getText().toString(),
-                        getListRepo(),
-                        getListArch(),
-                        getFlagged());
-            }
-        });
     }
 
     @Override
@@ -277,6 +264,12 @@ public class SearchFragment extends Fragment implements CompoundButton.OnChecked
                     listArch,
                     flagged);
         }
+    }
+
+    private String getQuery() {
+        return textInputLayout.getEditText() != null
+                && textInputLayout.getEditText().getText() != null
+                && !TextUtils.isEmpty(textInputLayout.getEditText().getText().toString()) ? textInputLayout.getEditText().getText().toString() : null;
     }
 
     private int getKeywordsParameter() {
