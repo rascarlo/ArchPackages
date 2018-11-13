@@ -2,14 +2,12 @@ package com.rascarlo.arch.packages.data;
 
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
+import android.support.annotation.NonNull;
 
 import com.rascarlo.arch.packages.api.ArchPackagesService;
 import com.rascarlo.arch.packages.api.model.Details;
 import com.rascarlo.arch.packages.api.model.Files;
-import com.rascarlo.arch.packages.api.model.Packages;
 import com.rascarlo.arch.packages.util.ArchPackagesConstants;
-
-import java.util.List;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -48,41 +46,8 @@ public class ArchPackagesRepository {
         return archPackagesRepository;
     }
 
-    public LiveData<Packages> getPackagesLiveData(int keywordsParameter,
-                                                  String keywords,
-                                                  List<String> listRepo,
-                                                  List<String> listArch,
-                                                  String flagged,
-                                                  int numPage) {
-        final MutableLiveData<Packages> packagesMutableLiveData = new MutableLiveData<>();
-        Call<Packages> archPackagesCall;
-        // by name or description
-        if (keywordsParameter == ArchPackagesConstants.SEARCH_KEYWORDS_PARAMETER_NAME_OR_DESCRIPTION) {
-            archPackagesCall = archPackagesService.searchByNameOrDescription(keywords, listRepo, listArch, flagged, numPage);
-            // by exact name
-        } else if (keywordsParameter == ArchPackagesConstants.SEARCH_KEYWORDS_PARAMETER_EXACT_NAME) {
-            archPackagesCall = archPackagesService.searchByExactName(keywords, listRepo, listArch, flagged, numPage);
-            // by description
-        } else if (keywordsParameter == ArchPackagesConstants.SEARCH_KEYWORDS_PARAMETER_DESCRIPTION) {
-            archPackagesCall = archPackagesService.searchByDescription(keywords, listRepo, listArch, flagged, numPage);
-            // DEFAULT by name or description
-        } else {
-            archPackagesCall = archPackagesService.searchByNameOrDescription(keywords, listRepo, listArch, flagged, numPage);
-        }
-        archPackagesCall.enqueue(new Callback<Packages>() {
-            @Override
-            public void onResponse(Call<Packages> call, Response<Packages> response) {
-                if (response.isSuccessful() && response.body() != null && response.code() == 200)
-                    packagesMutableLiveData.setValue(response.body());
-                else packagesMutableLiveData.setValue(null);
-            }
-
-            @Override
-            public void onFailure(Call<Packages> call, Throwable t) {
-                packagesMutableLiveData.setValue(null);
-            }
-        });
-        return packagesMutableLiveData;
+    ArchPackagesService getArchPackagesService() {
+        return archPackagesService;
     }
 
     public LiveData<Details> getDetailsLiveData(final String repo,
@@ -92,14 +57,14 @@ public class ArchPackagesRepository {
         Call<Details> detailsCall = archPackagesService.searchDetails(repo, arch, pkgname);
         detailsCall.enqueue(new Callback<Details>() {
             @Override
-            public void onResponse(Call<Details> call, Response<Details> response) {
+            public void onResponse(@NonNull Call<Details> call, @NonNull Response<Details> response) {
                 if (response.isSuccessful() && response.body() != null && response.code() == 200)
                     detailsMutableLiveData.setValue(response.body());
                 else detailsMutableLiveData.setValue(null);
             }
 
             @Override
-            public void onFailure(Call<Details> call, Throwable t) {
+            public void onFailure(@NonNull Call<Details> call, @NonNull Throwable t) {
                 detailsMutableLiveData.setValue(null);
             }
         });
@@ -113,14 +78,14 @@ public class ArchPackagesRepository {
         Call<Files> filesCall = archPackagesService.searchFiles(repo, arch, pkgname);
         filesCall.enqueue(new Callback<Files>() {
             @Override
-            public void onResponse(Call<Files> call, Response<Files> response) {
+            public void onResponse(@NonNull Call<Files> call, @NonNull Response<Files> response) {
                 if (response.isSuccessful() && response.body() != null && response.code() == 200)
                     filesMutableLiveData.setValue(response.body());
                 else filesMutableLiveData.setValue(null);
             }
 
             @Override
-            public void onFailure(Call<Files> call, Throwable t) {
+            public void onFailure(@NonNull Call<Files> call, @NonNull Throwable t) {
                 filesMutableLiveData.setValue(null);
             }
         });

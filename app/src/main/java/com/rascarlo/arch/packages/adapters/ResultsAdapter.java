@@ -1,8 +1,8 @@
 package com.rascarlo.arch.packages.adapters;
 
+import android.arch.paging.PagedListAdapter;
 import android.databinding.DataBindingUtil;
 import android.support.annotation.NonNull;
-import android.support.v7.recyclerview.extensions.ListAdapter;
 import android.support.v7.util.DiffUtil;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -14,7 +14,7 @@ import com.rascarlo.arch.packages.callbacks.ResultsAdapterCallback;
 import com.rascarlo.arch.packages.databinding.ResultItemBinding;
 import com.rascarlo.arch.packages.viewholders.ResultAdapterViewHolder;
 
-public class ResultsAdapter extends ListAdapter<Result, ResultAdapterViewHolder> {
+public class ResultsAdapter extends PagedListAdapter<Result, ResultAdapterViewHolder> {
 
     private final ResultsAdapterCallback resultsAdapterCallback;
 
@@ -34,12 +34,8 @@ public class ResultsAdapter extends ListAdapter<Result, ResultAdapterViewHolder>
         }
 
         @Override
-        public boolean areContentsTheSame(Result oldItem, Result newItem) {
-            return TextUtils.equals(oldItem.getPkgname(), newItem.getPkgname())
-                    && TextUtils.equals(oldItem.getFilename(), newItem.getFilename())
-                    && TextUtils.equals(oldItem.getPkgver(), newItem.getPkgver())
-                    && TextUtils.equals(oldItem.getArch(), newItem.getArch())
-                    && TextUtils.equals(oldItem.getRepo(), newItem.getRepo());
+        public boolean areContentsTheSame(@NonNull Result oldItem, @NonNull Result newItem) {
+            return oldItem.equals(newItem);
         }
     };
 

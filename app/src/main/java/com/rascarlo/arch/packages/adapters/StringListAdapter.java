@@ -26,7 +26,7 @@ public class StringListAdapter extends ListAdapter<String, StringListAdapterView
 
         @Override
         public boolean areContentsTheSame(@NonNull String s, @NonNull String t1) {
-            return TextUtils.equals(s.trim(), t1.trim());
+            return t1.equals(s);
         }
     };
 

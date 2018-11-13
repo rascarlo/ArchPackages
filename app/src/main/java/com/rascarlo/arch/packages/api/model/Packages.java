@@ -12,7 +12,7 @@ public class Packages implements Parcelable {
 
     @SerializedName("num_pages")
     @Expose
-    private String numPages;
+    private int numPages;
 
     @SerializedName("results")
     @Expose
@@ -20,7 +20,7 @@ public class Packages implements Parcelable {
 
     @SerializedName("page")
     @Expose
-    private String page;
+    private int page;
 
     @SerializedName("version")
     @Expose
@@ -28,13 +28,13 @@ public class Packages implements Parcelable {
 
     @SerializedName("limit")
     @Expose
-    private String limit;
+    private int limit;
 
     @SerializedName("valid")
     @Expose
     private boolean valid;
 
-    public String getNumPages() {
+    public int getNumPages() {
         return numPages;
     }
 
@@ -42,7 +42,7 @@ public class Packages implements Parcelable {
         return results;
     }
 
-    public String getPage() {
+    public int getPage() {
         return page;
     }
 
@@ -50,7 +50,7 @@ public class Packages implements Parcelable {
         return version;
     }
 
-    public String getLimit() {
+    public int getLimit() {
         return limit;
     }
 
@@ -65,11 +65,11 @@ public class Packages implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(this.numPages);
+        dest.writeInt(this.numPages);
         dest.writeTypedList(this.results);
-        dest.writeString(this.page);
+        dest.writeInt(this.page);
         dest.writeString(this.version);
-        dest.writeString(this.limit);
+        dest.writeInt(this.limit);
         dest.writeByte(this.valid ? (byte) 1 : (byte) 0);
     }
 
@@ -77,11 +77,11 @@ public class Packages implements Parcelable {
     }
 
     private Packages(Parcel in) {
-        this.numPages = in.readString();
+        this.numPages = in.readInt();
         this.results = in.createTypedArrayList(Result.CREATOR);
-        this.page = in.readString();
+        this.page = in.readInt();
         this.version = in.readString();
-        this.limit = in.readString();
+        this.limit = in.readInt();
         this.valid = in.readByte() != 0;
     }
 

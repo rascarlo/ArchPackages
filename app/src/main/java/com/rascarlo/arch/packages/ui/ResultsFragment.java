@@ -94,30 +94,28 @@ public class ResultsFragment extends Fragment implements ResultsAdapterCallback 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_results, container, false);
+        PackagesViewModel packagesViewModel = ViewModelProviders.of(this).get(PackagesViewModel.class);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
-        final RecyclerView recyclerView = rootView.findViewById(R.id.fragment_results_recycler_view);
-        final ProgressBar progressBar = rootView.findViewById(R.id.fragment_results_progress_bar);
-        final ResultsAdapter resultsAdapter = new ResultsAdapter(this);
+        RecyclerView recyclerView = rootView.findViewById(R.id.fragment_results_recycler_view);
+        ProgressBar progressBar = rootView.findViewById(R.id.fragment_results_progress_bar);
+        ResultsAdapter resultsAdapter = new ResultsAdapter(this);
         progressBar.setVisibility(View.VISIBLE);
         recyclerView.addItemDecoration(new DividerItemDecoration(context, DividerItemDecoration.VERTICAL));
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(linearLayoutManager);
-        recyclerView.setAdapter(resultsAdapter);
-        PackagesViewModel packagesViewModel = ViewModelProviders.of(this).get(PackagesViewModel.class);
         if (savedInstanceState == null) {
             packagesViewModel.init(bundleKeywordsParameter,
                     bundleKeywords,
                     bundleListRepo,
                     bundleListArch,
-                    bundleStringFlagged,
-                    1);
+                    bundleStringFlagged);
         }
-        packagesViewModel.getPackagesLiveData().observe(this, packages -> {
-            if (packages != null) {
-                resultsAdapter.submitList(packages.getResults());
-            }
-            progressBar.setVisibility(View.GONE);
-        });
+        packagesViewModel.pagedListLiveData.observe(this,
+                results -> {
+                    resultsAdapter.submitList(results);
+                    progressBar.setVisibility(View.GONE);
+                });
+        recyclerView.setAdapter(resultsAdapter);
         return rootView;
     }
 

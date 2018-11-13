@@ -18,21 +18,24 @@ public interface ArchPackagesService {
                                              @Query("repo") List<String> listRepo,
                                              @Query("arch") List<String> listArch,
                                              @Query("flagged") String flagged,
-                                             @Query("page") int page);
+                                             @Query("page") int page,
+                                             @Query("limit") int limit);
 
     @GET("search/json/?")
     Call<Packages> searchByExactName(@Query("name") String query,
                                      @Query("repo") List<String> listRepo,
                                      @Query("arch") List<String> listArch,
                                      @Query("flagged") String flagged,
-                                     @Query("page") int page);
+                                     @Query("page") int page,
+                                     @Query("limit") int limit);
 
     @GET("search/json/?")
     Call<Packages> searchByDescription(@Query("desc") String query,
                                        @Query("repo") List<String> listRepo,
                                        @Query("arch") List<String> listArch,
                                        @Query("flagged") String flagged,
-                                       @Query("page") int page);
+                                       @Query("page") int page,
+                                       @Query("limit") int limit);
 
     @GET("{repository}/{architecture}/{package}/json")
     Call<Details> searchDetails(@Path("repository") String repo,
