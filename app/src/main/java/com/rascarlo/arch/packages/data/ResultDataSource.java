@@ -81,8 +81,10 @@ public class ResultDataSource extends PageKeyedDataSource<Integer, Result> {
                     @Override
                     public void onResponse(@NonNull Call<Packages> call, @NonNull Response<Packages> response) {
                         if (response.isSuccessful() && response.body() != null) {
-                            Integer adjacentPageKey = response.body().getPage() < response.body().getNumPages() ? params.key + 1 : null;
-                            callback.onResult(response.body().getResults(), adjacentPageKey);
+                            if (response.body().getPage() < response.body().getNumPages()) {
+                                Integer adjacentPageKey = response.body().getPage() < response.body().getNumPages() ? params.key + 1 : null;
+                                callback.onResult(response.body().getResults(), adjacentPageKey);
+                            }
                         }
                     }
 
