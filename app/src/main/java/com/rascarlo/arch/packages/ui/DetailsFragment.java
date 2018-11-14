@@ -2,8 +2,6 @@ package com.rascarlo.arch.packages.ui;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
-import android.content.res.Resources;
-import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -170,13 +168,6 @@ public class DetailsFragment extends BottomSheetDialogFragment {
             recyclerView.setLayoutManager(linearLayoutManager);
             recyclerView.setHasFixedSize(true);
             recyclerView.addItemDecoration(new DividerItemDecoration(context, DividerItemDecoration.VERTICAL));
-            recyclerView.addItemDecoration(new RecyclerView.ItemDecoration() {
-                @Override
-                public void getItemOffsets(@NonNull Rect outRect, @NonNull View view, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
-                    outRect.top = (int) (2 * Resources.getSystem().getDisplayMetrics().density);
-                    outRect.bottom = (int) (2 * Resources.getSystem().getDisplayMetrics().density);
-                }
-            });
         }
     }
 }

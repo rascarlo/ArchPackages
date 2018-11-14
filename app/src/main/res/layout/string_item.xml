@@ -16,9 +16,11 @@
         android:id="@+id/string_item_text_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/grey_300"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
         android:text="@{string.trim()}"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="@color/grey_300"
         tools:text="@string/app_name" />
 
 </layout>

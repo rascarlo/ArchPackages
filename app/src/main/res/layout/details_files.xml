@@ -31,6 +31,7 @@
             android:id="@+id/details_text_view_dirs_count"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
             android:text="@{@string/formatted_dirs_count(Files.dirCount)}"
             android:textAppearance="@style/TextAppearance.AppCompat.Caption"
             tools:text="@string/formatted_dirs_count" />
@@ -39,6 +40,7 @@
             android:id="@+id/details_text_view_files_count"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
             android:text="@{@string/formatted_files_count(Files.filesCount)}"
             android:textAppearance="@style/TextAppearance.AppCompat.Caption"
             tools:text="@string/formatted_files_count" />
