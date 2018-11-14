@@ -9,12 +9,12 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import com.rascarlo.arch.packages.R;
-import com.rascarlo.arch.packages.databinding.DependencyItemBinding;
-import com.rascarlo.arch.packages.viewholders.DependencyListAdapterViewHolder;
+import com.rascarlo.arch.packages.databinding.StringItemBinding;
+import com.rascarlo.arch.packages.viewholders.StringListAdapterViewHolder;
 
-public class DependencyListAdapter extends ListAdapter<String, DependencyListAdapterViewHolder> {
+public class StringListAdapter extends ListAdapter<String, StringListAdapterViewHolder> {
 
-    public DependencyListAdapter() {
+    public StringListAdapter() {
         super(DIFF_CALLBACK);
     }
 
@@ -32,16 +32,16 @@ public class DependencyListAdapter extends ListAdapter<String, DependencyListAda
 
     @NonNull
     @Override
-    public DependencyListAdapterViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        DependencyItemBinding binding = DataBindingUtil.inflate(LayoutInflater.from(viewGroup.getContext()), R.layout.dependency_item, viewGroup, false);
-        return new DependencyListAdapterViewHolder(binding);
+    public StringListAdapterViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+        StringItemBinding binding = DataBindingUtil.inflate(LayoutInflater.from(viewGroup.getContext()), R.layout.string_item, viewGroup, false);
+        return new StringListAdapterViewHolder(binding);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull DependencyListAdapterViewHolder dependencyListAdapterViewHolder, int i) {
+    public void onBindViewHolder(@NonNull StringListAdapterViewHolder stringListAdapterViewHolder, int i) {
         if (getItem(i) != null) {
             String s = getItem(i);
-            dependencyListAdapterViewHolder.bindString(s);
+            stringListAdapterViewHolder.bindString(s);
         }
     }
 }

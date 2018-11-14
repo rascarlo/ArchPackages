@@ -17,7 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.rascarlo.arch.packages.R;
-import com.rascarlo.arch.packages.adapters.DependencyListAdapter;
+import com.rascarlo.arch.packages.adapters.StringListAdapter;
 import com.rascarlo.arch.packages.api.model.Details;
 import com.rascarlo.arch.packages.api.model.Files;
 import com.rascarlo.arch.packages.databinding.FragmentDetailsBinding;
@@ -163,9 +163,9 @@ public class DetailsFragment extends BottomSheetDialogFragment {
 
     private void populateRecyclerView(RecyclerView recyclerView, List<String> stringList) {
         if (stringList != null && !stringList.isEmpty()) {
-            DependencyListAdapter dependencyListAdapter = new DependencyListAdapter();
-            dependencyListAdapter.submitList(stringList);
-            recyclerView.setAdapter(dependencyListAdapter);
+            StringListAdapter stringListAdapter = new StringListAdapter();
+            stringListAdapter.submitList(stringList);
+            recyclerView.setAdapter(stringListAdapter);
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
             recyclerView.setLayoutManager(linearLayoutManager);
             recyclerView.setHasFixedSize(true);
