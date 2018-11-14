@@ -4,9 +4,9 @@ import java.util.ArrayList;
 
 public interface SearchFragmentCallback {
 
-    void onSearchFragmentCallbackOnFabClicked(int keywordsParameter,
-                                              String keywords,
-                                              ArrayList<String> listRepo,
-                                              ArrayList<String> listArch,
-                                              String flagged);
+    void onSearchFragmentCallbackFabClicked(int keywordsParameter,
+                                            String keywords,
+                                            ArrayList<String> listRepo,
+                                            ArrayList<String> listArch,
+                                            String flagged);
 }

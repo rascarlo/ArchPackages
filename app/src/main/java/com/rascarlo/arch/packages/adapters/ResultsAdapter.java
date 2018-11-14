@@ -10,17 +10,17 @@ import android.view.ViewGroup;
 
 import com.rascarlo.arch.packages.R;
 import com.rascarlo.arch.packages.api.model.Result;
-import com.rascarlo.arch.packages.callbacks.ResultAdapterCallback;
+import com.rascarlo.arch.packages.callbacks.ResultsAdapterCallback;
 import com.rascarlo.arch.packages.databinding.ResultItemBinding;
 import com.rascarlo.arch.packages.viewholders.ResultAdapterViewHolder;
 
-public class ResultAdapter extends PagedListAdapter<Result, ResultAdapterViewHolder> {
+public class ResultsAdapter extends PagedListAdapter<Result, ResultAdapterViewHolder> {
 
-    private final ResultAdapterCallback resultAdapterCallback;
+    private final ResultsAdapterCallback resultsAdapterCallback;
 
-    public ResultAdapter(ResultAdapterCallback resultAdapterCallback) {
+    public ResultsAdapter(ResultsAdapterCallback resultsAdapterCallback) {
         super(DIFF_CALLBACK);
-        this.resultAdapterCallback = resultAdapterCallback;
+        this.resultsAdapterCallback = resultsAdapterCallback;
     }
 
     private static final DiffUtil.ItemCallback<Result> DIFF_CALLBACK = new DiffUtil.ItemCallback<Result>() {
@@ -42,9 +42,9 @@ public class ResultAdapter extends PagedListAdapter<Result, ResultAdapterViewHol
     @NonNull
     @Override
     public ResultAdapterViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        ResultItemBinding binding = DataBindingUtil.inflate(LayoutInflater.from(viewGroup.getContext()), R.layout.result_item, viewGroup, false);
-        binding.setResultAdapterCallback(resultAdapterCallback);
-        return new ResultAdapterViewHolder(binding);
+        ResultItemBinding resultItemBinding = DataBindingUtil.inflate(LayoutInflater.from(viewGroup.getContext()), R.layout.result_item, viewGroup, false);
+        resultItemBinding.setResultsAdapterCallback(resultsAdapterCallback);
+        return new ResultAdapterViewHolder(resultItemBinding);
     }
 
     @Override
