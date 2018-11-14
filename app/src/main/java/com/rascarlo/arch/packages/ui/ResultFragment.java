@@ -15,18 +15,18 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
 import com.rascarlo.arch.packages.R;
-import com.rascarlo.arch.packages.adapters.ResultsAdapter;
+import com.rascarlo.arch.packages.adapters.ResultAdapter;
 import com.rascarlo.arch.packages.api.model.Result;
-import com.rascarlo.arch.packages.callbacks.ResultsAdapterCallback;
+import com.rascarlo.arch.packages.callbacks.ResultAdapterCallback;
 import com.rascarlo.arch.packages.callbacks.ResultsFragmentCallback;
 import com.rascarlo.arch.packages.viewmodel.PackagesViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ResultsFragment extends Fragment implements ResultsAdapterCallback {
+public class ResultFragment extends Fragment implements ResultAdapterCallback {
 
-    private static final String LOG_TAG = ResultsFragment.class.getSimpleName();
+    private static final String LOG_TAG = ResultFragment.class.getSimpleName();
     private static final String BUNDLE_KEYWORDS_PARAMETER = "bundle_keywords_parameter";
     private static final String BUNDLE_KEYWORDS = "bundle_keywords";
     private static final String BUNDLE_LIST_REPO = "bundle_list_repo";
@@ -40,15 +40,15 @@ public class ResultsFragment extends Fragment implements ResultsAdapterCallback 
     private String bundleStringFlagged;
     private ResultsFragmentCallback resultsFragmentCallback;
 
-    public ResultsFragment() {
+    public ResultFragment() {
     }
 
-    public static ResultsFragment newInstance(int keywordsParameter,
-                                              String keywords,
-                                              ArrayList<String> listRepo,
-                                              ArrayList<String> listArch,
-                                              String flagged) {
-        ResultsFragment resultsFragment = new ResultsFragment();
+    public static ResultFragment newInstance(int keywordsParameter,
+                                             String keywords,
+                                             ArrayList<String> listRepo,
+                                             ArrayList<String> listArch,
+                                             String flagged) {
+        ResultFragment resultsFragment = new ResultFragment();
         Bundle bundle = new Bundle();
         bundle.putInt(BUNDLE_KEYWORDS_PARAMETER, keywordsParameter);
         bundle.putString(BUNDLE_KEYWORDS, keywords);
@@ -98,7 +98,7 @@ public class ResultsFragment extends Fragment implements ResultsAdapterCallback 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
         RecyclerView recyclerView = rootView.findViewById(R.id.fragment_results_recycler_view);
         ProgressBar progressBar = rootView.findViewById(R.id.fragment_results_progress_bar);
-        ResultsAdapter resultsAdapter = new ResultsAdapter(this);
+        ResultAdapter resultAdapter = new ResultAdapter(this);
         progressBar.setVisibility(View.VISIBLE);
         recyclerView.addItemDecoration(new DividerItemDecoration(context, DividerItemDecoration.VERTICAL));
         recyclerView.setHasFixedSize(true);
@@ -112,15 +112,15 @@ public class ResultsFragment extends Fragment implements ResultsAdapterCallback 
         }
         packagesViewModel.getPagedListLiveData().observe(this,
                 results -> {
-                    resultsAdapter.submitList(results);
+                    resultAdapter.submitList(results);
                     progressBar.setVisibility(View.GONE);
                 });
-        recyclerView.setAdapter(resultsAdapter);
+        recyclerView.setAdapter(resultAdapter);
         return rootView;
     }
 
     @Override
-    public void onResultsAdapterCallbackResultClicked(Result result) {
+    public void onResultAdapterCallbackResultClicked(Result result) {
         if (resultsFragmentCallback != null) {
             resultsFragmentCallback.onResultFragmentCallbackResultClicked(result);
         }

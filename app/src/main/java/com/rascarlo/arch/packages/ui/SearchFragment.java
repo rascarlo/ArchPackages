@@ -62,12 +62,15 @@ public class SearchFragment extends Fragment implements CompoundButton.OnChecked
         setUpFlagged();
         // search fab
         FloatingActionButton floatingActionButton = rootView.findViewById(R.id.fragment_search_fab);
-        floatingActionButton.setOnClickListener(v -> onFabClicked(
-                getKeywordsParameter(),
-                getQuery(),
-                getListRepo(),
-                getListArch(),
-                getFlagged()));
+        floatingActionButton.setOnClickListener(v -> {
+            if (searchFragmentCallback != null) {
+                onFabClicked(getKeywordsParameter(),
+                        getQuery(),
+                        getListRepo(),
+                        getListArch(),
+                        getFlagged());
+            }
+        });
         return rootView;
     }
 
@@ -257,7 +260,7 @@ public class SearchFragment extends Fragment implements CompoundButton.OnChecked
                               ArrayList<String> listArch,
                               String flagged) {
         if (searchFragmentCallback != null) {
-            searchFragmentCallback.onSearchFragmentCallbackFabClicked(
+            searchFragmentCallback.onSearchFragmentCallbackOnFabClicked(
                     keywordsParameter,
                     keywords,
                     listRepo,

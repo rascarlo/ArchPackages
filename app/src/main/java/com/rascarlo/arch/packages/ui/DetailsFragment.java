@@ -2,12 +2,10 @@ package com.rascarlo.arch.packages.ui;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
-import android.content.res.Resources;
-import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.design.widget.BottomSheetDialogFragment;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -17,9 +15,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.rascarlo.arch.packages.R;
-import com.rascarlo.arch.packages.adapters.DependencyListAdapter;
+import com.rascarlo.arch.packages.adapters.DependencyAdapter;
+import com.rascarlo.arch.packages.adapters.FileAdapter;
 import com.rascarlo.arch.packages.api.model.Details;
 import com.rascarlo.arch.packages.api.model.Files;
+import com.rascarlo.arch.packages.callbacks.DependencyAdapterCallback;
+import com.rascarlo.arch.packages.callbacks.DetailsFragmentCallback;
 import com.rascarlo.arch.packages.databinding.FragmentDetailsBinding;
 import com.rascarlo.arch.packages.util.ArchPackagesStringConverters;
 import com.rascarlo.arch.packages.viewmodel.DetailsViewModel;
@@ -28,7 +29,7 @@ import com.rascarlo.arch.packages.viewmodel.FilesViewModel;
 import java.util.HashMap;
 import java.util.List;
 
-public class DetailsFragment extends BottomSheetDialogFragment {
+public class DetailsFragment extends Fragment implements DependencyAdapterCallback {
 
     private static final String BUNDLE_REPO = "bundle_repo";
     private static final String BUNDLE_ARCH = "bundle_arch";
@@ -38,13 +39,9 @@ public class DetailsFragment extends BottomSheetDialogFragment {
     private String bundlePkgname;
     private Context context;
     private FragmentDetailsBinding fragmentDetailsBinding;
+    private DetailsFragmentCallback detailsFragmentCallback;
 
     public DetailsFragment() {
-    }
-
-    @Override
-    public int getTheme() {
-        return R.style.AppTheme_BottomSheet;
     }
 
     public static DetailsFragment newInstance(String repo,
@@ -69,10 +66,23 @@ public class DetailsFragment extends BottomSheetDialogFragment {
         }
     }
 
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
         this.context = context;
+        if (context instanceof DetailsFragmentCallback) {
+            detailsFragmentCallback = (DetailsFragmentCallback) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement DetailsFragmentCallback");
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        detailsFragmentCallback = null;
     }
 
     @Override
@@ -158,25 +168,37 @@ public class DetailsFragment extends BottomSheetDialogFragment {
     }
 
     private void bindFiles(Files files) {
-        populateRecyclerView(fragmentDetailsBinding.detailsFilesLayout.detailsFilesRecyclerView, files.files);
-    }
-
-    private void populateRecyclerView(RecyclerView recyclerView, List<String> stringList) {
+        RecyclerView recyclerView = fragmentDetailsBinding.detailsFilesLayout.detailsFilesRecyclerView;
+        List<String> stringList = files.files;
         if (stringList != null && !stringList.isEmpty()) {
-            DependencyListAdapter dependencyListAdapter = new DependencyListAdapter();
-            dependencyListAdapter.submitList(stringList);
-            recyclerView.setAdapter(dependencyListAdapter);
+            FileAdapter fileAdapter = new FileAdapter();
+            fileAdapter.submitList(stringList);
+            recyclerView.setAdapter(fileAdapter);
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
             recyclerView.setLayoutManager(linearLayoutManager);
             recyclerView.setHasFixedSize(true);
             recyclerView.addItemDecoration(new DividerItemDecoration(context, DividerItemDecoration.VERTICAL));
-            recyclerView.addItemDecoration(new RecyclerView.ItemDecoration() {
-                @Override
-                public void getItemOffsets(@NonNull Rect outRect, @NonNull View view, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
-                    outRect.top = (int) (2 * Resources.getSystem().getDisplayMetrics().density);
-                    outRect.bottom = (int) (2 * Resources.getSystem().getDisplayMetrics().density);
-                }
-            });
+        }
+    }
+
+    private void populateRecyclerView(RecyclerView recyclerView, List<String> stringList) {
+        if (stringList != null && !stringList.isEmpty()) {
+            DependencyAdapter dependencyAdapter = new DependencyAdapter(this);
+            dependencyAdapter.submitList(stringList);
+            recyclerView.setAdapter(dependencyAdapter);
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
+            recyclerView.setLayoutManager(linearLayoutManager);
+            recyclerView.setHasFixedSize(true);
+            recyclerView.addItemDecoration(new DividerItemDecoration(context, DividerItemDecoration.VERTICAL));
+        }
+    }
+
+    @Override
+    public void onDependencyAdapterCallbackOnPackageClicked(String packageName) {
+        if (packageName != null && !TextUtils.isEmpty(packageName)) {
+            if (detailsFragmentCallback != null) {
+                detailsFragmentCallback.onDetailsFragmentCallbackOnPackageClicked(packageName);
+            }
         }
     }
 }

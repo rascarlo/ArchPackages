@@ -9,13 +9,17 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import com.rascarlo.arch.packages.R;
+import com.rascarlo.arch.packages.callbacks.DependencyAdapterCallback;
 import com.rascarlo.arch.packages.databinding.DependencyItemBinding;
-import com.rascarlo.arch.packages.viewholders.DependencyListAdapterViewHolder;
+import com.rascarlo.arch.packages.viewholders.DependencyAdapterViewHolder;
 
-public class DependencyListAdapter extends ListAdapter<String, DependencyListAdapterViewHolder> {
+public class DependencyAdapter extends ListAdapter<String, DependencyAdapterViewHolder> {
 
-    public DependencyListAdapter() {
+    private DependencyAdapterCallback dependencyAdapterCallback;
+
+    public DependencyAdapter(DependencyAdapterCallback dependencyAdapterCallback) {
         super(DIFF_CALLBACK);
+        this.dependencyAdapterCallback = dependencyAdapterCallback;
     }
 
     private static final DiffUtil.ItemCallback<String> DIFF_CALLBACK = new DiffUtil.ItemCallback<String>() {
@@ -32,16 +36,17 @@ public class DependencyListAdapter extends ListAdapter<String, DependencyListAda
 
     @NonNull
     @Override
-    public DependencyListAdapterViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+    public DependencyAdapterViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         DependencyItemBinding binding = DataBindingUtil.inflate(LayoutInflater.from(viewGroup.getContext()), R.layout.dependency_item, viewGroup, false);
-        return new DependencyListAdapterViewHolder(binding);
+        binding.setDependencyAdapterCallback(dependencyAdapterCallback);
+        return new DependencyAdapterViewHolder(binding);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull DependencyListAdapterViewHolder dependencyListAdapterViewHolder, int i) {
+    public void onBindViewHolder(@NonNull DependencyAdapterViewHolder dependencyAdapterViewHolder, int i) {
         if (getItem(i) != null) {
             String s = getItem(i);
-            dependencyListAdapterViewHolder.bindString(s);
+            dependencyAdapterViewHolder.bindString(s);
         }
     }
 }

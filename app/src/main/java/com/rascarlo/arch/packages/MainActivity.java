@@ -5,19 +5,22 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.rascarlo.arch.packages.api.model.Result;
-import com.rascarlo.arch.packages.callbacks.SearchFragmentCallback;
+import com.rascarlo.arch.packages.callbacks.DetailsFragmentCallback;
 import com.rascarlo.arch.packages.callbacks.ResultsFragmentCallback;
+import com.rascarlo.arch.packages.callbacks.SearchFragmentCallback;
 import com.rascarlo.arch.packages.ui.DetailsFragment;
-import com.rascarlo.arch.packages.ui.ResultsFragment;
+import com.rascarlo.arch.packages.ui.ResultFragment;
 import com.rascarlo.arch.packages.ui.SearchFragment;
+import com.rascarlo.arch.packages.util.ArchPackagesConstants;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements SearchFragmentCallback, ResultsFragmentCallback {
+public class MainActivity extends AppCompatActivity implements SearchFragmentCallback, ResultsFragmentCallback, DetailsFragmentCallback {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,14 +61,14 @@ public class MainActivity extends AppCompatActivity implements SearchFragmentCal
     }
 
     @Override
-    public void onSearchFragmentCallbackFabClicked(int keywordsParameter,
-                                                   String keywords,
-                                                   ArrayList<String> listRepo,
-                                                   ArrayList<String> listArch,
-                                                   String flagged) {
+    public void onSearchFragmentCallbackOnFabClicked(int keywordsParameter,
+                                                     String keywords,
+                                                     ArrayList<String> listRepo,
+                                                     ArrayList<String> listArch,
+                                                     String flagged) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        ResultsFragment resultsFragment = ResultsFragment.newInstance(
+        ResultFragment resultsFragment = ResultFragment.newInstance(
                 keywordsParameter,
                 keywords,
                 listRepo,
@@ -78,12 +81,33 @@ public class MainActivity extends AppCompatActivity implements SearchFragmentCal
 
     @Override
     public void onResultFragmentCallbackResultClicked(Result result) {
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        DetailsFragment detailsFragment = DetailsFragment.newInstance(
-                result.getRepo(),
-                result.getArch(),
-                result.getPkgname());
-        detailsFragment.show(fragmentTransaction, detailsFragment.getTag());
+        if (result != null) {
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            DetailsFragment detailsFragment = DetailsFragment.newInstance(
+                    result.getRepo(),
+                    result.getArch(),
+                    result.getPkgname());
+            fragmentTransaction.add(R.id.content_main_fragment_container, detailsFragment);
+            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.commit();
+        }
+    }
+
+    @Override
+    public void onDetailsFragmentCallbackOnPackageClicked(String packageName) {
+        if (packageName != null && !TextUtils.isEmpty(packageName)) {
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            ResultFragment resultsFragment = ResultFragment.newInstance(
+                    ArchPackagesConstants.SEARCH_KEYWORDS_PARAMETER_EXACT_NAME,
+                    packageName,
+                    null,
+                    null,
+                    null);
+            fragmentTransaction.add(R.id.content_main_fragment_container, resultsFragment);
+            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.commit();
+        }
     }
 }
