@@ -112,7 +112,9 @@ public class ResultsFragment extends Fragment implements ResultsAdapterCallback 
         }
         packagesViewModel.getPagedListLiveData().observe(this,
                 results -> {
-                    resultsAdapter.submitList(results);
+                    if (results != null) {
+                        resultsAdapter.submitList(results);
+                    }
                     progressBar.setVisibility(View.GONE);
                 });
         recyclerView.setAdapter(resultsAdapter);
