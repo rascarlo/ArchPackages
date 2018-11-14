@@ -19,7 +19,7 @@
 
             <include
                 android:id="@+id/fragment_search_keywords_layout"
-                layout="@layout/fragment_search_keywords"
+                layout="@layout/search_keywords"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -50,7 +50,7 @@
 
             <include
                 android:id="@+id/fragment_search_repo_layout"
-                layout="@layout/fragment_search_repo"
+                layout="@layout/search_repo"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -70,7 +70,7 @@
 
             <include
                 android:id="@+id/fragment_search_arch_layout"
-                layout="@layout/fragment_search_arch"
+                layout="@layout/search_arch"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -89,7 +89,7 @@
                 app:layout_constraintTop_toBottomOf="@id/fragment_search_arch_layout" />
 
             <include
-                layout="@layout/fragment_search_flagged"
+                layout="@layout/search_flagged"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"

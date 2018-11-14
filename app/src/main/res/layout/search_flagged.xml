@@ -5,7 +5,7 @@
     android:layout_height="wrap_content">
 
     <TextView
-        android:id="@+id/fragment_search_flagged_text_view_label"
+        android:id="@+id/search_flagged_text_view_label"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/flagged"
@@ -15,28 +15,28 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <RadioGroup
-        android:id="@+id/fragment_search_flagged_radio_group"
+        android:id="@+id/search_flagged_radio_group"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toEndOf="@+id/fragment_search_flagged_text_view_label"
-        app:layout_constraintStart_toStartOf="@+id/fragment_search_flagged_text_view_label"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_search_flagged_text_view_label">
+        app:layout_constraintEnd_toEndOf="@+id/search_flagged_text_view_label"
+        app:layout_constraintStart_toStartOf="@+id/search_flagged_text_view_label"
+        app:layout_constraintTop_toBottomOf="@+id/search_flagged_text_view_label">
 
         <RadioButton
-            android:id="@+id/fragment_search_radio_button_flagged_all"
+            android:id="@+id/search_radio_button_flagged_all"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/all" />
 
         <RadioButton
-            android:id="@+id/fragment_search_radio_button_flagged_flagged"
+            android:id="@+id/search_radio_button_flagged_flagged"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/flagged" />
 
         <RadioButton
-            android:id="@+id/fragment_search_radio_button_flagged_not_flagged"
+            android:id="@+id/search_radio_button_flagged_not_flagged"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/not_flagged" />
