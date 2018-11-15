@@ -7,7 +7,7 @@
     <color name="grey_500">#9E9E9E</color>
     <color name="grey_900">#212121</color>
     <!-- blue -->
-    <color name="blue_A200">#448AFF</color>
+    <color name="blue_arch">#1793D1</color>
     <!--red-->
     <color name="red_500">#F44336</color>
     <!--reference-->
@@ -16,5 +16,5 @@
     <!--attr-->
     <color name="colorPrimary">@color/grey_900</color>
     <color name="colorPrimaryDark">@color/black</color>
-    <color name="colorAccent">@color/blue_A200</color>
+    <color name="colorAccent">@color/blue_arch</color>
 </resources>

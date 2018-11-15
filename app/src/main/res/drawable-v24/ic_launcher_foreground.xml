@@ -2,10 +2,10 @@
         xmlns:aapt="http://schemas.android.com/aapt"
         android:width="108dp"
         android:height="108dp"
-        android:viewportWidth="156.52174"
-        android:viewportHeight="156.52174">
-    <group android:translateX="24.26087"
-            android:translateY="24.26087">
+        android:viewportWidth="154.28572"
+        android:viewportHeight="154.28572">
+    <group android:translateX="23.142857"
+            android:translateY="23.142857">
         <path
             android:fillType="evenOdd"
             android:pathData="M63.353,51.828 L144.504,127.79 113.201,161.231 32.05,85.269 55.075,52.851Z"
@@ -19,7 +19,7 @@
                     android:startY="61.0927"
                     android:type="linear">
                     <item
-                        android:color="#44000000"
+                        android:color="#801793D1"
                         android:offset="0.0" />
                     <item
                         android:color="#00000000"
@@ -29,7 +29,7 @@
 
         </path>
         <path
-            android:fillColor="#FFFFFF"
+            android:fillColor="#1793D1"
             android:fillType="nonZero"
             android:pathData="M55.129,29.691 L75.971,85.364L68.11,85.364L55.451,51.984 39.89,85.364L32.029,85.364L51.823,42.067 48.84,34.085q-1.895,-5.079 -6.208,-5.079l-3.87,0l0,-6.369l4.717,0.081q9.111,0.121 11.65,6.974z"
             android:strokeWidth="1"
