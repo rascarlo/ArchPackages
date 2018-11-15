@@ -5,6 +5,8 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorControlHighlight">@color/colorControlHighlight</item>
+        <item name="colorControlActivated">@color/colorControlActivated</item>
         <item name="fontFamily">monospace</item>
         <item name="radioButtonStyle">@style/AppTheme.RadioButtonStyle</item>
         <item name="checkboxStyle">@style/AppTheme.CheckBoxStyle</item>
@@ -22,6 +24,8 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorControlHighlight">@color/colorControlHighlight</item>
+        <item name="colorControlActivated">@color/colorControlActivated</item>
     </style>
 
     <style name="AppTheme.RadioButtonStyle" parent="Base.Widget.AppCompat.CompoundButton.RadioButton">
