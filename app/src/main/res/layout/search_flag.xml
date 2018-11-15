@@ -5,23 +5,23 @@
     android:layout_height="wrap_content">
 
     <TextView
-        android:id="@+id/search_flagged_text_view_label"
+        android:id="@+id/search_flag_text_view_label"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/flagged"
+        android:text="@string/flag"
         android:textAppearance="@style/TextAppearance.AppCompat.Title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <RadioGroup
-        android:id="@+id/search_flagged_radio_group"
+        android:id="@+id/search_flag_radio_group"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toEndOf="@+id/search_flagged_text_view_label"
-        app:layout_constraintStart_toStartOf="@+id/search_flagged_text_view_label"
-        app:layout_constraintTop_toBottomOf="@+id/search_flagged_text_view_label">
+        app:layout_constraintEnd_toEndOf="@+id/search_flag_text_view_label"
+        app:layout_constraintStart_toStartOf="@+id/search_flag_text_view_label"
+        app:layout_constraintTop_toBottomOf="@+id/search_flag_text_view_label">
 
         <RadioButton
             android:id="@+id/search_radio_button_flagged_all"
@@ -42,6 +42,5 @@
             android:text="@string/not_flagged" />
 
     </RadioGroup>
-
 
 </android.support.constraint.ConstraintLayout>

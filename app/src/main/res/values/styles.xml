@@ -8,6 +8,7 @@
         <item name="fontFamily">monospace</item>
         <item name="radioButtonStyle">@style/AppTheme.RadioButtonStyle</item>
         <item name="checkboxStyle">@style/AppTheme.CheckBoxStyle</item>
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
     </style>
 
     <style name="AppTheme.NoActionBar">

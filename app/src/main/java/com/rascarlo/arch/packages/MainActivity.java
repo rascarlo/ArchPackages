@@ -9,11 +9,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.rascarlo.arch.packages.api.model.Result;
-import com.rascarlo.arch.packages.callbacks.SearchFragmentCallback;
 import com.rascarlo.arch.packages.callbacks.ResultsFragmentCallback;
+import com.rascarlo.arch.packages.callbacks.SearchFragmentCallback;
 import com.rascarlo.arch.packages.ui.DetailsFragment;
 import com.rascarlo.arch.packages.ui.ResultsFragment;
 import com.rascarlo.arch.packages.ui.SearchFragment;
+import com.rascarlo.arch.packages.ui.SettingsFragment;
 
 import java.util.ArrayList;
 
@@ -38,7 +39,7 @@ public class MainActivity extends AppCompatActivity implements SearchFragmentCal
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+//        getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
@@ -72,6 +73,16 @@ public class MainActivity extends AppCompatActivity implements SearchFragmentCal
                 listArch,
                 flagged);
         fragmentTransaction.replace(R.id.content_main_fragment_container, resultsFragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+    }
+
+    @Override
+    public void onSearchFragmentCallbackMenuActionSettingsClicked() {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        SettingsFragment settingsFragment = new SettingsFragment();
+        fragmentTransaction.replace(R.id.content_main_fragment_container, settingsFragment);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
     }

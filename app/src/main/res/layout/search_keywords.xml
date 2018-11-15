@@ -38,8 +38,7 @@
         android:id="@+id/search_keywords_radio_group"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:checkedButton="@id/search_radio_button_name_or_description">
+        android:layout_marginTop="8dp">
 
         <RadioButton
             android:id="@+id/search_radio_button_name_or_description"

@@ -9,4 +9,6 @@ public interface SearchFragmentCallback {
                                             ArrayList<String> listRepo,
                                             ArrayList<String> listArch,
                                             String flagged);
+
+    void onSearchFragmentCallbackMenuActionSettingsClicked();
 }

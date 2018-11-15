@@ -46,25 +46,35 @@
     <string name="architecture_hint">It is possible to use this parameter more than once in order to search for more than one architecture (but note that omitting it altogether will search for all architectures).</string>
     <string name="arch_any">any</string>
     <string name="arch_x86_64">x86_64</string>
+    <string name="flag">Flag</string>
     <string name="all">All</string>
     <string name="flagged">Flagged</string>
     <string name="not_flagged">Not Flagged</string>
 
-    <string name="key_repo_core">key_repo_core</string>
-    <string name="key_repo_extra">key_repo_extra</string>
-    <string name="key_repo_testing">key_repo_testing</string>
-    <string name="key_repo_multilib">key_repo_multilib</string>
-    <string name="key_repo_multilib_testing">key_repo_multilib_testing</string>
-    <string name="key_repo_community">key_repo_community</string>
-    <string name="key_repo_community_testing">key_repo_community_testing</string>
-    <string name="key_arch_any">key_arch_any</string>
-    <string name="key_arch_x86_64">key_arch_x86_64</string>
-    <string name="key_flagged">key_flagged</string>
-    <string name="key_flagged_all">key_flagged_all</string>
-    <string name="key_flagged_flagged">key_flagged_flagged</string>
-    <string name="key_flagged_not_flagged">key_flagged_not_flagged</string>
-    <string name="key_keywords">key_keywords</string>
-    <string name="key_keywords_name_or_description">key_keywords_name_or_description</string>
-    <string name="key_keywords_exact_name">key_keywords_exact_name</string>
-    <string name="key_keywords_description">key_keywords_description</string>
+    <!--keywords keys-->
+    <string name="key_keywords" translatable="false">key_keywords</string>
+    <string name="key_keywords_default_value" translatable="false">@string/key_keywords_name_or_description</string>
+    <string name="key_keywords_name_or_description" translatable="false">key_keywords_name_or_description</string>
+    <string name="key_keywords_exact_name" translatable="false">key_keywords_exact_name</string>
+    <string name="key_keywords_description" translatable="false">key_keywords_description</string>
+
+    <!--repo keys-->
+    <string name="key_repo_core" translatable="false">key_repo_core</string>
+    <string name="key_repo_extra" translatable="false">key_repo_extra</string>
+    <string name="key_repo_testing" translatable="false">key_repo_testing</string>
+    <string name="key_repo_multilib" translatable="false">key_repo_multilib</string>
+    <string name="key_repo_multilib_testing" translatable="false">key_repo_multilib_testing</string>
+    <string name="key_repo_community" translatable="false">key_repo_community</string>
+    <string name="key_repo_community_testing" translatable="false">key_repo_community_testing</string>
+
+    <!--arch keys-->
+    <string name="key_arch_any" translatable="false">key_arch_any</string>
+    <string name="key_arch_x86_64" translatable="false">key_arch_x86_64</string>
+
+    <!--flag keys-->
+    <string name="key_flag" translatable="false">key_flag</string>
+    <string name="key_flag_default_value" translatable="false">@string/key_flag_flagged_all</string>
+    <string name="key_flag_flagged_all" translatable="false">key_flag_flagged_all</string>
+    <string name="key_flag_flagged" translatable="false">key_flag_flagged</string>
+    <string name="key_flag_not_flagged" translatable="false">key_flag_not_flagged</string>
 </resources>

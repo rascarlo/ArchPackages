@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <PreferenceCategory android:title="@string/keywords">
+        <ListPreference
+            android:defaultValue="@string/key_keywords_default_value"
+            android:entries="@array/key_keywords_entries"
+            android:entryValues="@array/key_keywords_entry_values"
+            android:key="@string/key_keywords"
+            android:summary="%s"
+            android:title="@string/package_search"
+            tools:summary="@string/name_or_description" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/repository">
+        <CheckBoxPreference
+            android:defaultValue="@bool/key_repo_core_default_value"
+            android:key="@string/key_repo_core"
+            android:title="@string/core" />
+
+        <CheckBoxPreference
+            android:defaultValue="@bool/key_repo_extra_default_value"
+            android:key="@string/key_repo_extra"
+            android:title="@string/extra" />
+
+        <CheckBoxPreference
+            android:defaultValue="@bool/key_repo_testing_default_value"
+            android:key="@string/key_repo_testing"
+            android:title="@string/testing" />
+
+        <CheckBoxPreference
+            android:defaultValue="@bool/key_repo_multilib_default_value"
+            android:key="@string/key_repo_multilib"
+            android:title="@string/multilib" />
+
+        <CheckBoxPreference
+            android:defaultValue="@bool/key_repo_multilib_testing_default_value"
+            android:key="@string/key_repo_multilib_testing"
+            android:title="@string/multilib_testing" />
+
+        <CheckBoxPreference
+            android:defaultValue="@bool/key_repo_community_default_value"
+            android:key="@string/key_repo_community"
+            android:title="@string/community" />
+
+        <CheckBoxPreference
+            android:defaultValue="@bool/key_repo_community_testing_default_value"
+            android:key="@string/key_repo_community_testing"
+            android:title="@string/community_testing" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/architecture">
+
+        <CheckBoxPreference
+            android:defaultValue="@bool/key_arch_any_default_value"
+            android:key="@string/key_arch_any"
+            android:title="@string/arch_any" />
+
+        <CheckBoxPreference
+            android:defaultValue="@bool/key_arch_x86_64_default_value"
+            android:key="@string/key_arch_x86_64"
+            android:title="@string/arch_x86_64" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/flag">
+        <ListPreference
+            android:defaultValue="@string/key_flag_default_value"
+            android:entries="@array/key_flagged_entries"
+            android:entryValues="@array/key_flagged_entry_values"
+            android:key="@string/key_flag"
+            android:summary="%s"
+            android:title="@string/flagged"
+            tools:summary="@string/all" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

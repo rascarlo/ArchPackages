@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <!--keywords list preference-->
+    <string-array name="key_keywords_entries">
+        <item>@string/name_or_description</item>
+        <item>@string/exact_name</item>
+        <item>@string/description</item>
+    </string-array>
+    <string-array name="key_keywords_entry_values">
+        <item>@string/key_keywords_name_or_description</item>
+        <item>@string/key_keywords_exact_name</item>
+        <item>@string/key_keywords_description</item>
+    </string-array>
+
+    <!--flagged list preference-->
+    <string-array name="key_flagged_entries">
+        <item>@string/all</item>
+        <item>@string/flagged</item>
+        <item>@string/not_flagged</item>
+    </string-array>
+    <string-array name="key_flagged_entry_values">
+        <item>@string/key_flag_flagged_all</item>
+        <item>@string/key_flag_not_flagged</item>
+        <item>@string/key_flag_not_flagged</item>
+    </string-array>
+</resources>
