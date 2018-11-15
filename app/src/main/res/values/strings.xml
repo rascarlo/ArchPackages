@@ -51,6 +51,12 @@
     <string name="flagged">Flagged</string>
     <string name="not_flagged">Not Flagged</string>
 
+    <string name="design">Design</string>
+    <string name="theme">Theme</string>
+    <string name="theme_dark">Dark</string>
+    <string name="theme_black">Black</string>
+    <string name="theme_light">Light</string>
+
     <!--keywords keys-->
     <string name="key_keywords" translatable="false">key_keywords</string>
     <string name="key_keywords_default_value" translatable="false">@string/key_keywords_name_or_description</string>
@@ -77,4 +83,11 @@
     <string name="key_flag_flagged_all" translatable="false">key_flag_flagged_all</string>
     <string name="key_flag_flagged" translatable="false">key_flag_flagged</string>
     <string name="key_flag_not_flagged" translatable="false">key_flag_not_flagged</string>
+
+    <!--theme keys-->
+    <string name="key_theme" translatable="false">key_theme</string>
+    <string name="key_theme_default_value" translatable="false">@string/key_theme_dark</string>
+    <string name="key_theme_dark" translatable="false">key_theme_dark</string>
+    <string name="key_theme_black">key_theme_black</string>
+    <string name="key_theme_light" translatable="false">key_theme_light</string>
 </resources>

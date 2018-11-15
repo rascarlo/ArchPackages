@@ -4,6 +4,10 @@
     package="com.rascarlo.arch.packages"
     tools:ignore="GoogleAppIndexingWarning">
 
+    <!--
+        I hope one day such permission will be added to te dangerous permissions groups
+        and developers will have to ask for it.
+    -->
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -12,12 +16,11 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
+        android:theme="@style/AppThemeDark.LauncherTheme"
         tools:ignore="AllowBackup">
         <activity
             android:name=".MainActivity"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -24,4 +24,16 @@
         <item>@string/key_flag_not_flagged</item>
         <item>@string/key_flag_not_flagged</item>
     </string-array>
+
+    <!--theme list preference-->
+    <string-array name="key_theme_entries">
+        <item>@string/theme_dark</item>
+        <item>@string/theme_black</item>
+        <item>@string/theme_light</item>
+    </string-array>
+    <string-array name="key_theme_entry_values">
+        <item>@string/key_theme_dark</item>
+        <item>@string/key_theme_black</item>
+        <item>@string/key_theme_light</item>
+    </string-array>
 </resources>

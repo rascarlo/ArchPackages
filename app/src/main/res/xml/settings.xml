@@ -2,6 +2,17 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <PreferenceCategory android:title="@string/design">
+        <ListPreference
+            android:defaultValue="@string/key_theme_default_value"
+            android:entries="@array/key_theme_entries"
+            android:entryValues="@array/key_theme_entry_values"
+            android:key="@string/key_theme"
+            android:summary="%s"
+            android:title="@string/theme"
+            tools:summary="@string/theme_dark" />
+    </PreferenceCategory>
+
     <PreferenceCategory android:title="@string/keywords">
         <ListPreference
             android:defaultValue="@string/key_keywords_default_value"

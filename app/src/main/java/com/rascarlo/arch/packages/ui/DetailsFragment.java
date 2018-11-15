@@ -5,7 +5,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.design.widget.BottomSheetDialogFragment;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -26,7 +26,7 @@ import com.rascarlo.arch.packages.viewmodel.FilesViewModel;
 import java.util.HashMap;
 import java.util.List;
 
-public class DetailsFragment extends BottomSheetDialogFragment {
+public class DetailsFragment extends Fragment {
 
     private static final String BUNDLE_REPO = "bundle_repo";
     private static final String BUNDLE_ARCH = "bundle_arch";
@@ -38,11 +38,6 @@ public class DetailsFragment extends BottomSheetDialogFragment {
     private FragmentDetailsBinding fragmentDetailsBinding;
 
     public DetailsFragment() {
-    }
-
-    @Override
-    public int getTheme() {
-        return R.style.AppTheme_BottomSheet;
     }
 
     public static DetailsFragment newInstance(String repo,

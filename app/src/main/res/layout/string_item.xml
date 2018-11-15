@@ -20,7 +20,7 @@
         android:paddingBottom="4dp"
         android:text="@{string.trim()}"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textColor="@color/grey_300"
+        android:textColor="@color/grey_500"
         tools:text="@string/app_name" />
 
 </layout>

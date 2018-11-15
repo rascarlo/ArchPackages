@@ -1,7 +1,62 @@
 <resources>
 
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat">
+    <style name="AppThemeDark.LauncherTheme">
+        <item name="android:windowBackground">@drawable/launcher_screen</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <!-- dark application theme. -->
+    <style name="AppThemeDark" parent="Theme.AppCompat">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorControlHighlight">@color/colorControlHighlight</item>
+        <item name="colorControlActivated">@color/colorControlActivated</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="fontFamily">monospace</item>
+        <item name="radioButtonStyle">@style/AppTheme.RadioButtonStyle</item>
+        <item name="checkboxStyle">@style/AppTheme.CheckBoxStyle</item>
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
+    </style>
+
+    <!-- black application theme. -->
+    <style name="AppThemeBlack" parent="AppThemeDark">
+        <item name="android:windowBackground">@color/black</item>
+        <item name="dialogTheme">@style/AppThemeBlack.Dialog</item>
+        <item name="alertDialogTheme">@style/AppThemeBlack.AlertDialog</item>
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
+    </style>
+
+    <style name="AppThemeBlack.Dialog" parent="Theme.AppCompat.Dialog">
+        <item name="android:windowBackground">@color/black</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorControlHighlight">@color/colorControlHighlight</item>
+        <item name="colorControlActivated">@color/colorControlActivated</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="fontFamily">monospace</item>
+        <item name="radioButtonStyle">@style/AppTheme.RadioButtonStyle</item>
+        <item name="checkboxStyle">@style/AppTheme.CheckBoxStyle</item>
+    </style>
+
+    <style name="AppThemeBlack.AlertDialog" parent="Theme.AppCompat.Dialog.Alert">
+        <item name="android:windowBackground">@color/black</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorControlHighlight">@color/colorControlHighlight</item>
+        <item name="colorControlActivated">@color/colorControlActivated</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="fontFamily">monospace</item>
+        <item name="radioButtonStyle">@style/AppTheme.RadioButtonStyle</item>
+        <item name="checkboxStyle">@style/AppTheme.CheckBoxStyle</item>
+    </style>
+
+    <!-- light application theme. -->
+    <style name="AppThemeLight" parent="Theme.AppCompat.Light">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
@@ -13,28 +68,19 @@
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
     </style>
 
-    <style name="AppTheme.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
+    <!--app bar theme-->
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="android:colorBackground">@color/black</item>
+        <item name="android:textColor">@color/grey_300</item>
     </style>
 
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-
-    <style name="AppTheme.BottomSheet" parent="Theme.Design.BottomSheetDialog">
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-        <item name="colorControlHighlight">@color/colorControlHighlight</item>
-        <item name="colorControlActivated">@color/colorControlActivated</item>
-    </style>
-
+    <!--radio button theme-->
     <style name="AppTheme.RadioButtonStyle" parent="Base.Widget.AppCompat.CompoundButton.RadioButton">
-        <item name="android:fontFamily">monospace</item>
         <item name="fontFamily">monospace</item>
     </style>
 
+    <!--check box theme-->
     <style name="AppTheme.CheckBoxStyle" parent="Base.Widget.AppCompat.CompoundButton.CheckBox">
-        <item name="android:fontFamily">monospace</item>
         <item name="fontFamily">monospace</item>
     </style>
 
