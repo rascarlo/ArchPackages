@@ -7,6 +7,6 @@
     <bool name="key_repo_multilib_testing_default_value">false</bool>
     <bool name="key_repo_community_default_value">true</bool>
     <bool name="key_repo_community_testing_default_value">false</bool>
-    <bool name="key_arch_any_default_value">false</bool>
+    <bool name="key_arch_any_default_value">true</bool>
     <bool name="key_arch_x86_64_default_value">true</bool>
 </resources>
