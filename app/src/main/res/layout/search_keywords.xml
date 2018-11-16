@@ -1,63 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
-        android:id="@+id/search_keywords_label_text_view"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/keywords"
-        android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/search_keywords_hint_text_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:text="@string/keywords_hint"
-        android:textAppearance="@style/TextAppearance.AppCompat.Caption" />
-
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/search_keywords_text_input_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp">
-
-        <android.support.design.widget.TextInputEditText
-            android:id="@+id/search_keywords_text_input_edit_text"
+        <TextView
+            android:id="@+id/search_keywords_label_text_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/package_search"
-            tools:text="@string/package_search" />
-    </android.support.design.widget.TextInputLayout>
+            android:text="@string/keywords"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
-    <RadioGroup
-        android:id="@+id/search_keywords_radio_group"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp">
-
-        <RadioButton
-            android:id="@+id/search_radio_button_name_or_description"
+        <TextView
+            android:id="@+id/search_keywords_hint_text_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/name_or_description" />
+            android:layout_marginTop="4dp"
+            android:text="@string/keywords_hint"
+            android:textAppearance="@style/TextAppearance.AppCompat.Caption" />
 
-        <RadioButton
-            android:id="@+id/search_radio_button_exact_name"
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/search_keywords_text_input_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/exact_name" />
+            android:layout_marginTop="8dp">
 
-        <RadioButton
-            android:id="@+id/search_radio_button_description"
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/search_keywords_text_input_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/package_search"
+                tools:text="@string/package_search" />
+        </android.support.design.widget.TextInputLayout>
+
+        <RadioGroup
+            android:id="@+id/search_keywords_radio_group"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/description" />
+            android:layout_marginTop="8dp">
 
-    </RadioGroup>
+            <RadioButton
+                android:id="@+id/search_radio_button_name_or_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/name_or_description" />
 
-</LinearLayout>
+            <RadioButton
+                android:id="@+id/search_radio_button_exact_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/exact_name" />
+
+            <RadioButton
+                android:id="@+id/search_radio_button_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/description" />
+
+        </RadioGroup>
+
+    </LinearLayout>
+
+</layout>

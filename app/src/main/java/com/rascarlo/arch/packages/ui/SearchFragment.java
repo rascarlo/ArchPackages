@@ -21,6 +21,7 @@ import android.widget.RadioGroup;
 
 import com.rascarlo.arch.packages.R;
 import com.rascarlo.arch.packages.callbacks.SearchFragmentCallback;
+import com.rascarlo.arch.packages.databinding.FragmentSearchBinding;
 import com.rascarlo.arch.packages.util.ArchPackagesConstants;
 import com.rascarlo.arch.packages.util.ArchPackagesSharedPreferences;
 
@@ -44,7 +45,8 @@ public class SearchFragment extends Fragment implements CompoundButton.OnChecked
     private CheckBox checkBoxArchAny;
     private CheckBox checkBoxArchX84_64;
     // flagged check boxes
-    private RadioGroup radioGroupFlagged;
+    private RadioGroup radioGroupFlag;
+    private FragmentSearchBinding fragmentSearchBinding;
 
     public SearchFragment() {
         // Required empty public constructor
@@ -58,32 +60,39 @@ public class SearchFragment extends Fragment implements CompoundButton.OnChecked
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_search, container, false);
-        textInputLayout = rootView.findViewById(R.id.search_keywords_text_input_layout);
-        // keywords radio group
-        radioGroupKeywords = rootView.findViewById(R.id.search_keywords_radio_group);
-        // repo check boxes
-        checkBoxRepoCore = rootView.findViewById(R.id.search_check_box_repo_core);
-        checkBoxRepoExtra = rootView.findViewById(R.id.search_check_box_repo_extra);
-        checkBoxRepoTesting = rootView.findViewById(R.id.search_check_box_repo_testing);
-        checkBoxRepoMultilib = rootView.findViewById(R.id.search_check_box_repo_multilib);
-        checkBoxRepoMultilibTesting = rootView.findViewById(R.id.search_check_box_repo_multilib_testing);
-        checkBoxRepoCommunity = rootView.findViewById(R.id.search_check_box_repo_community);
-        checkBoxRepoCommunityTesting = rootView.findViewById(R.id.search_check_box_repo_community_testing);
-        // arch check boxes
-        checkBoxArchAny = rootView.findViewById(R.id.search_check_box_arch_any);
-        checkBoxArchX84_64 = rootView.findViewById(R.id.search_check_box_arch_x86_64);
-        // flagged radio buttons
-        radioGroupFlagged = rootView.findViewById(R.id.search_flag_radio_group);
-        // search fab
-        FloatingActionButton floatingActionButton = rootView.findViewById(R.id.fragment_search_fab);
-        floatingActionButton.setOnClickListener(v -> onFabClicked(
-                getKeywordsParameter(),
-                getQuery(),
-                getListRepo(),
-                getListArch(),
-                getFlagged()));
-        return rootView;
+        fragmentSearchBinding = FragmentSearchBinding.inflate(inflater, container, false);
+        return fragmentSearchBinding.getRoot();
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        if (fragmentSearchBinding != null) {
+            textInputLayout = fragmentSearchBinding.fragmentSearchKeywordsLayout.searchKeywordsTextInputLayout;
+            // keywords radio group
+            radioGroupKeywords = fragmentSearchBinding.fragmentSearchKeywordsLayout.searchKeywordsRadioGroup;
+            // repo check boxes
+            checkBoxRepoCore = fragmentSearchBinding.fragmentSearchRepoLayout.searchCheckBoxRepoCore;
+            checkBoxRepoExtra = fragmentSearchBinding.fragmentSearchRepoLayout.searchCheckBoxRepoExtra;
+            checkBoxRepoTesting = fragmentSearchBinding.fragmentSearchRepoLayout.searchCheckBoxRepoTesting;
+            checkBoxRepoMultilib = fragmentSearchBinding.fragmentSearchRepoLayout.searchCheckBoxRepoMultilib;
+            checkBoxRepoMultilibTesting = fragmentSearchBinding.fragmentSearchRepoLayout.searchCheckBoxRepoMultilibTesting;
+            checkBoxRepoCommunity = fragmentSearchBinding.fragmentSearchRepoLayout.searchCheckBoxRepoCommunity;
+            checkBoxRepoCommunityTesting = fragmentSearchBinding.fragmentSearchRepoLayout.searchCheckBoxRepoCommunityTesting;
+            // arch check boxes
+            checkBoxArchAny = fragmentSearchBinding.fragmentSearchArchLayout.searchCheckBoxArchAny;
+            checkBoxArchX84_64 = fragmentSearchBinding.fragmentSearchArchLayout.searchCheckBoxArchX8664;
+            // flagged radio buttons
+            radioGroupFlag = fragmentSearchBinding.fragmentSearchFlagLayout.searchFlagRadioGroup;
+            // search fab
+            FloatingActionButton floatingActionButton = fragmentSearchBinding.fragmentSearchFab;
+            floatingActionButton.setOnClickListener(v -> onFabClicked(
+                    getKeywordsParameter(),
+                    getQuery(),
+                    getListRepo(),
+                    getListArch(),
+                    getFlagged()));
+        }
     }
 
     @Override
@@ -277,9 +286,9 @@ public class SearchFragment extends Fragment implements CompoundButton.OnChecked
     }
 
     private void setUpFlagged() {
-        RadioButton radioButtonFlaggedAll = radioGroupFlagged.findViewById(R.id.search_radio_button_flagged_all);
-        RadioButton radioButtonFlaggedFlagged = radioGroupFlagged.findViewById(R.id.search_radio_button_flagged_flagged);
-        RadioButton radioButtonFlaggedNotFlagged = radioGroupFlagged.findViewById(R.id.search_radio_button_flagged_not_flagged);
+        RadioButton radioButtonFlaggedAll = radioGroupFlag.findViewById(R.id.search_radio_button_flagged_all);
+        RadioButton radioButtonFlaggedFlagged = radioGroupFlag.findViewById(R.id.search_radio_button_flagged_flagged);
+        RadioButton radioButtonFlaggedNotFlagged = radioGroupFlag.findViewById(R.id.search_radio_button_flagged_not_flagged);
         String sharedPreferenceFlag = ArchPackagesSharedPreferences.getSharedPreferenceString(context,
                 getString(R.string.key_flag), getString(R.string.key_flag_flagged_all));
         if (TextUtils.equals(sharedPreferenceFlag, getString(R.string.key_flag_flagged_all))) {
@@ -291,7 +300,7 @@ public class SearchFragment extends Fragment implements CompoundButton.OnChecked
         } else {
             radioButtonFlaggedAll.setChecked(true);
         }
-        radioGroupFlagged.setOnCheckedChangeListener(this);
+        radioGroupFlag.setOnCheckedChangeListener(this);
     }
 
     private void onFabClicked(int keywordsParameter,
@@ -369,7 +378,7 @@ public class SearchFragment extends Fragment implements CompoundButton.OnChecked
     }
 
     private String getFlagged() {
-        switch (radioGroupFlagged.getCheckedRadioButtonId()) {
+        switch (radioGroupFlag.getCheckedRadioButtonId()) {
             case R.id.search_radio_button_flagged_all:
                 return null;
             case R.id.search_radio_button_flagged_flagged:

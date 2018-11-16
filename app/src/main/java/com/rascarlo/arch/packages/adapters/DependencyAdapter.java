@@ -15,11 +15,11 @@ import com.rascarlo.arch.packages.viewholders.DependencyAdapterViewHolder;
 
 public class DependencyAdapter extends ListAdapter<String, DependencyAdapterViewHolder> {
 
-    private DependencyAdapterCallback depedencyAdaperCallback;
+    private DependencyAdapterCallback dependencyAdapterCallback;
 
-    public DependencyAdapter(DependencyAdapterCallback depedencyAdaperCallback) {
+    public DependencyAdapter(DependencyAdapterCallback dependencyAdapterCallback) {
         super(DIFF_CALLBACK);
-        this.depedencyAdaperCallback = depedencyAdaperCallback;
+        this.dependencyAdapterCallback = dependencyAdapterCallback;
     }
 
     private static final DiffUtil.ItemCallback<String> DIFF_CALLBACK = new DiffUtil.ItemCallback<String>() {
@@ -38,7 +38,7 @@ public class DependencyAdapter extends ListAdapter<String, DependencyAdapterView
     @Override
     public DependencyAdapterViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         DependencyItemBinding binding = DataBindingUtil.inflate(LayoutInflater.from(viewGroup.getContext()), R.layout.dependency_item, viewGroup, false);
-        binding.setDependencyAdapterCallback(depedencyAdaperCallback);
+        binding.setDependencyAdapterCallback(dependencyAdapterCallback);
         return new DependencyAdapterViewHolder(binding);
     }
 

@@ -93,25 +93,27 @@ public class DetailsFragment extends Fragment implements DependencyAdapterCallba
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        DetailsViewModel detailsViewModel = ViewModelProviders.of(this).get(DetailsViewModel.class);
-        FilesViewModel filesViewModel = ViewModelProviders.of(this).get(FilesViewModel.class);
-        if (savedInstanceState == null) {
-            detailsViewModel.init(bundleRepo, bundleArch, bundlePkgname);
-            filesViewModel.init(bundleRepo, bundleArch, bundlePkgname);
+        if (fragmentDetailsBinding != null) {
+            DetailsViewModel detailsViewModel = ViewModelProviders.of(this).get(DetailsViewModel.class);
+            FilesViewModel filesViewModel = ViewModelProviders.of(this).get(FilesViewModel.class);
+            if (savedInstanceState == null) {
+                detailsViewModel.init(bundleRepo, bundleArch, bundlePkgname);
+                filesViewModel.init(bundleRepo, bundleArch, bundlePkgname);
+            }
+            detailsViewModel.getDetailsLiveData().observe(this, details -> {
+                if (details != null && fragmentDetailsBinding != null) {
+                    fragmentDetailsBinding.setDetails(details);
+                    fragmentDetailsBinding.executePendingBindings();
+                    bindDetailsViewModel(details);
+                }
+            });
+            filesViewModel.getFilesLiveData().observe(this, files -> {
+                if (files != null && fragmentDetailsBinding != null) {
+                    fragmentDetailsBinding.detailsFilesLayout.setFiles(files);
+                    bindFilesViewModel(files);
+                }
+            });
         }
-        detailsViewModel.getDetailsLiveData().observe(this, details -> {
-            if (details != null && fragmentDetailsBinding != null) {
-                fragmentDetailsBinding.setDetails(details);
-                fragmentDetailsBinding.executePendingBindings();
-                bindDetailsViewModel(details);
-            }
-        });
-        filesViewModel.getFilesLiveData().observe(this, files -> {
-            if (files != null && fragmentDetailsBinding != null) {
-                fragmentDetailsBinding.detailsFilesLayout.setFiles(files);
-                bindFilesViewModel(files);
-            }
-        });
     }
 
     @Override

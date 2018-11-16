@@ -14,11 +14,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
-import com.rascarlo.arch.packages.R;
 import com.rascarlo.arch.packages.adapters.ResultAdapter;
 import com.rascarlo.arch.packages.api.model.Result;
 import com.rascarlo.arch.packages.callbacks.ResultAdapterCallback;
 import com.rascarlo.arch.packages.callbacks.ResultFragmentCallback;
+import com.rascarlo.arch.packages.databinding.FragmentResultBinding;
 import com.rascarlo.arch.packages.viewmodel.PackagesViewModel;
 
 import java.util.ArrayList;
@@ -39,6 +39,7 @@ public class ResultFragment extends Fragment implements ResultAdapterCallback {
     private List<String> bundleListArch;
     private String bundleStringFlagged;
     private ResultFragmentCallback resultFragmentCallback;
+    private FragmentResultBinding fragmentResultBinding;
 
     public ResultFragment() {
     }
@@ -93,32 +94,39 @@ public class ResultFragment extends Fragment implements ResultAdapterCallback {
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_result, container, false);
-        PackagesViewModel packagesViewModel = ViewModelProviders.of(this).get(PackagesViewModel.class);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
-        RecyclerView recyclerView = rootView.findViewById(R.id.fragment_result_recycler_view);
-        ProgressBar progressBar = rootView.findViewById(R.id.fragment_result_progress_bar);
-        ResultAdapter resultAdapter = new ResultAdapter(this);
-        progressBar.setVisibility(View.VISIBLE);
-        recyclerView.addItemDecoration(new DividerItemDecoration(context, DividerItemDecoration.VERTICAL));
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(linearLayoutManager);
-        if (savedInstanceState == null) {
-            packagesViewModel.init(bundleKeywordsParameter,
-                    bundleKeywords,
-                    bundleListRepo,
-                    bundleListArch,
-                    bundleStringFlagged);
+        fragmentResultBinding = FragmentResultBinding.inflate(inflater, container, false);
+        return fragmentResultBinding.getRoot();
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        if (fragmentResultBinding != null) {
+            PackagesViewModel packagesViewModel = ViewModelProviders.of(this).get(PackagesViewModel.class);
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
+            RecyclerView recyclerView = fragmentResultBinding.fragmentResultRecyclerView;
+            ProgressBar progressBar = fragmentResultBinding.fragmentResultProgressBar;
+            ResultAdapter resultAdapter = new ResultAdapter(this);
+            progressBar.setVisibility(View.VISIBLE);
+            recyclerView.addItemDecoration(new DividerItemDecoration(context, DividerItemDecoration.VERTICAL));
+            recyclerView.setHasFixedSize(true);
+            recyclerView.setLayoutManager(linearLayoutManager);
+            if (savedInstanceState == null) {
+                packagesViewModel.init(bundleKeywordsParameter,
+                        bundleKeywords,
+                        bundleListRepo,
+                        bundleListArch,
+                        bundleStringFlagged);
+            }
+            packagesViewModel.getPagedListLiveData().observe(this,
+                    results -> {
+                        if (results != null) {
+                            resultAdapter.submitList(results);
+                        }
+                        progressBar.setVisibility(View.GONE);
+                    });
+            recyclerView.setAdapter(resultAdapter);
         }
-        packagesViewModel.getPagedListLiveData().observe(this,
-                results -> {
-                    if (results != null) {
-                        resultAdapter.submitList(results);
-                    }
-                    progressBar.setVisibility(View.GONE);
-                });
-        recyclerView.setAdapter(resultAdapter);
-        return rootView;
     }
 
     @Override

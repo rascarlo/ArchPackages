@@ -1,25 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="?android:attr/windowBackground"
-    tools:context=".ui.ResultFragment"
-    tools:showIn="@layout/activity_main">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/fragment_result_recycler_view"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:background="?android:attr/windowBackground"
+        tools:context=".ui.ResultFragment"
+        tools:showIn="@layout/activity_main">
 
-    <ProgressBar
-        android:id="@+id/fragment_result_progress_bar"
-        style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center|center_horizontal|center_vertical"
-        android:layout_margin="16dp"
-        android:indeterminate="true"
-        android:indeterminateBehavior="cycle"
-        android:visibility="gone" />
-</FrameLayout>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/fragment_result_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <ProgressBar
+            android:id="@+id/fragment_result_progress_bar"
+            style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|center_horizontal|center_vertical"
+            android:layout_margin="16dp"
+            android:indeterminate="true"
+            android:indeterminateBehavior="cycle"
+            android:visibility="gone" />
+
+    </FrameLayout>
+
+</layout>

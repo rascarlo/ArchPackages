@@ -1,46 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <TextView
-        android:id="@+id/search_flag_text_view_label"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/flag"
-        android:textAppearance="@style/TextAppearance.AppCompat.Title"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <RadioGroup
-        android:id="@+id/search_flag_radio_group"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toEndOf="@+id/search_flag_text_view_label"
-        app:layout_constraintStart_toStartOf="@+id/search_flag_text_view_label"
-        app:layout_constraintTop_toBottomOf="@+id/search_flag_text_view_label">
-
-        <RadioButton
-            android:id="@+id/search_radio_button_flagged_all"
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/search_flag_text_view_label"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/all" />
+            android:text="@string/flag"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <RadioButton
-            android:id="@+id/search_radio_button_flagged_flagged"
-            android:layout_width="match_parent"
+        <RadioGroup
+            android:id="@+id/search_flag_radio_group"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/flagged" />
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="@+id/search_flag_text_view_label"
+            app:layout_constraintStart_toStartOf="@+id/search_flag_text_view_label"
+            app:layout_constraintTop_toBottomOf="@+id/search_flag_text_view_label">
 
-        <RadioButton
-            android:id="@+id/search_radio_button_flagged_not_flagged"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/not_flagged" />
+            <RadioButton
+                android:id="@+id/search_radio_button_flagged_all"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/all" />
 
-    </RadioGroup>
+            <RadioButton
+                android:id="@+id/search_radio_button_flagged_flagged"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/flagged" />
 
-</android.support.constraint.ConstraintLayout>
+            <RadioButton
+                android:id="@+id/search_radio_button_flagged_not_flagged"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/not_flagged" />
+
+        </RadioGroup>
+
+    </android.support.constraint.ConstraintLayout>
+
+</layout>
