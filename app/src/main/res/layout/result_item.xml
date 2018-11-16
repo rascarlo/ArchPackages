@@ -90,7 +90,7 @@
             android:id="@+id/result_item_text_view_groups"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@{String.format(@string/formatted_groups, TextUtils.join(@string/unicode_comma_whitespace, Result.groups))}"
+            android:text="@{Result.groups[0] != null ? String.format(@string/formatted_groups, TextUtils.join(@string/unicode_comma_whitespace, Result.groups)) : null}"
             android:textAppearance="@style/TextAppearance.AppCompat.Caption"
             android:visibility="@{Result.groups[0] != null ? View.VISIBLE : View.GONE}"
             tools:text="@string/formatted_groups" />
