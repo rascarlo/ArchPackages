@@ -26,19 +26,19 @@
             app:layout_constraintTop_toBottomOf="@+id/search_flag_text_view_label">
 
             <RadioButton
-                android:id="@+id/search_radio_button_flagged_all"
+                android:id="@+id/search_radio_button_flag_all"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/all" />
 
             <RadioButton
-                android:id="@+id/search_radio_button_flagged_flagged"
+                android:id="@+id/search_radio_button_flag_flagged"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/flagged" />
 
             <RadioButton
-                android:id="@+id/search_radio_button_flagged_not_flagged"
+                android:id="@+id/search_radio_button_flag_not_flagged"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/not_flagged" />

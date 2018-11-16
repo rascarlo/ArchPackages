@@ -202,19 +202,19 @@ public class SearchFragment extends Fragment {
     }
 
     private void setUpFlagged() {
-        RadioButton radioButtonFlaggedAll = radioGroupFlag.findViewById(R.id.search_radio_button_flagged_all);
-        RadioButton radioButtonFlaggedFlagged = radioGroupFlag.findViewById(R.id.search_radio_button_flagged_flagged);
-        RadioButton radioButtonFlaggedNotFlagged = radioGroupFlag.findViewById(R.id.search_radio_button_flagged_not_flagged);
+        RadioButton radioButtonFlagAll = radioGroupFlag.findViewById(R.id.search_radio_button_flag_all);
+        RadioButton radioButtonFlagFlagged = radioGroupFlag.findViewById(R.id.search_radio_button_flag_flagged);
+        RadioButton radioButtonFlagNotFlagged = radioGroupFlag.findViewById(R.id.search_radio_button_flag_not_flagged);
         String sharedPreferenceFlag = ArchPackagesSharedPreferences.getSharedPreferenceString(context,
                 getString(R.string.key_flag), getString(R.string.key_flag_flagged_all));
         if (TextUtils.equals(sharedPreferenceFlag, getString(R.string.key_flag_flagged_all))) {
-            radioButtonFlaggedAll.setChecked(true);
+            radioButtonFlagAll.setChecked(true);
         } else if (TextUtils.equals(sharedPreferenceFlag, getString(R.string.key_flag_flagged))) {
-            radioButtonFlaggedFlagged.setChecked(true);
+            radioButtonFlagFlagged.setChecked(true);
         } else if (TextUtils.equals(sharedPreferenceFlag, getString(R.string.key_flag_not_flagged))) {
-            radioButtonFlaggedNotFlagged.setChecked(true);
+            radioButtonFlagNotFlagged.setChecked(true);
         } else {
-            radioButtonFlaggedAll.setChecked(true);
+            radioButtonFlagAll.setChecked(true);
         }
     }
 
@@ -294,11 +294,11 @@ public class SearchFragment extends Fragment {
 
     private String getFlagged() {
         switch (radioGroupFlag.getCheckedRadioButtonId()) {
-            case R.id.search_radio_button_flagged_all:
+            case R.id.search_radio_button_flag_all:
                 return null;
-            case R.id.search_radio_button_flagged_flagged:
+            case R.id.search_radio_button_flag_flagged:
                 return getString(R.string.flagged);
-            case R.id.search_radio_button_flagged_not_flagged:
+            case R.id.search_radio_button_flag_not_flagged:
                 return getString(R.string.not_flagged);
             default:
                 return null;
