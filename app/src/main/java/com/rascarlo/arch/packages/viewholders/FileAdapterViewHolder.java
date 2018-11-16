@@ -3,13 +3,13 @@ package com.rascarlo.arch.packages.viewholders;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 
-import com.rascarlo.arch.packages.databinding.StringItemBinding;
+import com.rascarlo.arch.packages.databinding.FileItemBinding;
 
-public class StringListAdapterViewHolder extends RecyclerView.ViewHolder {
+public class FileAdapterViewHolder extends RecyclerView.ViewHolder {
 
-    private final StringItemBinding binding;
+    private final FileItemBinding binding;
 
-    public StringListAdapterViewHolder(@NonNull StringItemBinding binding) {
+    public FileAdapterViewHolder(@NonNull FileItemBinding binding) {
         super(binding.getRoot());
         this.binding = binding;
     }

@@ -103,7 +103,7 @@ public class SearchFragment extends Fragment implements CompoundButton.OnChecked
         switch (item.getItemId()) {
             case R.id.menu_search_action_settings:
                 if (searchFragmentCallback != null) {
-                    searchFragmentCallback.onSearchFragmentCallbackMenuActionSettingsClicked();
+                    searchFragmentCallback.onSearchFragmentCallbackOnMenuActionSettingsClicked();
                 }
                 break;
         }
@@ -300,7 +300,7 @@ public class SearchFragment extends Fragment implements CompoundButton.OnChecked
                               ArrayList<String> listArch,
                               String flagged) {
         if (searchFragmentCallback != null) {
-            searchFragmentCallback.onSearchFragmentCallbackFabClicked(
+            searchFragmentCallback.onSearchFragmentCallbackOnFabClicked(
                     keywordsParameter,
                     keywords,
                     listRepo,

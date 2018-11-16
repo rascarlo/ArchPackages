@@ -15,18 +15,18 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
 import com.rascarlo.arch.packages.R;
-import com.rascarlo.arch.packages.adapters.ResultsAdapter;
+import com.rascarlo.arch.packages.adapters.ResultAdapter;
 import com.rascarlo.arch.packages.api.model.Result;
-import com.rascarlo.arch.packages.callbacks.ResultsAdapterCallback;
-import com.rascarlo.arch.packages.callbacks.ResultsFragmentCallback;
+import com.rascarlo.arch.packages.callbacks.ResultAdapterCallback;
+import com.rascarlo.arch.packages.callbacks.ResultFragmentCallback;
 import com.rascarlo.arch.packages.viewmodel.PackagesViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ResultsFragment extends Fragment implements ResultsAdapterCallback {
+public class ResultFragment extends Fragment implements ResultAdapterCallback {
 
-    private static final String LOG_TAG = ResultsFragment.class.getSimpleName();
+    private static final String LOG_TAG = ResultFragment.class.getSimpleName();
     private static final String BUNDLE_KEYWORDS_PARAMETER = "bundle_keywords_parameter";
     private static final String BUNDLE_KEYWORDS = "bundle_keywords";
     private static final String BUNDLE_LIST_REPO = "bundle_list_repo";
@@ -38,25 +38,25 @@ public class ResultsFragment extends Fragment implements ResultsAdapterCallback 
     private List<String> bundleListRepo;
     private List<String> bundleListArch;
     private String bundleStringFlagged;
-    private ResultsFragmentCallback resultsFragmentCallback;
+    private ResultFragmentCallback resultFragmentCallback;
 
-    public ResultsFragment() {
+    public ResultFragment() {
     }
 
-    public static ResultsFragment newInstance(int keywordsParameter,
-                                              String keywords,
-                                              ArrayList<String> listRepo,
-                                              ArrayList<String> listArch,
-                                              String flagged) {
-        ResultsFragment resultsFragment = new ResultsFragment();
+    public static ResultFragment newInstance(int keywordsParameter,
+                                             String keywords,
+                                             ArrayList<String> listRepo,
+                                             ArrayList<String> listArch,
+                                             String flagged) {
+        ResultFragment resultFragment = new ResultFragment();
         Bundle bundle = new Bundle();
         bundle.putInt(BUNDLE_KEYWORDS_PARAMETER, keywordsParameter);
         bundle.putString(BUNDLE_KEYWORDS, keywords);
         bundle.putStringArrayList(BUNDLE_LIST_REPO, listRepo);
         bundle.putStringArrayList(BUNDLE_LIST_ARCH, listArch);
         bundle.putString(BUNDLE_STRING_FLAGGED, flagged);
-        resultsFragment.setArguments(bundle);
-        return resultsFragment;
+        resultFragment.setArguments(bundle);
+        return resultFragment;
     }
 
     @Override
@@ -77,28 +77,28 @@ public class ResultsFragment extends Fragment implements ResultsAdapterCallback 
     public void onAttach(Context context) {
         super.onAttach(context);
         this.context = context;
-        if (context instanceof ResultsFragmentCallback) {
-            resultsFragmentCallback = (ResultsFragmentCallback) context;
+        if (context instanceof ResultFragmentCallback) {
+            resultFragmentCallback = (ResultFragmentCallback) context;
         } else {
             throw new RuntimeException(context.toString()
-                    + " must implement ResultsFragmentCallback");
+                    + " must implement ResultFragmentCallback");
         }
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
-        resultsFragmentCallback = null;
+        resultFragmentCallback = null;
     }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_results, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_result, container, false);
         PackagesViewModel packagesViewModel = ViewModelProviders.of(this).get(PackagesViewModel.class);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
-        RecyclerView recyclerView = rootView.findViewById(R.id.fragment_results_recycler_view);
-        ProgressBar progressBar = rootView.findViewById(R.id.fragment_results_progress_bar);
-        ResultsAdapter resultsAdapter = new ResultsAdapter(this);
+        RecyclerView recyclerView = rootView.findViewById(R.id.fragment_result_recycler_view);
+        ProgressBar progressBar = rootView.findViewById(R.id.fragment_result_progress_bar);
+        ResultAdapter resultAdapter = new ResultAdapter(this);
         progressBar.setVisibility(View.VISIBLE);
         recyclerView.addItemDecoration(new DividerItemDecoration(context, DividerItemDecoration.VERTICAL));
         recyclerView.setHasFixedSize(true);
@@ -113,18 +113,18 @@ public class ResultsFragment extends Fragment implements ResultsAdapterCallback 
         packagesViewModel.getPagedListLiveData().observe(this,
                 results -> {
                     if (results != null) {
-                        resultsAdapter.submitList(results);
+                        resultAdapter.submitList(results);
                     }
                     progressBar.setVisibility(View.GONE);
                 });
-        recyclerView.setAdapter(resultsAdapter);
+        recyclerView.setAdapter(resultAdapter);
         return rootView;
     }
 
     @Override
-    public void onResultsAdapterCallbackResultClicked(Result result) {
-        if (resultsFragmentCallback != null) {
-            resultsFragmentCallback.onResultFragmentCallbackResultClicked(result);
+    public void onResultAdapterCallbackOnResultClicked(Result result) {
+        if (resultFragmentCallback != null) {
+            resultFragmentCallback.onResultFragmentCallbackOnResultClicked(result);
         }
     }
 }

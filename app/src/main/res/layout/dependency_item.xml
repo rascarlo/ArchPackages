@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="string"
+            type="java.lang.String" />
+
+        <variable
+            name="DependencyAdapterCallback"
+            type="com.rascarlo.arch.packages.callbacks.DependencyAdapterCallback" />
+
+    </data>
+
+    <TextView
+        android:id="@+id/dependency_item_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:onClick="@{() -> DependencyAdapterCallback.onDependencyAdapterCallbackOnPackageClicked(string.trim())}"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
+        android:text="@{string.trim()}"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="@color/grey_500"
+        tools:text="@string/app_name" />
+
+</layout>

@@ -15,9 +15,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.rascarlo.arch.packages.R;
-import com.rascarlo.arch.packages.adapters.StringListAdapter;
+import com.rascarlo.arch.packages.adapters.DependencyAdapter;
+import com.rascarlo.arch.packages.adapters.FileAdapter;
 import com.rascarlo.arch.packages.api.model.Details;
 import com.rascarlo.arch.packages.api.model.Files;
+import com.rascarlo.arch.packages.callbacks.DependencyAdapterCallback;
+import com.rascarlo.arch.packages.callbacks.DetailsFragmentCallback;
 import com.rascarlo.arch.packages.databinding.FragmentDetailsBinding;
 import com.rascarlo.arch.packages.util.ArchPackagesStringConverters;
 import com.rascarlo.arch.packages.viewmodel.DetailsViewModel;
@@ -26,7 +29,7 @@ import com.rascarlo.arch.packages.viewmodel.FilesViewModel;
 import java.util.HashMap;
 import java.util.List;
 
-public class DetailsFragment extends Fragment {
+public class DetailsFragment extends Fragment implements DependencyAdapterCallback {
 
     private static final String BUNDLE_REPO = "bundle_repo";
     private static final String BUNDLE_ARCH = "bundle_arch";
@@ -36,6 +39,7 @@ public class DetailsFragment extends Fragment {
     private String bundlePkgname;
     private Context context;
     private FragmentDetailsBinding fragmentDetailsBinding;
+    private DetailsFragmentCallback detailsFragmentCallback;
 
     public DetailsFragment() {
     }
@@ -66,6 +70,18 @@ public class DetailsFragment extends Fragment {
     public void onAttach(Context context) {
         super.onAttach(context);
         this.context = context;
+        if (context instanceof DetailsFragmentCallback) {
+            detailsFragmentCallback = (DetailsFragmentCallback) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + "must implement DetailsFragmentCallback");
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        detailsFragmentCallback = null;
     }
 
     @Override
@@ -96,6 +112,13 @@ public class DetailsFragment extends Fragment {
                 bindFilesViewModel(files);
             }
         });
+    }
+
+    @Override
+    public void onDependencyAdapterCallbackOnPackageClicked(String packageName) {
+        if (detailsFragmentCallback != null) {
+            detailsFragmentCallback.onDetailsFragmentCallbackOnPackageClicked(packageName);
+        }
     }
 
     private void bindDetailsViewModel(Details details) {
@@ -156,13 +179,19 @@ public class DetailsFragment extends Fragment {
 
     private void populateRecyclerView(RecyclerView recyclerView, List<String> stringList) {
         if (stringList != null && !stringList.isEmpty()) {
-            StringListAdapter stringListAdapter = new StringListAdapter();
-            stringListAdapter.submitList(stringList);
-            recyclerView.setAdapter(stringListAdapter);
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
             recyclerView.setLayoutManager(linearLayoutManager);
             recyclerView.setHasFixedSize(true);
             recyclerView.addItemDecoration(new DividerItemDecoration(context, DividerItemDecoration.VERTICAL));
+            if (recyclerView == fragmentDetailsBinding.detailsFilesLayout.detailsFilesRecyclerView) {
+                FileAdapter fileAdapter = new FileAdapter();
+                recyclerView.setAdapter(fileAdapter);
+                fileAdapter.submitList(stringList);
+            } else {
+                DependencyAdapter dependencyAdapter = new DependencyAdapter(this);
+                recyclerView.setAdapter(dependencyAdapter);
+                dependencyAdapter.submitList(stringList);
+            }
         }
     }
 }

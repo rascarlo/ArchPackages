@@ -4,11 +4,11 @@ import java.util.ArrayList;
 
 public interface SearchFragmentCallback {
 
-    void onSearchFragmentCallbackFabClicked(int keywordsParameter,
-                                            String keywords,
-                                            ArrayList<String> listRepo,
-                                            ArrayList<String> listArch,
-                                            String flagged);
+    void onSearchFragmentCallbackOnFabClicked(int keywordsParameter,
+                                              String keywords,
+                                              ArrayList<String> listRepo,
+                                              ArrayList<String> listArch,
+                                              String flagged);
 
-    void onSearchFragmentCallbackMenuActionSettingsClicked();
+    void onSearchFragmentCallbackOnMenuActionSettingsClicked();
 }

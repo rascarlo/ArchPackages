@@ -12,19 +12,22 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.rascarlo.arch.packages.api.model.Result;
-import com.rascarlo.arch.packages.callbacks.ResultsFragmentCallback;
+import com.rascarlo.arch.packages.callbacks.DetailsFragmentCallback;
+import com.rascarlo.arch.packages.callbacks.ResultFragmentCallback;
 import com.rascarlo.arch.packages.callbacks.SearchFragmentCallback;
 import com.rascarlo.arch.packages.ui.DetailsFragment;
-import com.rascarlo.arch.packages.ui.ResultsFragment;
+import com.rascarlo.arch.packages.ui.ResultFragment;
 import com.rascarlo.arch.packages.ui.SearchFragment;
 import com.rascarlo.arch.packages.ui.SettingsFragment;
+import com.rascarlo.arch.packages.util.ArchPackagesConstants;
 import com.rascarlo.arch.packages.util.ArchPackagesSharedPreferences;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity
         implements SearchFragmentCallback,
-        ResultsFragmentCallback,
+        ResultFragmentCallback,
+        DetailsFragmentCallback,
         SharedPreferences.OnSharedPreferenceChangeListener {
 
     @Override
@@ -103,27 +106,54 @@ public class MainActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
+    /*
+    listen for app theme shared preference change
+    to apply new theme
+    */
     @Override
-    public void onSearchFragmentCallbackFabClicked(int keywordsParameter,
-                                                   String keywords,
-                                                   ArrayList<String> listRepo,
-                                                   ArrayList<String> listArch,
-                                                   String flagged) {
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        if (key != null && !TextUtils.isEmpty(key)) {
+            if (TextUtils.equals(getString(R.string.key_theme), key)) {
+                setAppTheme(true);
+            }
+        }
+    }
+
+    /**
+     * callback from {@link SearchFragment}
+     * inflate a new {@link ResultFragment}
+     *
+     * @param keywordsParameter: one of {@link ArchPackagesConstants}
+     * @param keywords:          query
+     * @param listRepo:          repo list
+     * @param listArch:          arch list
+     * @param flag:           flag
+     */
+    @Override
+    public void onSearchFragmentCallbackOnFabClicked(int keywordsParameter,
+                                                     String keywords,
+                                                     ArrayList<String> listRepo,
+                                                     ArrayList<String> listArch,
+                                                     String flag) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        ResultsFragment resultsFragment = ResultsFragment.newInstance(
+        ResultFragment resultFragment = ResultFragment.newInstance(
                 keywordsParameter,
                 keywords,
                 listRepo,
                 listArch,
-                flagged);
-        fragmentTransaction.replace(R.id.content_main_fragment_container, resultsFragment);
+                flag);
+        fragmentTransaction.replace(R.id.content_main_fragment_container, resultFragment);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
     }
 
+    /**
+     * callback from {@link SearchFragment}
+     * inflate the settings {@link SettingsFragment}
+     */
     @Override
-    public void onSearchFragmentCallbackMenuActionSettingsClicked() {
+    public void onSearchFragmentCallbackOnMenuActionSettingsClicked() {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         SettingsFragment settingsFragment = new SettingsFragment();
@@ -132,8 +162,14 @@ public class MainActivity extends AppCompatActivity
         fragmentTransaction.commit();
     }
 
+    /**
+     * callback from {@link ResultFragment}
+     * inflate a new {@link DetailsFragment}
+     *
+     * @param result: the result clicked
+     */
     @Override
-    public void onResultFragmentCallbackResultClicked(Result result) {
+    public void onResultFragmentCallbackOnResultClicked(Result result) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         DetailsFragment detailsFragment = DetailsFragment.newInstance(
@@ -145,12 +181,27 @@ public class MainActivity extends AppCompatActivity
         fragmentTransaction.commit();
     }
 
+    /**
+     * callback from {@link DetailsFragment}
+     * inflate a new {@link ResultFragment}
+     * with keywords parameter by exact name
+     *
+     * @param packageName: the dependency clicked
+     */
     @Override
-    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-        if (key != null && !TextUtils.isEmpty(key)) {
-            if (TextUtils.equals(getString(R.string.key_theme), key)) {
-                setAppTheme(true);
-            }
+    public void onDetailsFragmentCallbackOnPackageClicked(String packageName) {
+        if (packageName != null && !TextUtils.isEmpty(packageName)) {
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            ResultFragment resultFragment = ResultFragment.newInstance(
+                    ArchPackagesConstants.SEARCH_KEYWORDS_PARAMETER_EXACT_NAME,
+                    packageName,
+                    null,
+                    null,
+                    null);
+            fragmentTransaction.add(R.id.content_main_fragment_container, resultFragment);
+            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.commit();
         }
     }
 
