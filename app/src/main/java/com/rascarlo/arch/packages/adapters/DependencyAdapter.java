@@ -15,7 +15,7 @@ import com.rascarlo.arch.packages.viewholders.DependencyAdapterViewHolder;
 
 public class DependencyAdapter extends ListAdapter<String, DependencyAdapterViewHolder> {
 
-    private DependencyAdapterCallback dependencyAdapterCallback;
+    private final DependencyAdapterCallback dependencyAdapterCallback;
 
     public DependencyAdapter(DependencyAdapterCallback dependencyAdapterCallback) {
         super(DIFF_CALLBACK);

@@ -75,13 +75,15 @@
     </style>
 
     <!--radio button theme-->
-    <style name="AppTheme.RadioButtonStyle" parent="Base.Widget.AppCompat.CompoundButton.RadioButton">
+    <style name="AppTheme.RadioButtonStyle" parent="Widget.AppCompat.CompoundButton.RadioButton">
         <item name="fontFamily">monospace</item>
+        <item name="android:fontFamily">monospace</item>
     </style>
 
     <!--check box theme-->
-    <style name="AppTheme.CheckBoxStyle" parent="Base.Widget.AppCompat.CompoundButton.CheckBox">
+    <style name="AppTheme.CheckBoxStyle" parent="Widget.AppCompat.CompoundButton.CheckBox">
         <item name="fontFamily">monospace</item>
+        <item name="android:fontFamily">monospace</item>
     </style>
 
 </resources>
