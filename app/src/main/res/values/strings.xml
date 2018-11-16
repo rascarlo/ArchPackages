@@ -9,6 +9,7 @@
     <string name="formatted_repo">Repo: %1$s</string>
     <string name="formatted_url">Upstream URL: %1$s</string>
     <string name="formatted_license">License: %1$s</string>
+    <string name="formatted_groups">Groups: %1$s</string>
     <string name="formatted_maintainers">Maintainers: %1$s</string>
     <string name="formatted_packager">Packager: %1$s</string>
     <string name="formatted_compressed_size">Package size: %1$s B (%2$s)</string>
