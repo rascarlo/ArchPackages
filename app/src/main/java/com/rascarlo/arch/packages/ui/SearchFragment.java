@@ -14,6 +14,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.RadioButton;
@@ -86,12 +87,17 @@ public class SearchFragment extends Fragment implements CompoundButton.OnChecked
             radioGroupFlag = fragmentSearchBinding.fragmentSearchFlagLayout.searchFlagRadioGroup;
             // search fab
             FloatingActionButton floatingActionButton = fragmentSearchBinding.fragmentSearchFab;
-            floatingActionButton.setOnClickListener(v -> onFabClicked(
-                    getKeywordsParameter(),
-                    getQuery(),
-                    getListRepo(),
-                    getListArch(),
-                    getFlagged()));
+            InputMethodManager inputMethodManager = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
+            floatingActionButton.setOnClickListener(v -> {
+                if (inputMethodManager != null)
+                    inputMethodManager.hideSoftInputFromWindow(v.getWindowToken(), 0);
+                onFabClicked(
+                        getKeywordsParameter(),
+                        getQuery(),
+                        getListRepo(),
+                        getListArch(),
+                        getFlagged());
+            });
         }
     }
 
