@@ -26,6 +26,8 @@ import com.rascarlo.arch.packages.api.model.Details;
 import com.rascarlo.arch.packages.api.model.Files;
 import com.rascarlo.arch.packages.util.ArchPackagesConstants;
 
+import java.util.concurrent.TimeUnit;
+
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
@@ -45,6 +47,8 @@ public class ArchPackagesRepository {
         httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BASIC);
         // okhttp client
         OkHttpClient.Builder okHttpClient = new OkHttpClient.Builder();
+        okHttpClient.connectTimeout(30, TimeUnit.SECONDS);
+        okHttpClient.readTimeout(30, TimeUnit.SECONDS);
         okHttpClient.addInterceptor(httpLoggingInterceptor);
         // retrofit
         Retrofit retrofit = new Retrofit.Builder()
