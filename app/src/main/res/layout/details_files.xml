@@ -16,7 +16,6 @@
   -->
 
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
@@ -62,19 +61,14 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Caption"
             tools:text="@string/formatted_files_count" />
 
-        <android.support.design.button.MaterialButton
+        <Button
             android:id="@+id/details_files_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:gravity="center_vertical|center|center_horizontal"
             android:padding="8dp"
-            android:text="@string/view_content"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
-            app:backgroundTint="@color/grey_500"
-            app:rippleColor="?attr/colorControlHighlight"
-            app:strokeColor="?attr/colorAccent"
-            app:strokeWidth="1dp" />
+            android:text="@string/view_content" />
 
     </LinearLayout>
 
