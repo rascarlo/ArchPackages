@@ -15,12 +15,25 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package com.rascarlo.arch.packages.callbacks;
+package com.rascarlo.arch.packages.viewholders;
 
-import com.rascarlo.arch.packages.api.model.Files;
+import android.support.annotation.NonNull;
+import android.support.v7.widget.RecyclerView;
 
-public interface DetailsFragmentCallback {
-    void onDetailsFragmentCallbackOnPackageClicked(String packageName);
+import com.rascarlo.arch.packages.databinding.RoomFileItemBinding;
+import com.rascarlo.arch.packages.persistence.RoomFile;
 
-    void onDetailsFragmentCallbackOnFilesClicked(Files files);
+public class RoomFileAdapterViewHolder extends RecyclerView.ViewHolder {
+
+    private final RoomFileItemBinding binding;
+
+    public RoomFileAdapterViewHolder(@NonNull RoomFileItemBinding binding) {
+        super(binding.getRoot());
+        this.binding = binding;
+    }
+
+    public void bindRoomFile(RoomFile roomFile) {
+        binding.setRoomFile(roomFile);
+        binding.executePendingBindings();
+    }
 }

@@ -15,12 +15,28 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package com.rascarlo.arch.packages.callbacks;
+package com.rascarlo.arch.packages.persistence;
 
-import com.rascarlo.arch.packages.api.model.Files;
+import android.arch.lifecycle.LiveData;
+import android.arch.paging.DataSource;
+import android.arch.persistence.room.Dao;
+import android.arch.persistence.room.Insert;
+import android.arch.persistence.room.Query;
 
-public interface DetailsFragmentCallback {
-    void onDetailsFragmentCallbackOnPackageClicked(String packageName);
+import java.util.List;
 
-    void onDetailsFragmentCallbackOnFilesClicked(Files files);
+@Dao
+public interface RoomFileDao {
+
+    @Query("SELECT * from room_file_table ORDER BY package_name ASC")
+    LiveData<List<RoomFile>> geAlphabetizedFiles();
+
+    @Query("SELECT * from room_file_table ORDER BY package_name ASC")
+    DataSource.Factory<Integer, RoomFile> getPagedFiles();
+
+    @Insert
+    void insert(RoomFile roomFile);
+
+    @Query("DELETE FROM room_file_table")
+    void deleteAll();
 }

@@ -17,48 +17,49 @@
 
 package com.rascarlo.arch.packages.adapters;
 
+import android.arch.paging.PagedListAdapter;
 import android.databinding.DataBindingUtil;
 import android.support.annotation.NonNull;
-import android.support.v7.recyclerview.extensions.ListAdapter;
 import android.support.v7.util.DiffUtil;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import com.rascarlo.arch.packages.R;
-import com.rascarlo.arch.packages.databinding.FileItemBinding;
-import com.rascarlo.arch.packages.viewholders.FileAdapterViewHolder;
+import com.rascarlo.arch.packages.databinding.RoomFileItemBinding;
+import com.rascarlo.arch.packages.persistence.RoomFile;
+import com.rascarlo.arch.packages.viewholders.RoomFileAdapterViewHolder;
 
-public class FileAdapter extends ListAdapter<String, FileAdapterViewHolder> {
+public class RoomFileAdapter extends PagedListAdapter<RoomFile, RoomFileAdapterViewHolder> {
 
-    public FileAdapter() {
+    public RoomFileAdapter() {
         super(DIFF_CALLBACK);
     }
 
-    private static final DiffUtil.ItemCallback<String> DIFF_CALLBACK = new DiffUtil.ItemCallback<String>() {
+    private static final DiffUtil.ItemCallback<RoomFile> DIFF_CALLBACK = new DiffUtil.ItemCallback<RoomFile>() {
         @Override
-        public boolean areItemsTheSame(@NonNull String s, @NonNull String t1) {
-            return TextUtils.equals(s.trim(), t1.trim());
+        public boolean areItemsTheSame(@NonNull RoomFile s, @NonNull RoomFile t1) {
+            return TextUtils.equals(s.getPackageName().trim(), t1.getPackageName().trim());
         }
 
         @Override
-        public boolean areContentsTheSame(@NonNull String s, @NonNull String t1) {
+        public boolean areContentsTheSame(@NonNull RoomFile s, @NonNull RoomFile t1) {
             return t1.equals(s);
         }
     };
 
     @NonNull
     @Override
-    public FileAdapterViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        FileItemBinding binding = DataBindingUtil.inflate(LayoutInflater.from(viewGroup.getContext()), R.layout.file_item, viewGroup, false);
-        return new FileAdapterViewHolder(binding);
+    public RoomFileAdapterViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+        RoomFileItemBinding binding = DataBindingUtil.inflate(LayoutInflater.from(viewGroup.getContext()), R.layout.room_file_item, viewGroup, false);
+        return new RoomFileAdapterViewHolder(binding);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull FileAdapterViewHolder fileAdapterViewHolder, int i) {
+    public void onBindViewHolder(@NonNull RoomFileAdapterViewHolder roomFileAdapterViewHolder, int i) {
         if (getItem(i) != null) {
-            String s = getItem(i);
-            fileAdapterViewHolder.bindString(s);
+            RoomFile roomFile = getItem(i);
+            roomFileAdapterViewHolder.bindRoomFile(roomFile);
         }
     }
 }

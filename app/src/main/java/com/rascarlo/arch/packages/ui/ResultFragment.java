@@ -135,13 +135,12 @@ public class ResultFragment extends Fragment implements ResultAdapterCallback {
                         bundleListArch,
                         bundleStringFlagged);
             }
-            packagesViewModel.getPagedListLiveData().observe(this,
-                    results -> {
-                        if (results != null) {
-                            resultAdapter.submitList(results);
-                        }
-                        progressBar.setVisibility(View.GONE);
-                    });
+            packagesViewModel.getPagedListLiveData().observe(this, results -> {
+                if (results != null) {
+                    resultAdapter.submitList(results);
+                }
+                progressBar.setVisibility(View.GONE);
+            });
             recyclerView.setAdapter(resultAdapter);
         }
     }

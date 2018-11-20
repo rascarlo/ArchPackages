@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <!--
   ~     Copyright (C) 2018 rascarlo <rascarlo@gmail.com>
   ~
@@ -23,9 +22,11 @@
 
         <import type="android.view.View" />
 
+        <import type="android.text.TextUtils" />
+
         <variable
-            name="string"
-            type="java.lang.String" />
+            name="RoomFile"
+            type="com.rascarlo.arch.packages.persistence.RoomFile" />
 
     </data>
 
@@ -35,9 +36,9 @@
         android:layout_height="wrap_content"
         android:paddingTop="4dp"
         android:paddingBottom="4dp"
-        android:text="@{string.trim()}"
+        android:text="@{RoomFile.packageName.trim()}"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textColor="@color/grey_500"
+        android:textColor="@{TextUtils.equals(@string/unicode_dir, RoomFile.packageName.substring(RoomFile.packageName.length() - 1)) ? @color/text_alert_red : @color/grey_500}"
         tools:text="@string/app_name" />
 
 </layout>

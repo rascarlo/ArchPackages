@@ -33,15 +33,16 @@ import android.view.ViewGroup;
 
 import com.rascarlo.arch.packages.R;
 import com.rascarlo.arch.packages.adapters.DependencyAdapter;
-import com.rascarlo.arch.packages.adapters.FileAdapter;
 import com.rascarlo.arch.packages.api.model.Details;
 import com.rascarlo.arch.packages.api.model.Files;
 import com.rascarlo.arch.packages.callbacks.DependencyAdapterCallback;
 import com.rascarlo.arch.packages.callbacks.DetailsFragmentCallback;
 import com.rascarlo.arch.packages.databinding.FragmentDetailsBinding;
+import com.rascarlo.arch.packages.persistence.RoomFile;
 import com.rascarlo.arch.packages.util.ArchPackagesStringConverters;
 import com.rascarlo.arch.packages.viewmodel.DetailsViewModel;
 import com.rascarlo.arch.packages.viewmodel.FilesViewModel;
+import com.rascarlo.arch.packages.viewmodel.RoomFileViewModel;
 
 import java.util.HashMap;
 import java.util.List;
@@ -193,7 +194,18 @@ public class DetailsFragment extends Fragment implements DependencyAdapterCallba
     }
 
     private void bindFiles(Files files) {
-        populateRecyclerView(fragmentDetailsBinding.detailsFilesLayout.detailsFilesRecyclerView, files.files);
+        if (files.files != null) {
+            RoomFileViewModel roomFileViewModel = ViewModelProviders.of(this).get(RoomFileViewModel.class);
+            roomFileViewModel.wipeRoomFileDatabase();
+            for (String s : files.files) {
+                roomFileViewModel.insertRoomFile(new RoomFile(s.trim()));
+            }
+            fragmentDetailsBinding.detailsFilesLayout.detailsFilesButton.setOnClickListener(v -> {
+                if (detailsFragmentCallback != null) {
+                    detailsFragmentCallback.onDetailsFragmentCallbackOnFilesClicked(files);
+                }
+            });
+        }
     }
 
     private void populateRecyclerView(RecyclerView recyclerView, List<String> stringList) {
@@ -202,15 +214,9 @@ public class DetailsFragment extends Fragment implements DependencyAdapterCallba
             recyclerView.setLayoutManager(linearLayoutManager);
             recyclerView.setHasFixedSize(true);
             recyclerView.addItemDecoration(new DividerItemDecoration(context, DividerItemDecoration.VERTICAL));
-            if (recyclerView == fragmentDetailsBinding.detailsFilesLayout.detailsFilesRecyclerView) {
-                FileAdapter fileAdapter = new FileAdapter();
-                recyclerView.setAdapter(fileAdapter);
-                fileAdapter.submitList(stringList);
-            } else {
-                DependencyAdapter dependencyAdapter = new DependencyAdapter(this);
-                recyclerView.setAdapter(dependencyAdapter);
-                dependencyAdapter.submitList(stringList);
-            }
+            DependencyAdapter dependencyAdapter = new DependencyAdapter(this);
+            recyclerView.setAdapter(dependencyAdapter);
+            dependencyAdapter.submitList(stringList);
         }
     }
 }

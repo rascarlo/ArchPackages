@@ -16,13 +16,14 @@
   -->
 
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:aapt="http://schemas.android.com/aapt"
-        android:width="108dp"
-        android:height="108dp"
-        android:viewportWidth="154.28572"
-        android:viewportHeight="154.28572">
-    <group android:translateX="23.142857"
-            android:translateY="23.142857">
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="154.28572"
+    android:viewportHeight="154.28572">
+    <group
+        android:translateX="23.142857"
+        android:translateY="23.142857">
         <path
             android:fillType="evenOdd"
             android:pathData="M63.353,51.828 L144.504,127.79 113.201,161.231 32.05,85.269 55.075,52.851Z"

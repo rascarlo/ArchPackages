@@ -28,11 +28,13 @@ import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.rascarlo.arch.packages.api.model.Files;
 import com.rascarlo.arch.packages.api.model.Result;
 import com.rascarlo.arch.packages.callbacks.DetailsFragmentCallback;
 import com.rascarlo.arch.packages.callbacks.ResultFragmentCallback;
 import com.rascarlo.arch.packages.callbacks.SearchFragmentCallback;
 import com.rascarlo.arch.packages.ui.DetailsFragment;
+import com.rascarlo.arch.packages.ui.FilesFragment;
 import com.rascarlo.arch.packages.ui.ResultFragment;
 import com.rascarlo.arch.packages.ui.SearchFragment;
 import com.rascarlo.arch.packages.ui.SettingsFragment;
@@ -144,7 +146,7 @@ public class MainActivity extends AppCompatActivity
      * @param keywords:          query
      * @param listRepo:          repo list
      * @param listArch:          arch list
-     * @param flag:           flag
+     * @param flag:              flag
      */
     @Override
     public void onSearchFragmentCallbackOnFabClicked(int keywordsParameter,
@@ -160,7 +162,7 @@ public class MainActivity extends AppCompatActivity
                 listRepo,
                 listArch,
                 flag);
-        fragmentTransaction.replace(R.id.content_main_fragment_container, resultFragment);
+        fragmentTransaction.add(R.id.content_main_fragment_container, resultFragment);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
     }
@@ -168,6 +170,7 @@ public class MainActivity extends AppCompatActivity
     /**
      * callback from {@link SearchFragment}
      * inflate the settings {@link SettingsFragment}
+     * REPLACE the fragment, not add
      */
     @Override
     public void onSearchFragmentCallbackOnMenuActionSettingsClicked() {
@@ -220,6 +223,22 @@ public class MainActivity extends AppCompatActivity
             fragmentTransaction.addToBackStack(null);
             fragmentTransaction.commit();
         }
+    }
+
+    /**
+     * callback from {@link DetailsFragment}
+     * inflate a new {@link FilesFragment}
+     *
+     * @param files: the {@link Files} to bind dirs and files count
+     */
+    @Override
+    public void onDetailsFragmentCallbackOnFilesClicked(Files files) {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        FilesFragment filesFragment = FilesFragment.newInstance(files);
+        fragmentTransaction.add(R.id.content_main_fragment_container, filesFragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
     }
 
     private void setAppTheme(boolean recreate) {

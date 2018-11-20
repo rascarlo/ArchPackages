@@ -1,0 +1,90 @@
+<!--
+  ~     Copyright (C) 2018 rascarlo <rascarlo@gmail.com>
+  ~
+  ~     This program is free software: you can redistribute it and/or modify
+  ~     it under the terms of the GNU General Public License as published by
+  ~     the Free Software Foundation, either version 3 of the License, or
+  ~     (at your option) any later version.
+  ~
+  ~     This program is distributed in the hope that it will be useful,
+  ~     but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~     GNU General Public License for more details.
+  ~
+  ~     You should have received a copy of the GNU General Public License
+  ~     along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="Files"
+            type="com.rascarlo.arch.packages.api.model.Files" />
+
+        <import type="android.view.View" />
+
+        <import type="java.util.List" />
+
+        <import type="java.lang.Integer" />
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?android:attr/windowBackground"
+        android:orientation="vertical"
+        android:padding="@dimen/activity_horizontal_margin"
+        tools:context=".ui.FilesFragment">
+
+        <TextView
+            android:id="@+id/fragment_files_text_view_package_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{Files.pkgname}"
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+            android:textColor="?attr/colorAccent"
+            android:textStyle="bold"
+            android:visibility="@{Files.pkgname != null ? View.VISIBLE : View.GONE}"
+            tools:text="Pkgname" />
+
+        <View
+            android:id="@+id/fragment_files_ruler_package_name"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="8dp"
+            android:background="?attr/colorAccent"
+            android:visibility="@{Files.pkgname != null ? View.VISIBLE : View.GONE}" />
+
+        <TextView
+            android:id="@+id/fragment_files_text_view_dirs_count"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@{@string/formatted_dirs_count(Files.dirCount)}"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:visibility="@{Files.dirCount != null ? View.VISIBLE : View.GONE}"
+            tools:text="@string/formatted_dirs_count" />
+
+        <TextView
+            android:id="@+id/fragment_files_text_view_files_count"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@{@string/formatted_files_count(Files.filesCount)}"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:visibility="@{Files.filesCount != null ? View.VISIBLE : View.GONE}"
+            tools:text="@string/formatted_files_count" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/fragment_files_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="8dp" />
+
+    </LinearLayout>
+
+</layout>

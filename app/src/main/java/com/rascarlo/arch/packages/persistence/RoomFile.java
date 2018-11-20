@@ -15,24 +15,27 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package com.rascarlo.arch.packages.viewholders;
+package com.rascarlo.arch.packages.persistence;
 
+import android.arch.persistence.room.ColumnInfo;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
 
-import com.rascarlo.arch.packages.databinding.FileItemBinding;
+@Entity(tableName = "room_file_table")
+public class RoomFile {
 
-public class FileAdapterViewHolder extends RecyclerView.ViewHolder {
+    @PrimaryKey
+    @NonNull
+    @ColumnInfo(name = "package_name")
+    private final String packageName;
 
-    private final FileItemBinding binding;
-
-    public FileAdapterViewHolder(@NonNull FileItemBinding binding) {
-        super(binding.getRoot());
-        this.binding = binding;
+    public RoomFile(@NonNull String packageName) {
+        this.packageName = packageName;
     }
 
-    public void bindString(String s) {
-        binding.setString(s);
-        binding.executePendingBindings();
+    @NonNull
+    public String getPackageName() {
+        return packageName;
     }
 }
