@@ -1,3 +1,5 @@
+<img src="https://github.com/rascarlo/ArchPackages/blob/master/fastlane/metadata/android/en-US/images/featureGraphic.png" width="640" height="333" />
+
 # Arch packages
 *Arch Linux packages browser.*
 
