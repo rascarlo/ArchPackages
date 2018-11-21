@@ -50,6 +50,20 @@ It supports the same query parameters as the HTML search form, except for Mainta
 
 I use Arch BTW.
 
+___
+
+### Screenshots
+
+<img src="https://github.com/rascarlo/ArchPackages/blob/master/fastlane/metadata/android/en-US/phoneScreenshots/01.png" width="180" height="320" /> <img src="https://github.com/rascarlo/ArchPackages/blob/master/fastlane/metadata/android/en-US/phoneScreenshots/02.png" width="180" height="320" />
+
+<img src="https://github.com/rascarlo/ArchPackages/blob/master/fastlane/metadata/android/en-US/phoneScreenshots/03.png" width="180" height="320" /> <img src="https://github.com/rascarlo/ArchPackages/blob/master/fastlane/metadata/android/en-US/phoneScreenshots/03.png" width="180" height="320" />
+
+<img src="https://github.com/rascarlo/ArchPackages/blob/master/fastlane/metadata/android/en-US/phoneScreenshots/05.png" width="180" height="320" /> <img src="https://github.com/rascarlo/ArchPackages/blob/master/fastlane/metadata/android/en-US/phoneScreenshots/06.png" width="180" height="320" />
+
+<img src="https://github.com/rascarlo/ArchPackages/blob/master/fastlane/metadata/android/en-US/phoneScreenshots/07.png" width="180" height="320" /> <img src="https://github.com/rascarlo/ArchPackages/blob/master/fastlane/metadata/android/en-US/phoneScreenshots/08.png" width="180" height="320" />
+
+<img src="https://github.com/rascarlo/ArchPackages/blob/master/fastlane/metadata/android/en-US/phoneScreenshots/09.png" width="180" height="320" /> <img src="https://github.com/rascarlo/ArchPackages/blob/master/fastlane/metadata/android/en-US/phoneScreenshots/10.png" width="180" height="320" />
+
 
 ___
 ### Permissions
