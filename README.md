@@ -1,4 +1,4 @@
-# Arch Packages
+# Arch packages
 *Simple Android Arch Linux packages browser.*
 
 ___
