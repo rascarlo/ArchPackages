@@ -66,6 +66,10 @@ ___
 
 
 ___
+### APPS
+- **Google Play:** https://play.google.com/store/apps/details?id=com.rascarlo.arch.packages
+
+___
 ### Permissions
 - **android.permission.INTERNET:** pull json (https://developer.android.com/reference/android/Manifest.permission.html#INTERNET)
 
