@@ -1,8 +1,55 @@
 # Arch packages
-*Simple Android Arch Linux packages browser.*
-The application makes use of the official API to browse from a mobile device the Arch Linux packages repos (core, extra, testing, multilib, multilib-testing, community, community-testing) for any architecture (any, x86_64). 
+*Arch Linux packages browser.*
+
+The application makes use of the official API to browse the Arch Linux packages repos.
+
+The package layout provides all available details:
+- Description.
+- Filename.
+- Version.
+- Arch.
+- Repo.
+- Groups.
+- Upstream URL.
+- License.
+- Maintainers.
+- Packager.
+- Package size.
+- Installed size.
+- Build date.
+- Last updated.
+- Flag date.
+- Dependencies.
+- Make dependencies.
+- Check dependencies.
+- Optional dependencies.
+- Conflicts.
+- Provides.
+- Replaces.
+- Files.
+
+Supported repos:
+- core.
+- extra.
+- testing.
+- multilib.
+- multilib-testing.
+- community
+- community-testing.
+
+Supported architecures: 
+- any.
+- x86_64.
+
+Supported flags:
+- All.
+- Flagged.
+- Not Flagged.
+
 It supports the same query parameters as the HTML search form, except for Maintainer (todo), Packager (todo) and sort (not exposed by the API).
-I use Arch BTW
+
+I use Arch BTW.
+
 
 ___
 ### Permissions
