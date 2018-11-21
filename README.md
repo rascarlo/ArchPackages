@@ -34,7 +34,7 @@ Supported repos:
 - testing.
 - multilib.
 - multilib-testing.
-- community
+- community.
 - community-testing.
 
 Supported architecures: 
