@@ -17,29 +17,24 @@
 
 package com.rascarlo.arch.packages.viewmodel;
 
-import android.app.Application;
-import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
+import android.arch.lifecycle.ViewModel;
 
 import com.rascarlo.arch.packages.api.model.Details;
 import com.rascarlo.arch.packages.data.ArchPackagesRepository;
 
-public class DetailsViewModel extends AndroidViewModel {
+public class DetailsViewModel extends ViewModel {
 
-    private LiveData<Details> detailsLiveData;
+    private final LiveData<Details> detailsLiveData;
 
-    public DetailsViewModel(Application application) {
-        super(application);
-    }
-
-    public LiveData<Details> getDetailsLiveData() {
-        return detailsLiveData;
-    }
-
-    public void init(String repo,
+    DetailsViewModel(String repo,
                      String arch,
                      String pkgname) {
         detailsLiveData = ArchPackagesRepository.getArchPackagesRepositoryInstance().getDetailsLiveData(repo, arch, pkgname);
 
+    }
+
+    public LiveData<Details> getDetailsLiveData() {
+        return detailsLiveData;
     }
 }

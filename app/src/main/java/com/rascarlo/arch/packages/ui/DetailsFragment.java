@@ -41,7 +41,9 @@ import com.rascarlo.arch.packages.databinding.FragmentDetailsBinding;
 import com.rascarlo.arch.packages.persistence.RoomFile;
 import com.rascarlo.arch.packages.util.ArchPackagesStringConverters;
 import com.rascarlo.arch.packages.viewmodel.DetailsViewModel;
+import com.rascarlo.arch.packages.viewmodel.DetailsViewModelFactory;
 import com.rascarlo.arch.packages.viewmodel.FilesViewModel;
+import com.rascarlo.arch.packages.viewmodel.FilesViewModelFactory;
 import com.rascarlo.arch.packages.viewmodel.RoomFileViewModel;
 
 import java.util.HashMap;
@@ -112,12 +114,9 @@ public class DetailsFragment extends Fragment implements DependencyAdapterCallba
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         if (fragmentDetailsBinding != null) {
-            DetailsViewModel detailsViewModel = ViewModelProviders.of(this).get(DetailsViewModel.class);
-            FilesViewModel filesViewModel = ViewModelProviders.of(this).get(FilesViewModel.class);
-            if (savedInstanceState == null) {
-                detailsViewModel.init(bundleRepo, bundleArch, bundlePkgname);
-                filesViewModel.init(bundleRepo, bundleArch, bundlePkgname);
-            }
+            // details
+            DetailsViewModelFactory detailsViewModelFactory = new DetailsViewModelFactory(bundleRepo, bundleArch, bundlePkgname);
+            DetailsViewModel detailsViewModel = ViewModelProviders.of(this, detailsViewModelFactory).get(DetailsViewModel.class);
             detailsViewModel.getDetailsLiveData().observe(this, details -> {
                 if (details != null && fragmentDetailsBinding != null) {
                     fragmentDetailsBinding.setDetails(details);
@@ -125,6 +124,9 @@ public class DetailsFragment extends Fragment implements DependencyAdapterCallba
                     bindDetailsViewModel(details);
                 }
             });
+            // files
+            FilesViewModelFactory filesViewModelFactory = new FilesViewModelFactory(bundleRepo, bundleArch, bundlePkgname);
+            FilesViewModel filesViewModel = ViewModelProviders.of(this, filesViewModelFactory).get(FilesViewModel.class);
             filesViewModel.getFilesLiveData().observe(this, files -> {
                 if (files != null && fragmentDetailsBinding != null) {
                     fragmentDetailsBinding.detailsFilesLayout.setFiles(files);

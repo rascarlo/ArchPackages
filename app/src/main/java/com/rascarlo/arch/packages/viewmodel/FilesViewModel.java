@@ -17,29 +17,24 @@
 
 package com.rascarlo.arch.packages.viewmodel;
 
-import android.app.Application;
-import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
+import android.arch.lifecycle.ViewModel;
 
 import com.rascarlo.arch.packages.api.model.Files;
 import com.rascarlo.arch.packages.data.ArchPackagesRepository;
 
-public class FilesViewModel extends AndroidViewModel {
+public class FilesViewModel extends ViewModel {
 
-    private LiveData<Files> filesLiveData;
+    private final LiveData<Files> filesLiveData;
 
-    public FilesViewModel(Application application) {
-        super(application);
+    FilesViewModel(String repo,
+                   String arch,
+                   String pkgname) {
+        filesLiveData = ArchPackagesRepository.getArchPackagesRepositoryInstance().getFilesLiveData(repo, arch, pkgname);
+
     }
 
     public LiveData<Files> getFilesLiveData() {
         return filesLiveData;
-    }
-
-    public void init(String repo,
-                     String arch,
-                     String pkgname) {
-        filesLiveData = ArchPackagesRepository.getArchPackagesRepositoryInstance().getFilesLiveData(repo, arch, pkgname);
-
     }
 }
