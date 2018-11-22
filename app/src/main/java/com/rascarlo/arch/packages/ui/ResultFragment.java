@@ -37,6 +37,7 @@ import com.rascarlo.arch.packages.callbacks.ResultAdapterCallback;
 import com.rascarlo.arch.packages.callbacks.ResultFragmentCallback;
 import com.rascarlo.arch.packages.databinding.FragmentResultBinding;
 import com.rascarlo.arch.packages.viewmodel.PackagesViewModel;
+import com.rascarlo.arch.packages.viewmodel.PackagesViewModelFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -119,7 +120,12 @@ public class ResultFragment extends Fragment implements ResultAdapterCallback {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         if (fragmentResultBinding != null) {
-            PackagesViewModel packagesViewModel = ViewModelProviders.of(this).get(PackagesViewModel.class);
+            PackagesViewModelFactory factory = new PackagesViewModelFactory(bundleKeywordsParameter,
+                    bundleKeywords,
+                    bundleListRepo,
+                    bundleListArch,
+                    bundleStringFlagged);
+            PackagesViewModel packagesViewModel = ViewModelProviders.of(this, factory).get(PackagesViewModel.class);
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
             RecyclerView recyclerView = fragmentResultBinding.fragmentResultRecyclerView;
             ProgressBar progressBar = fragmentResultBinding.fragmentResultProgressBar;
@@ -128,13 +134,6 @@ public class ResultFragment extends Fragment implements ResultAdapterCallback {
             recyclerView.addItemDecoration(new DividerItemDecoration(context, DividerItemDecoration.VERTICAL));
             recyclerView.setHasFixedSize(true);
             recyclerView.setLayoutManager(linearLayoutManager);
-            if (savedInstanceState == null) {
-                packagesViewModel.init(bundleKeywordsParameter,
-                        bundleKeywords,
-                        bundleListRepo,
-                        bundleListArch,
-                        bundleStringFlagged);
-            }
             packagesViewModel.getPagedListLiveData().observe(this, results -> {
                 if (results != null) {
                     resultAdapter.submitList(results);

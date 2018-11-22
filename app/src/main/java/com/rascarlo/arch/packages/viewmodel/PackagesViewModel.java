@@ -30,12 +30,13 @@ import java.util.List;
 
 public class PackagesViewModel extends ViewModel {
 
-    private LiveData<PagedList<Result>> pagedListLiveData;
+    private final LiveData<PagedList<Result>> pagedListLiveData;
 
-    public PackagesViewModel() {
-    }
-
-    public void init(int keywordsParameter, String query, List<String> listRepo, List<String> listArch, String flagged) {
+    PackagesViewModel(int keywordsParameter,
+                      String query,
+                      List<String> listRepo,
+                      List<String> listArch,
+                      String flagged) {
         ResultDataSourceFactory resultDataSourceFactory = new ResultDataSourceFactory(keywordsParameter, query, listRepo, listArch, flagged);
         PagedList.Config pagedListConfig = new PagedList.Config.Builder()
                 .setEnablePlaceholders(false)
