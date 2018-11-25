@@ -21,6 +21,7 @@ import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 import android.support.annotation.NonNull;
 
+import com.rascarlo.arch.packages.BuildConfig;
 import com.rascarlo.arch.packages.api.ArchPackagesService;
 import com.rascarlo.arch.packages.api.model.Details;
 import com.rascarlo.arch.packages.api.model.Files;
@@ -44,7 +45,7 @@ public class ArchPackagesRepository {
     private ArchPackagesRepository() {
         // http logging interceptor
         HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
-        httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BASIC);
+        httpLoggingInterceptor.setLevel(BuildConfig.DEBUG ? HttpLoggingInterceptor.Level.BODY : HttpLoggingInterceptor.Level.NONE);
         // okhttp client
         OkHttpClient.Builder okHttpClient = new OkHttpClient.Builder();
         okHttpClient.connectTimeout(30, TimeUnit.SECONDS);
