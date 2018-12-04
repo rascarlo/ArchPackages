@@ -69,8 +69,8 @@ ___
 
 ___
 ### APK
-- **Google Play:** https://play.google.com/store/apps/details?id=com.rascarlo.arch.packages
 - **F-Droid:** https://f-droid.org/packages/com.rascarlo.arch.packages/
+- **Google Play:** https://play.google.com/store/apps/details?id=com.rascarlo.arch.packages
 
 ___
 ### Permissions
