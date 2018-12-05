@@ -49,6 +49,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/package_search"
+                android:imeOptions="actionSearch"
+                android:inputType="text"
                 tools:text="@string/package_search" />
         </android.support.design.widget.TextInputLayout>
 

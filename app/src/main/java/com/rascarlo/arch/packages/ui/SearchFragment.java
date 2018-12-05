@@ -21,7 +21,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
@@ -31,6 +31,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.CheckBox;
 import android.widget.RadioButton;
@@ -101,18 +102,25 @@ public class SearchFragment extends Fragment {
             checkBoxArchX84_64 = fragmentSearchBinding.fragmentSearchArchLayout.searchCheckBoxArchX8664;
             // flagged radio buttons
             radioGroupFlag = fragmentSearchBinding.fragmentSearchFlagLayout.searchFlagRadioGroup;
-            // search fab
-            FloatingActionButton floatingActionButton = fragmentSearchBinding.fragmentSearchFab;
-            InputMethodManager inputMethodManager = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
-            floatingActionButton.setOnClickListener(v -> {
-                if (inputMethodManager != null)
-                    inputMethodManager.hideSoftInputFromWindow(v.getWindowToken(), 0);
-                onFabClicked(
-                        getKeywordsParameter(),
-                        getQuery(),
-                        getListRepo(),
-                        getListArch(),
-                        getFlagged());
+            // search ime action
+            TextInputEditText textInputEditText = fragmentSearchBinding.fragmentSearchKeywordsLayout.searchKeywordsTextInputEditText;
+            textInputEditText.setImeOptions(EditorInfo.IME_ACTION_SEARCH);
+            textInputEditText.setOnEditorActionListener((editTextView, actionId, event) -> {
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                    if (searchFragmentCallback != null) {
+                        searchFragmentCallback.onSearchFragmentCallbackOnFabClicked(
+                                getKeywordsParameter(),
+                                getQuery(),
+                                getListRepo(),
+                                getListArch(),
+                                getFlagged());
+                    }
+                    InputMethodManager inputMethodManager = (InputMethodManager) editTextView.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                    if (inputMethodManager != null)
+                        inputMethodManager.hideSoftInputFromWindow(editTextView.getWindowToken(), 0);
+                    return true;
+                }
+                return false;
             });
         }
     }
@@ -232,21 +240,6 @@ public class SearchFragment extends Fragment {
             radioButtonFlagNotFlagged.setChecked(true);
         } else {
             radioButtonFlagAll.setChecked(true);
-        }
-    }
-
-    private void onFabClicked(int keywordsParameter,
-                              String keywords,
-                              ArrayList<String> listRepo,
-                              ArrayList<String> listArch,
-                              String flagged) {
-        if (searchFragmentCallback != null) {
-            searchFragmentCallback.onSearchFragmentCallbackOnFabClicked(
-                    keywordsParameter,
-                    keywords,
-                    listRepo,
-                    listArch,
-                    flagged);
         }
     }
 
