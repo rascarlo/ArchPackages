@@ -64,7 +64,6 @@ public class SearchFragment extends Fragment {
     private CheckBox checkBoxArchX84_64;
     // flagged check boxes
     private RadioGroup radioGroupFlag;
-    private FragmentSearchBinding fragmentSearchBinding;
 
     public SearchFragment() {
         // Required empty public constructor
@@ -78,51 +77,44 @@ public class SearchFragment extends Fragment {
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        fragmentSearchBinding = FragmentSearchBinding.inflate(inflater, container, false);
-        return fragmentSearchBinding.getRoot();
-    }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        if (fragmentSearchBinding != null) {
-            textInputLayout = fragmentSearchBinding.fragmentSearchKeywordsLayout.searchKeywordsTextInputLayout;
-            // keywords radio group
-            radioGroupKeywords = fragmentSearchBinding.fragmentSearchKeywordsLayout.searchKeywordsRadioGroup;
-            // repo check boxes
-            checkBoxRepoCore = fragmentSearchBinding.fragmentSearchRepoLayout.searchCheckBoxRepoCore;
-            checkBoxRepoExtra = fragmentSearchBinding.fragmentSearchRepoLayout.searchCheckBoxRepoExtra;
-            checkBoxRepoTesting = fragmentSearchBinding.fragmentSearchRepoLayout.searchCheckBoxRepoTesting;
-            checkBoxRepoMultilib = fragmentSearchBinding.fragmentSearchRepoLayout.searchCheckBoxRepoMultilib;
-            checkBoxRepoMultilibTesting = fragmentSearchBinding.fragmentSearchRepoLayout.searchCheckBoxRepoMultilibTesting;
-            checkBoxRepoCommunity = fragmentSearchBinding.fragmentSearchRepoLayout.searchCheckBoxRepoCommunity;
-            checkBoxRepoCommunityTesting = fragmentSearchBinding.fragmentSearchRepoLayout.searchCheckBoxRepoCommunityTesting;
-            // arch check boxes
-            checkBoxArchAny = fragmentSearchBinding.fragmentSearchArchLayout.searchCheckBoxArchAny;
-            checkBoxArchX84_64 = fragmentSearchBinding.fragmentSearchArchLayout.searchCheckBoxArchX8664;
-            // flagged radio buttons
-            radioGroupFlag = fragmentSearchBinding.fragmentSearchFlagLayout.searchFlagRadioGroup;
-            // search ime action
-            TextInputEditText textInputEditText = fragmentSearchBinding.fragmentSearchKeywordsLayout.searchKeywordsTextInputEditText;
-            textInputEditText.setImeOptions(EditorInfo.IME_ACTION_SEARCH);
-            textInputEditText.setOnEditorActionListener((editTextView, actionId, event) -> {
-                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                    if (searchFragmentCallback != null) {
-                        searchFragmentCallback.onSearchFragmentCallbackOnFabClicked(
-                                getKeywordsParameter(),
-                                getQuery(),
-                                getListRepo(),
-                                getListArch(),
-                                getFlagged());
-                    }
-                    InputMethodManager inputMethodManager = (InputMethodManager) editTextView.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-                    if (inputMethodManager != null)
-                        inputMethodManager.hideSoftInputFromWindow(editTextView.getWindowToken(), 0);
-                    return true;
+        FragmentSearchBinding fragmentSearchBinding = FragmentSearchBinding.inflate(inflater, container, false);
+        textInputLayout = fragmentSearchBinding.fragmentSearchKeywordsLayout.searchKeywordsTextInputLayout;
+        // keywords radio group
+        radioGroupKeywords = fragmentSearchBinding.fragmentSearchKeywordsLayout.searchKeywordsRadioGroup;
+        // repo check boxes
+        checkBoxRepoCore = fragmentSearchBinding.fragmentSearchRepoLayout.searchCheckBoxRepoCore;
+        checkBoxRepoExtra = fragmentSearchBinding.fragmentSearchRepoLayout.searchCheckBoxRepoExtra;
+        checkBoxRepoTesting = fragmentSearchBinding.fragmentSearchRepoLayout.searchCheckBoxRepoTesting;
+        checkBoxRepoMultilib = fragmentSearchBinding.fragmentSearchRepoLayout.searchCheckBoxRepoMultilib;
+        checkBoxRepoMultilibTesting = fragmentSearchBinding.fragmentSearchRepoLayout.searchCheckBoxRepoMultilibTesting;
+        checkBoxRepoCommunity = fragmentSearchBinding.fragmentSearchRepoLayout.searchCheckBoxRepoCommunity;
+        checkBoxRepoCommunityTesting = fragmentSearchBinding.fragmentSearchRepoLayout.searchCheckBoxRepoCommunityTesting;
+        // arch check boxes
+        checkBoxArchAny = fragmentSearchBinding.fragmentSearchArchLayout.searchCheckBoxArchAny;
+        checkBoxArchX84_64 = fragmentSearchBinding.fragmentSearchArchLayout.searchCheckBoxArchX8664;
+        // flagged radio buttons
+        radioGroupFlag = fragmentSearchBinding.fragmentSearchFlagLayout.searchFlagRadioGroup;
+        // search ime action
+        TextInputEditText textInputEditText = fragmentSearchBinding.fragmentSearchKeywordsLayout.searchKeywordsTextInputEditText;
+        textInputEditText.setImeOptions(EditorInfo.IME_ACTION_SEARCH);
+        textInputEditText.setOnEditorActionListener((editTextView, actionId, event) -> {
+            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                if (searchFragmentCallback != null) {
+                    searchFragmentCallback.onSearchFragmentCallbackOnFabClicked(
+                            getKeywordsParameter(),
+                            getQuery(),
+                            getListRepo(),
+                            getListArch(),
+                            getFlagged());
                 }
-                return false;
-            });
-        }
+                InputMethodManager inputMethodManager = (InputMethodManager) editTextView.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                if (inputMethodManager != null)
+                    inputMethodManager.hideSoftInputFromWindow(editTextView.getWindowToken(), 0);
+                return true;
+            }
+            return false;
+        });
+        return fragmentSearchBinding.getRoot();
     }
 
     @Override
