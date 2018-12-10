@@ -9,6 +9,7 @@ The package layout provides all available details:
 - Description.
 - Filename.
 - Version.
+- Base package.
 - Arch.
 - Repo.
 - Groups.
