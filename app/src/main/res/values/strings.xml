@@ -85,6 +85,7 @@
     <string name="api_wiki_link" translatable="false">https://wiki.archlinux.org/index.php/Official_repositories_web_interface</string>
     <string name="arch_linux_link" translatable="false">https://www.archlinux.org/</string>
     <string name="arch_linux_packages_link" translatable="false">https://www.archlinux.org/packages/</string>
+    <string name="monospace" translatable="false">monospace</string>
 
     <!--keywords keys-->
     <string name="key_keywords" translatable="false">key_keywords</string>
