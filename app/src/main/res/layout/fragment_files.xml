@@ -28,8 +28,6 @@
 
         <import type="java.util.List" />
 
-        <import type="java.lang.Integer" />
-
     </data>
 
     <LinearLayout

@@ -24,8 +24,6 @@
 
         <import type="java.util.List" />
 
-        <import type="java.lang.Integer" />
-
         <variable
             name="Files"
             type="com.rascarlo.arch.packages.api.model.Files" />
