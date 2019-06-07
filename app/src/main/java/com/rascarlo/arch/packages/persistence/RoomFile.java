@@ -21,6 +21,7 @@ import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
+import android.text.TextUtils;
 
 @Entity(tableName = "room_file_table")
 public class RoomFile {
@@ -37,5 +38,13 @@ public class RoomFile {
     @NonNull
     public String getPackageName() {
         return packageName;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof RoomFile)) return false;
+        RoomFile roomFile = (RoomFile) o;
+        return TextUtils.equals(getPackageName(), (roomFile.getPackageName()));
     }
 }
