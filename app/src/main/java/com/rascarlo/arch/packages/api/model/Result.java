@@ -19,6 +19,7 @@ package com.rascarlo.arch.packages.api.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.text.TextUtils;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -300,6 +301,27 @@ public class Result implements Parcelable {
         this.pkgbase = in.readString();
         this.pkgrel = in.readString();
         this.flagDate = in.readString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Result)) return false;
+        Result result = (Result) o;
+        return TextUtils.equals(getLastUpdate(), (result.getLastUpdate())) &&
+                TextUtils.equals(getBuildDate(), (result.getBuildDate())) &&
+                TextUtils.equals(getCompressedSize(), (result.getCompressedSize())) &&
+                TextUtils.equals(getInstalledSize(), (result.getInstalledSize())) &&
+                TextUtils.equals(getFilename(), (result.getFilename())) &&
+                TextUtils.equals(getEpoch(), (result.getEpoch())) &&
+                TextUtils.equals(getRepo(), (result.getRepo())) &&
+                TextUtils.equals(getPackager(), (result.getPackager())) &&
+                TextUtils.equals(getArch(), (result.getArch())) &&
+                TextUtils.equals(getPkgver(), (result.getPkgver())) &&
+                TextUtils.equals(getPkgname(), (result.getPkgname())) &&
+                TextUtils.equals(getUrl(), (result.getUrl())) &&
+                TextUtils.equals(getPkgbase(), (result.getPkgbase())) &&
+                TextUtils.equals(getPkgrel(), (result.getPkgrel()));
     }
 
     public static final Creator<Result> CREATOR = new Creator<Result>() {
