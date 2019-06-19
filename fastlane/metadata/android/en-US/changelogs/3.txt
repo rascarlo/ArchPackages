@@ -1,0 +1,6 @@
+versionCode 3
+versionName 0.3
+- Result: implement equals boolean for isContentTheSame
+- RoomFile: implement equals boolean for isContentTheSame
+- gradle: update retrofit to 2.6.0
+- fix databinding, broken by latest gradle update
