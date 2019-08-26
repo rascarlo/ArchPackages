@@ -131,12 +131,10 @@ public class SearchFragment extends Fragment {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.menu_search_action_settings:
-                if (searchFragmentCallback != null) {
-                    searchFragmentCallback.onSearchFragmentCallbackOnMenuActionSettingsClicked();
-                }
-                break;
+        if (item.getItemId() == R.id.menu_search_action_settings) {
+            if (searchFragmentCallback != null) {
+                searchFragmentCallback.onSearchFragmentCallbackOnMenuActionSettingsClicked();
+            }
         }
         return super.onOptionsItemSelected(item);
     }
