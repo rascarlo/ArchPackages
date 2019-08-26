@@ -241,16 +241,15 @@ public class SearchFragment extends Fragment {
 
     private int getKeywordsParameter() {
         // keywords parameter
-        switch (radioGroupKeywords.getCheckedRadioButtonId()) {
-            case R.id.search_radio_button_name_or_description:
-                return ArchPackagesConstants.SEARCH_KEYWORDS_PARAMETER_NAME_OR_DESCRIPTION;
-            case R.id.search_radio_button_exact_name:
-                return ArchPackagesConstants.SEARCH_KEYWORDS_PARAMETER_EXACT_NAME;
-            case R.id.search_radio_button_description:
-                return ArchPackagesConstants.SEARCH_KEYWORDS_PARAMETER_DESCRIPTION;
-            default:
-                return ArchPackagesConstants.SEARCH_KEYWORDS_PARAMETER_NAME_OR_DESCRIPTION;
+        int checkedRadioButtonId = radioGroupKeywords.getCheckedRadioButtonId();
+        if (checkedRadioButtonId == R.id.search_radio_button_name_or_description) {
+            return ArchPackagesConstants.SEARCH_KEYWORDS_PARAMETER_NAME_OR_DESCRIPTION;
+        } else if (checkedRadioButtonId == R.id.search_radio_button_exact_name) {
+            return ArchPackagesConstants.SEARCH_KEYWORDS_PARAMETER_EXACT_NAME;
+        } else if (checkedRadioButtonId == R.id.search_radio_button_description) {
+            return ArchPackagesConstants.SEARCH_KEYWORDS_PARAMETER_DESCRIPTION;
         }
+        return ArchPackagesConstants.SEARCH_KEYWORDS_PARAMETER_NAME_OR_DESCRIPTION;
     }
 
     private ArrayList<String> getListRepo() {
@@ -293,16 +292,15 @@ public class SearchFragment extends Fragment {
     }
 
     private String getFlagged() {
-        switch (radioGroupFlag.getCheckedRadioButtonId()) {
-            case R.id.search_radio_button_flag_all:
-                return null;
-            case R.id.search_radio_button_flag_flagged:
-                return getString(R.string.flagged);
-            case R.id.search_radio_button_flag_not_flagged:
-                return getString(R.string.not_flagged);
-            default:
-                return null;
+        int checkedRadioButtonId = radioGroupFlag.getCheckedRadioButtonId();
+        if (checkedRadioButtonId == R.id.search_radio_button_flag_all) {
+            return null;
+        } else if (checkedRadioButtonId == R.id.search_radio_button_flag_flagged) {
+            return getString(R.string.flagged);
+        } else if (checkedRadioButtonId == R.id.search_radio_button_flag_not_flagged) {
+            return getString(R.string.not_flagged);
         }
+        return null;
     }
 
     private boolean getSharedPreferenceBoolean(String string, boolean defaultValue) {
