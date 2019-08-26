@@ -86,19 +86,15 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
-        switch (getAppTheme()) {
-            case R.style.AppThemeDark:
-                menu.findItem(R.id.menu_main_action_theme_dark).setChecked(true);
-                break;
-            case R.style.AppThemeBlack:
-                menu.findItem(R.id.menu_main_action_theme_black).setChecked(true);
-                break;
-            case R.style.AppThemeLight:
-                menu.findItem(R.id.menu_main_action_theme_light).setChecked(true);
-                break;
-            default:
-                menu.findItem(R.id.menu_main_action_theme_dark).setChecked(true);
-                break;
+        int appTheme = getAppTheme();
+        if (appTheme == R.style.AppThemeDark) {
+            menu.findItem(R.id.menu_main_action_theme_dark).setChecked(true);
+        } else if (appTheme == R.style.AppThemeBlack) {
+            menu.findItem(R.id.menu_main_action_theme_black).setChecked(true);
+        } else if (appTheme == R.style.AppThemeLight) {
+            menu.findItem(R.id.menu_main_action_theme_light).setChecked(true);
+        } else {
+            menu.findItem(R.id.menu_main_action_theme_dark).setChecked(true);
         }
         return super.onPrepareOptionsMenu(menu);
     }
