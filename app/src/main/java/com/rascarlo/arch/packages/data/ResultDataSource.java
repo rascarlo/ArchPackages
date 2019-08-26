@@ -114,47 +114,42 @@ public class ResultDataSource extends PageKeyedDataSource<Integer, Result> {
 
     private Call<Packages> getCall(int firstPage) {
         Call<Packages> call;
-        switch (keywordsParameter) {
-            case ArchPackagesConstants.SEARCH_KEYWORDS_PARAMETER_NAME_OR_DESCRIPTION:
-                call = ArchPackagesRepository.getArchPackagesRepositoryInstance()
-                        .getArchPackagesService()
-                        .searchByNameOrDescription(query,
-                                listRepo,
-                                listArch,
-                                flagged,
-                                firstPage,
-                                PAGE_SIZE);
-                break;
-            case ArchPackagesConstants.SEARCH_KEYWORDS_PARAMETER_EXACT_NAME:
-                call = ArchPackagesRepository.getArchPackagesRepositoryInstance()
-                        .getArchPackagesService()
-                        .searchByExactName(query,
-                                listRepo,
-                                listArch,
-                                flagged,
-                                firstPage,
-                                PAGE_SIZE);
-                break;
-            case ArchPackagesConstants.SEARCH_KEYWORDS_PARAMETER_DESCRIPTION:
-                call = ArchPackagesRepository.getArchPackagesRepositoryInstance()
-                        .getArchPackagesService()
-                        .searchByDescription(query,
-                                listRepo,
-                                listArch,
-                                flagged,
-                                firstPage,
-                                PAGE_SIZE);
-                break;
-            default:
-                call = ArchPackagesRepository.getArchPackagesRepositoryInstance()
-                        .getArchPackagesService()
-                        .searchByNameOrDescription(query,
-                                listRepo,
-                                listArch,
-                                flagged,
-                                firstPage,
-                                PAGE_SIZE);
-                break;
+        if (keywordsParameter == ArchPackagesConstants.SEARCH_KEYWORDS_PARAMETER_NAME_OR_DESCRIPTION) {
+            call = ArchPackagesRepository.getArchPackagesRepositoryInstance()
+                    .getArchPackagesService()
+                    .searchByNameOrDescription(query,
+                            listRepo,
+                            listArch,
+                            flagged,
+                            firstPage,
+                            PAGE_SIZE);
+        } else if (keywordsParameter == ArchPackagesConstants.SEARCH_KEYWORDS_PARAMETER_EXACT_NAME) {
+            call = ArchPackagesRepository.getArchPackagesRepositoryInstance()
+                    .getArchPackagesService()
+                    .searchByExactName(query,
+                            listRepo,
+                            listArch,
+                            flagged,
+                            firstPage,
+                            PAGE_SIZE);
+        } else if (keywordsParameter == ArchPackagesConstants.SEARCH_KEYWORDS_PARAMETER_DESCRIPTION) {
+            call = ArchPackagesRepository.getArchPackagesRepositoryInstance()
+                    .getArchPackagesService()
+                    .searchByDescription(query,
+                            listRepo,
+                            listArch,
+                            flagged,
+                            firstPage,
+                            PAGE_SIZE);
+        } else {
+            call = ArchPackagesRepository.getArchPackagesRepositoryInstance()
+                    .getArchPackagesService()
+                    .searchByNameOrDescription(query,
+                            listRepo,
+                            listArch,
+                            flagged,
+                            firstPage,
+                            PAGE_SIZE);
         }
         return call;
     }
