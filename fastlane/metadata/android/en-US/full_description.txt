@@ -1,6 +1,3 @@
-Arch Linux packages browser.
-The application makes use of the official API to browse the Arch Linux packages repos.
-
 The package layout provides all available details:
 - Description.
 - Filename.
