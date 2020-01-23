@@ -17,19 +17,20 @@
 
 package com.rascarlo.arch.packages.ui;
 
-import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.DividerItemDecoration;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.rascarlo.arch.packages.R;
 import com.rascarlo.arch.packages.adapters.DependencyAdapter;
@@ -45,6 +46,8 @@ import com.rascarlo.arch.packages.viewmodel.DetailsViewModelFactory;
 import com.rascarlo.arch.packages.viewmodel.FilesViewModel;
 import com.rascarlo.arch.packages.viewmodel.FilesViewModelFactory;
 import com.rascarlo.arch.packages.viewmodel.RoomFileViewModel;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
 import java.util.List;
@@ -87,7 +90,7 @@ public class DetailsFragment extends Fragment implements DependencyAdapterCallba
     }
 
     @Override
-    public void onAttach(Context context) {
+    public void onAttach(@NotNull Context context) {
         super.onAttach(context);
         this.context = context;
         if (context instanceof DetailsFragmentCallback) {
@@ -116,8 +119,8 @@ public class DetailsFragment extends Fragment implements DependencyAdapterCallba
         if (fragmentDetailsBinding != null) {
             // details
             DetailsViewModelFactory detailsViewModelFactory = new DetailsViewModelFactory(bundleRepo, bundleArch, bundlePkgname);
-            DetailsViewModel detailsViewModel = ViewModelProviders.of(this, detailsViewModelFactory).get(DetailsViewModel.class);
-            detailsViewModel.getDetailsLiveData().observe(this, details -> {
+            DetailsViewModel detailsViewModel = new ViewModelProvider(this, detailsViewModelFactory).get(DetailsViewModel.class);
+            detailsViewModel.getDetailsLiveData().observe(getViewLifecycleOwner(), details -> {
                 if (details != null && fragmentDetailsBinding != null) {
                     fragmentDetailsBinding.setDetails(details);
                     fragmentDetailsBinding.executePendingBindings();
@@ -126,8 +129,8 @@ public class DetailsFragment extends Fragment implements DependencyAdapterCallba
             });
             // files
             FilesViewModelFactory filesViewModelFactory = new FilesViewModelFactory(bundleRepo, bundleArch, bundlePkgname);
-            FilesViewModel filesViewModel = ViewModelProviders.of(this, filesViewModelFactory).get(FilesViewModel.class);
-            filesViewModel.getFilesLiveData().observe(this, files -> {
+            FilesViewModel filesViewModel = new ViewModelProvider(this, filesViewModelFactory).get(FilesViewModel.class);
+            filesViewModel.getFilesLiveData().observe(getViewLifecycleOwner(), files -> {
                 if (files != null && fragmentDetailsBinding != null) {
                     fragmentDetailsBinding.detailsFilesLayout.setFiles(files);
                     bindFilesViewModel(files);
@@ -197,7 +200,7 @@ public class DetailsFragment extends Fragment implements DependencyAdapterCallba
 
     private void bindFiles(Files files) {
         if (files.files != null) {
-            RoomFileViewModel roomFileViewModel = ViewModelProviders.of(this).get(RoomFileViewModel.class);
+            RoomFileViewModel roomFileViewModel = new ViewModelProvider(this).get(RoomFileViewModel.class);
             roomFileViewModel.wipeRoomFileDatabase();
             for (String s : files.files) {
                 roomFileViewModel.insertRoomFile(new RoomFile(s.trim()));

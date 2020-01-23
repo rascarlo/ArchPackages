@@ -17,10 +17,12 @@
 
 package com.rascarlo.arch.packages.data;
 
-import android.arch.lifecycle.MutableLiveData;
-import android.arch.paging.DataSource;
+import androidx.lifecycle.MutableLiveData;
+import androidx.paging.DataSource;
 
 import com.rascarlo.arch.packages.api.model.Result;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
@@ -46,6 +48,7 @@ public class ResultDataSourceFactory extends DataSource.Factory {
         this.mutableLiveData = new MutableLiveData<>();
     }
 
+    @NotNull
     @Override
     public DataSource<Integer, Result> create() {
         ResultDataSource resultDataSource = new ResultDataSource(this.keywordsParameter,

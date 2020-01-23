@@ -40,7 +40,7 @@
             android:text="@{@string/formatted_check_dependencies(Details.checkdepends.size())}"
             android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
-        <android.support.v7.widget.RecyclerView
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/details_check_dependencies_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

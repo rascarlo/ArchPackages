@@ -17,10 +17,10 @@
 
 package com.rascarlo.arch.packages.viewmodel;
 
-import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.ViewModel;
-import android.arch.paging.LivePagedListBuilder;
-import android.arch.paging.PagedList;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.ViewModel;
+import androidx.paging.LivePagedListBuilder;
+import androidx.paging.PagedList;
 
 import com.rascarlo.arch.packages.api.model.Result;
 import com.rascarlo.arch.packages.data.ResultDataSource;

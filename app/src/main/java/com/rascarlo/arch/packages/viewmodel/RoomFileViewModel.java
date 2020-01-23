@@ -18,10 +18,10 @@
 package com.rascarlo.arch.packages.viewmodel;
 
 import android.app.Application;
-import android.arch.lifecycle.AndroidViewModel;
-import android.arch.lifecycle.LiveData;
-import android.arch.paging.PagedList;
-import android.support.annotation.NonNull;
+import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.LiveData;
+import androidx.paging.PagedList;
+import androidx.annotation.NonNull;
 
 import com.rascarlo.arch.packages.data.RoomFileRepository;
 import com.rascarlo.arch.packages.persistence.RoomFile;

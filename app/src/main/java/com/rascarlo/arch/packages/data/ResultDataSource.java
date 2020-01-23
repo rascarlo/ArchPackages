@@ -17,8 +17,8 @@
 
 package com.rascarlo.arch.packages.data;
 
-import android.arch.paging.PageKeyedDataSource;
-import android.support.annotation.NonNull;
+import androidx.paging.PageKeyedDataSource;
+import androidx.annotation.NonNull;
 
 import com.rascarlo.arch.packages.api.model.Packages;
 import com.rascarlo.arch.packages.api.model.Result;

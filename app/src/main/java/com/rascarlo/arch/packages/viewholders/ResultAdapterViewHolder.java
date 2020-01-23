@@ -18,8 +18,8 @@
 package com.rascarlo.arch.packages.viewholders;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.rascarlo.arch.packages.R;
 import com.rascarlo.arch.packages.api.model.Result;

@@ -17,19 +17,20 @@
 
 package com.rascarlo.arch.packages.ui;
 
-import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.DividerItemDecoration;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.rascarlo.arch.packages.adapters.ResultAdapter;
 import com.rascarlo.arch.packages.api.model.Result;
@@ -38,6 +39,8 @@ import com.rascarlo.arch.packages.callbacks.ResultFragmentCallback;
 import com.rascarlo.arch.packages.databinding.FragmentResultBinding;
 import com.rascarlo.arch.packages.viewmodel.PackagesViewModel;
 import com.rascarlo.arch.packages.viewmodel.PackagesViewModelFactory;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -93,7 +96,7 @@ public class ResultFragment extends Fragment implements ResultAdapterCallback {
     }
 
     @Override
-    public void onAttach(Context context) {
+    public void onAttach(@NotNull Context context) {
         super.onAttach(context);
         this.context = context;
         if (context instanceof ResultFragmentCallback) {
@@ -125,7 +128,7 @@ public class ResultFragment extends Fragment implements ResultAdapterCallback {
                     bundleListRepo,
                     bundleListArch,
                     bundleStringFlagged);
-            PackagesViewModel packagesViewModel = ViewModelProviders.of(this, factory).get(PackagesViewModel.class);
+            PackagesViewModel packagesViewModel = new ViewModelProvider(this, factory).get(PackagesViewModel.class);
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
             RecyclerView recyclerView = fragmentResultBinding.fragmentResultRecyclerView;
             ProgressBar progressBar = fragmentResultBinding.fragmentResultProgressBar;
@@ -134,7 +137,7 @@ public class ResultFragment extends Fragment implements ResultAdapterCallback {
             recyclerView.addItemDecoration(new DividerItemDecoration(context, DividerItemDecoration.VERTICAL));
             recyclerView.setHasFixedSize(true);
             recyclerView.setLayoutManager(linearLayoutManager);
-            packagesViewModel.getPagedListLiveData().observe(this, results -> {
+            packagesViewModel.getPagedListLiveData().observe(getViewLifecycleOwner(), results -> {
                 if (results != null) {
                     resultAdapter.submitList(results);
                 }
