@@ -20,11 +20,6 @@ package com.rascarlo.arch.packages.util;
 import android.content.Context;
 import android.text.format.Formatter;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Locale;
-import java.util.TimeZone;
-
 public class ArchPackagesStringConverters {
 
     public static String convertBytesToMb(Context context, String bytes) {
