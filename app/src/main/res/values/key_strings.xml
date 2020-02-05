@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name" translatable="false">Arch packages</string>
+    <string name="unicode_dir" translatable="false">\u002F</string>
+    <string name="arch_linux" translatable="false">Arch Linux</string>
+    <string name="core" translatable="false">Core</string>
+    <string name="extra" translatable="false">Extra</string>
+    <string name="testing" translatable="false">Testing</string>
+    <string name="multilib" translatable="false">Multilib</string>
+    <string name="multilib_testing" translatable="false">Multilib-Testing</string>
+    <string name="community" translatable="false">Community</string>
+    <string name="community_testing" translatable="false">Community-Testing</string>
+    <string name="arch_x86_64" translatable="false">x86_64</string>
+    <string name="source_link" translatable="false">https://github.com/rascarlo/ArchPackages</string>
+    <string name="api_wiki_link" translatable="false">https://wiki.archlinux.org/index.php/Official_repositories_web_interface</string>
+    <string name="arch_linux_link" translatable="false">https://www.archlinux.org/</string>
+    <string name="arch_linux_packages_link" translatable="false">https://www.archlinux.org/packages/</string>
+    <string name="monospace" translatable="false">monospace</string>
+    <string name="unicode_comma_whitespace" translatable="false">,\u0020</string>
+    <!--keywords keys-->
+    <string name="key_keywords" translatable="false">key_keywords</string>
+    <string name="key_keywords_default_value" translatable="false">@string/key_keywords_name_or_description</string>
+    <string name="key_keywords_name_or_description" translatable="false">key_keywords_name_or_description</string>
+    <string name="key_keywords_exact_name" translatable="false">key_keywords_exact_name</string>
+    <string name="key_keywords_description" translatable="false">key_keywords_description</string>
+    <!--repo keys-->
+    <string name="key_repo_core" translatable="false">key_repo_core</string>
+    <string name="key_repo_extra" translatable="false">key_repo_extra</string>
+    <string name="key_repo_testing" translatable="false">key_repo_testing</string>
+    <string name="key_repo_multilib" translatable="false">key_repo_multilib</string>
+    <string name="key_repo_multilib_testing" translatable="false">key_repo_multilib_testing</string>
+    <string name="key_repo_community" translatable="false">key_repo_community</string>
+    <string name="key_repo_community_testing" translatable="false">key_repo_community_testing</string>
+    <!--arch keys-->
+    <string name="key_arch_any" translatable="false">key_arch_any</string>
+    <string name="key_arch_x86_64" translatable="false">key_arch_x86_64</string>
+    <!--flag keys-->
+    <string name="key_flag" translatable="false">key_flag</string>
+    <string name="key_flag_default_value" translatable="false">@string/key_flag_flagged_all</string>
+    <string name="key_flag_flagged_all" translatable="false">key_flag_flagged_all</string>
+    <string name="key_flag_flagged" translatable="false">key_flag_flagged</string>
+    <string name="key_flag_not_flagged" translatable="false">key_flag_not_flagged</string>
+    <!--theme keys-->
+    <string name="key_theme" translatable="false">key_theme</string>
+    <string name="key_theme_default_value" translatable="false">@string/key_theme_dark</string>
+    <string name="key_theme_dark" translatable="false">key_theme_dark</string>
+    <string name="key_theme_black" translatable="false">key_theme_black</string>
+    <string name="key_theme_light" translatable="false">key_theme_light</string>
+    <string name="i_use_arch_btw" translatable="false">I use Arch BTW</string>
+</resources>

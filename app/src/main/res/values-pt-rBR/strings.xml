@@ -16,9 +16,6 @@
   -->
 
 <resources>
-    <string name="app_name">Arch packages</string>
-    <string name="unicode_dir">\u002F</string>
-    <string name="unicode_comma_whitespace">,\u0020</string>
     <string name="action_settings">Configurações</string>
     <string name="formatted_filename">Nome do arquivo: %1$s</string>
     <string name="formatted_version">Versão: %1$s</string>
@@ -46,7 +43,6 @@
     <string name="formatted_dirs_count">Diretórios (%1$s)</string>
     <string name="formatted_files_count">Arquivos (%1$s)</string>
     <string name="view_content">Ver conteúdo</string>
-
     <string name="package_search">Pesquisar por pacote</string>
     <string name="keywords">Palavras-chaves</string>
     <string name="keywords_hint">deixe em branco para pesquisar todos os pacotes.</string>
@@ -55,22 +51,13 @@
     <string name="description">Descrição</string>
     <string name="repository">Repositório</string>
     <string name="repository_hint">É possível usar este parâmetro mais de uma vez para pesquisar em mais de um repositório (mas note que omitir isso irá procurar em todos os repositórios).</string>
-    <string name="core">Core</string>
-    <string name="extra">Extra</string>
-    <string name="testing">Testing</string>
-    <string name="multilib">Multilib</string>
-    <string name="multilib_testing">Multilib-Testing</string>
-    <string name="community">Community</string>
-    <string name="community_testing">Community-Testing</string>
     <string name="architecture">Arquitetura</string>
     <string name="architecture_hint">É possível usar este parâmetro mais de uma vez para pesquisar em mais de uma arquitetura (mas note que omitir isso irá procurar em todas as arquiteturas).</string>
     <string name="arch_any">any</string>
-    <string name="arch_x86_64">x86_64</string>
     <string name="flag">Desatualização</string>
     <string name="all">Todas</string>
     <string name="flagged">Marcada</string>
     <string name="not_flagged">Não marcada</string>
-
     <string name="design">Design</string>
     <string name="theme">Tema</string>
     <string name="theme_dark">Escuro</string>
@@ -79,46 +66,5 @@
     <string name="links">Links</string>
     <string name="source">Fonte</string>
     <string name="api_wiki">API wiki</string>
-    <string name="arch_linux">Arch Linux</string>
     <string name="arch_linux_packages">Pacotes do Arch Linux</string>
-    <string name="source_link" translatable="false">https://github.com/rascarlo/ArchPackages</string>
-    <string name="api_wiki_link" translatable="false">https://wiki.archlinux.org/index.php/Official_repositories_web_interface</string>
-    <string name="arch_linux_link" translatable="false">https://www.archlinux.org/</string>
-    <string name="arch_linux_packages_link" translatable="false">https://www.archlinux.org/packages/</string>
-    <string name="monospace" translatable="false">monospace</string>
-
-    <!--keywords keys-->
-    <string name="key_keywords" translatable="false">key_keywords</string>
-    <string name="key_keywords_default_value" translatable="false">@string/key_keywords_name_or_description</string>
-    <string name="key_keywords_name_or_description" translatable="false">key_keywords_name_or_description</string>
-    <string name="key_keywords_exact_name" translatable="false">key_keywords_exact_name</string>
-    <string name="key_keywords_description" translatable="false">key_keywords_description</string>
-
-    <!--repo keys-->
-    <string name="key_repo_core" translatable="false">key_repo_core</string>
-    <string name="key_repo_extra" translatable="false">key_repo_extra</string>
-    <string name="key_repo_testing" translatable="false">key_repo_testing</string>
-    <string name="key_repo_multilib" translatable="false">key_repo_multilib</string>
-    <string name="key_repo_multilib_testing" translatable="false">key_repo_multilib_testing</string>
-    <string name="key_repo_community" translatable="false">key_repo_community</string>
-    <string name="key_repo_community_testing" translatable="false">key_repo_community_testing</string>
-
-    <!--arch keys-->
-    <string name="key_arch_any" translatable="false">key_arch_any</string>
-    <string name="key_arch_x86_64" translatable="false">key_arch_x86_64</string>
-
-    <!--flag keys-->
-    <string name="key_flag" translatable="false">key_flag</string>
-    <string name="key_flag_default_value" translatable="false">@string/key_flag_flagged_all</string>
-    <string name="key_flag_flagged_all" translatable="false">key_flag_flagged_all</string>
-    <string name="key_flag_flagged" translatable="false">key_flag_flagged</string>
-    <string name="key_flag_not_flagged" translatable="false">key_flag_not_flagged</string>
-
-    <!--theme keys-->
-    <string name="key_theme" translatable="false">key_theme</string>
-    <string name="key_theme_default_value" translatable="false">@string/key_theme_dark</string>
-    <string name="key_theme_dark" translatable="false">key_theme_dark</string>
-    <string name="key_theme_black">key_theme_black</string>
-    <string name="key_theme_light" translatable="false">key_theme_light</string>
-    <string name="i_use_arch_btw">I use Arch BTW</string>
 </resources>
