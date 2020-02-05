@@ -1,0 +1,70 @@
+<!--
+  ~     Copyright (C) 2018 rascarlo <rascarlo@gmail.com>
+  ~
+  ~     This program is free software: you can redistribute it and/or modify
+  ~     it under the terms of the GNU General Public License as published by
+  ~     the Free Software Foundation, either version 3 of the License, or
+  ~     (at your option) any later version.
+  ~
+  ~     This program is distributed in the hope that it will be useful,
+  ~     but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~     GNU General Public License for more details.
+  ~
+  ~     You should have received a copy of the GNU General Public License
+  ~     along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+
+<resources>
+    <string name="action_settings">Impostazioni</string>
+    <string name="formatted_filename">Nome file: %1$s</string>
+    <string name="formatted_version">Versione: %1$s</string>
+    <string name="formatted_pkgbase">Pacchetto base: %1$s</string>
+    <string name="formatted_arch">Arch: %1$s</string>
+    <string name="formatted_repo">Repo: %1$s</string>
+    <string name="formatted_url">URL upstream: %1$s</string>
+    <string name="formatted_license">Licenza: %1$s</string>
+    <string name="formatted_groups">Gruppi: %1$s</string>
+    <string name="formatted_maintainers">Mantenitori: %1$s</string>
+    <string name="formatted_packager">Packager: %1$s</string>
+    <string name="formatted_compressed_size">Dimensione pacchetto: %1$s B (%2$s)</string>
+    <string name="formatted_installed_size">Dimensione installato: %1$s B (%2$s)</string>
+    <string name="formatted_build_date">Data compilazione: %1$s</string>
+    <string name="formatted_last_update">Ultimo aggiornamento: %1$s</string>
+    <string name="formatted_flag_date">Data segnalazione: %1$s</string>
+    <string name="formatted_dependencies">Dipendenze (%1$d)</string>
+    <string name="formatted_opt_dependencies">Dipendenze opzionali (%1$d)</string>
+    <string name="formatted_make_dependencies">Dipendenze make (%1$d)</string>
+    <string name="formatted_check_dependencies">Dipendenze check (%1$d)</string>
+    <string name="formatted_conflicts">Conflitti (%1$d)</string>
+    <string name="formatted_provides">Fornisce (%1$d)</string>
+    <string name="formatted_replaces">Sostituisce (%1$d)</string>
+    <string name="files">File</string>
+    <string name="formatted_dirs_count">Directory (%1$s)</string>
+    <string name="formatted_files_count">File (%1$s)</string>
+    <string name="view_content">Visualizza contenuto</string>
+    <string name="package_search">Ricerca pacchetto</string>
+    <string name="keywords">Parole chiavi</string>
+    <string name="keywords_hint">Lasciare vuoto per cercare tutti i pacchetti.</string>
+    <string name="name_or_description">Nome o descrizione</string>
+    <string name="exact_name">Nome esatto</string>
+    <string name="description">Descrizione</string>
+    <string name="repository">Repository</string>
+    <string name="repository_hint">È possibile utilizzare questo parametro più di una volta per cercare in più di un repository (ma si noti che omettendolo del tutto si cercherà in tutti i repository).</string>
+    <string name="architecture">Architettura</string>
+    <string name="architecture_hint">È possibile utilizzare questo parametro più di una volta per cercare più di un\'architettura (ma si noti che omettendolo del tutto si cercherà tutte le architetture).</string>
+    <string name="arch_any">qualsiasi</string>
+    <string name="flag">Segnalazione</string>
+    <string name="all">Tutte</string>
+    <string name="flagged">Segnalato</string>
+    <string name="not_flagged">Non segnalato</string>
+    <string name="design">Design</string>
+    <string name="theme">Tema</string>
+    <string name="theme_dark">Scuro</string>
+    <string name="theme_black">Nero</string>
+    <string name="theme_light">Chiaro</string>
+    <string name="links">Links</string>
+    <string name="source">Source</string>
+    <string name="api_wiki">Wiki API</string>
+    <string name="arch_linux_packages">Pacchetti Arch Linux</string>
+</resources>
