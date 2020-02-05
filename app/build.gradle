@@ -26,6 +26,8 @@ android {
         versionCode 4
         versionName "0.4"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        resConfigs "en", // english
+                "pt-rBR" // portuguese brazil
     }
     buildTypes {
         release {
