@@ -143,4 +143,23 @@
 
     </PreferenceCategory>
 
+    <PreferenceCategory android:title="@string/translations">
+        <Preference
+            android:summary="@string/translations_italian_link"
+            android:title="@string/translations_italian">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="@string/translations_italian_link" />
+        </Preference>
+
+        <Preference
+            android:summary="@string/translations_portuguese_brazil_link"
+            android:title="@string/translations_portuguese_brazil">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="@string/translations_portuguese_brazil_link" />
+        </Preference>
+
+    </PreferenceCategory>
+
 </androidx.preference.PreferenceScreen>

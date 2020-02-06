@@ -67,4 +67,7 @@
     <string name="source">Source</string>
     <string name="api_wiki">API wiki</string>
     <string name="arch_linux_packages">Arch Linux packages</string>
+    <string name="translations">Translations</string>
+    <string name="translations_italian">Italian</string>
+    <string name="translations_portuguese_brazil">Portuguese, Brazil</string>
 </resources>
