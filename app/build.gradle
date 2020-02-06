@@ -25,7 +25,6 @@ android {
         targetSdkVersion 29
         versionCode 4
         versionName "0.4"
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         resConfigs "en", // english
                 "it", // italian
                 "pt-rBR" // portuguese brazil
@@ -54,8 +53,6 @@ android {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     testImplementation 'junit:junit:4.13'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     // preference
     implementation 'androidx.preference:preference:1.1.0'
     // recycler view
@@ -71,7 +68,6 @@ dependencies {
     // room
     implementation 'androidx.room:room-runtime:2.2.3'
     annotationProcessor 'androidx.room:room-compiler:2.2.3'
-    androidTestImplementation 'androidx.room:room-testing:2.2.3'
     // paging
     implementation 'androidx.paging:paging-runtime:2.1.1'
     // retrofit
