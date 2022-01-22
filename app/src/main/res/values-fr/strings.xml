@@ -1,0 +1,74 @@
+<!--
+  ~     Copyright (C) 2022 rascarlo <rascarlo@gmail.com>
+  ~
+  ~     This program is free software: you can redistribute it and/or modify
+  ~     it under the terms of the GNU General Public License as published by
+  ~     the Free Software Foundation, either version 3 of the License, or
+  ~     (at your option) any later version.
+  ~
+  ~     This program is distributed in the hope that it will be useful,
+  ~     but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~     GNU General Public License for more details.
+  ~
+  ~     You should have received a copy of the GNU General Public License
+  ~     along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+
+<resources>
+    <string name="action_settings">Paramètres</string>
+    <string name="formatted_filename">Nom de fichier : %1$s</string>
+    <string name="formatted_version">Version : %1$s</string>
+    <string name="formatted_pkgbase">Paquet de base : %1$s</string>
+    <string name="formatted_arch">Arch : %1$s</string>
+    <string name="formatted_repo">Dépôt : %1$s</string>
+    <string name="formatted_url">URL upstream : %1$s</string>
+    <string name="formatted_license">Licence : %1$s</string>
+    <string name="formatted_groups">Groupes : %1$s</string>
+    <string name="formatted_maintainers">Mainteneurs : %1$s</string>
+    <string name="formatted_packager">Paqueteur : %1$s</string>
+    <string name="formatted_compressed_size">Taille du paquet : %1$s B (%2$s)</string>
+    <string name="formatted_installed_size">Taille installée : %1$s B (%2$s)</string>
+    <string name="formatted_build_date">Compilé le : %1$s</string>
+    <string name="formatted_last_update">Dernière mise à jour : %1$s</string>
+    <string name="formatted_flag_date">Marqué comme périmé le : %1$s</string>
+    <string name="formatted_dependencies">Dépendances (%1$d)</string>
+    <string name="formatted_opt_dependencies">Dépendances optionnelles (%1$d)</string>
+    <string name="formatted_make_dependencies">Dépendances de compilation (%1$d)</string>
+    <string name="formatted_check_dependencies">Dépendances de vérification (%1$d)</string>
+    <string name="formatted_conflicts">Conflits (%1$d)</string>
+    <string name="formatted_provides">Fournit (%1$d)</string>
+    <string name="formatted_replaces">Remplace (%1$d)</string>
+    <string name="files">Fichiers</string>
+    <string name="formatted_dirs_count">Répertoires (%1$s)</string>
+    <string name="formatted_files_count">Fichiers (%1$s)</string>
+    <string name="view_content">Voir le contenu</string>
+    <string name="package_search">Recherche d'un paquet</string>
+    <string name="keywords">Mots-clés</string>
+    <string name="keywords_hint">Laisser vide pour chercher tous les paquets.</string>
+    <string name="name_or_description">Nom ou description</string>
+    <string name="exact_name">Nom exact</string>
+    <string name="description">Description</string>
+    <string name="repository">Dépôt</string>
+    <string name="repository_hint">Il est possible d'utiliser ce paramètre plus d'une fois afin d'effectuer une recherche dans plus d'un dépôt (mais notez que si vous l'omettez complètement, la recherche se fera dans tous les dépôts).</string>
+    <string name="architecture">Architecture</string>
+    <string name="architecture_hint">Il est possible d'utiliser ce paramètre plus d'une fois afin d'effectuer une recherche dans plus d'une architecture (mais notez que si vous l'omettez complètement, la recherche se fera dans toutes les architectures).</string>
+    <string name="arch_any">n'importe (any)</string>
+    <string name="flag">Marqué comme périmé</string>
+    <string name="all">Tout</string>
+    <string name="flagged">Marqué</string>
+    <string name="not_flagged">Non marqué</string>
+    <string name="design">Design</string>
+    <string name="theme">Theme</string>
+    <string name="theme_dark">Sombre</string>
+    <string name="theme_black">Noir</string>
+    <string name="theme_light">Clair</string>
+    <string name="links">Liens</string>
+    <string name="source">Source</string>
+    <string name="api_wiki">Wiki de l'API</string>
+    <string name="arch_linux_packages">Paquets Arch Linux</string>
+    <string name="translations">Traductions</string>
+    <string name="translations_italian">Italien</string>
+    <string name="translations_portuguese_brazil">Portugais, Brésil</string>
+    <strign name="translations_french">Français</string>
+</resources>

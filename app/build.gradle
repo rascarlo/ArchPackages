@@ -27,7 +27,8 @@ android {
         versionName "0.5"
         resConfigs "en", // english
                 "it", // italian
-                "pt-rBR" // portuguese brazil
+                "pt-rBR", // portuguese brazil
+                "fr" // french
     }
     buildTypes {
         release {

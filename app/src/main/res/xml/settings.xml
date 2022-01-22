@@ -159,6 +159,14 @@
                 android:action="android.intent.action.VIEW"
                 android:data="@string/translations_portuguese_brazil_link" />
         </Preference>
+        
+        <Preference
+            android:summary="@string/translations_french_link"
+            android:title="@string/translations_french">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="@string/translations_french_link" />
+        </Preference>
 
     </PreferenceCategory>
 
