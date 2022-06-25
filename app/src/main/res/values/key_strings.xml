@@ -19,6 +19,7 @@
     <string name="unicode_comma_whitespace" translatable="false">,\u0020</string>
     <string name="translations_italian_link" translatable="false">https://github.com/rascarlo</string>
     <string name="translations_portuguese_brazil_link" translatable="false">https://github.com/rffontenelle</string>
+    <string name="translations_turkish_link" translatable="false">https://github.com/dybdeskarphet</string>
     <!--keywords keys-->
     <string name="key_keywords" translatable="false">key_keywords</string>
     <string name="key_keywords_default_value" translatable="false">@string/key_keywords_name_or_description</string>
