@@ -1,0 +1,49 @@
+Paket arayüzü aşağıdaki tüm detayları sunmaktadır:
+- Açıklama.
+- Dosya İsmi.
+- Sürüm Numarası.
+- Temel paketi.
+- Mimari.
+- Depo.
+- Grup.
+- Yukarı akım (upstream) URL.
+- Lisans.
+- Bakımını yapanlar.
+- Paketleyenler.
+- Paket boyutu.
+- Kurulum boyutu.
+- İnşa etme tarihi.
+- Son güncelleme.
+- İşaretleme tarihi.
+- Bağımlılıklar.
+- Yapım bağımlılıkları.
+- Kontrol bağımlılıkları.
+- İsteğe Bağlı Bağımlılıklar.
+- Çakışmalar.
+- Sundukları.
+- Yerine geçtikleri.
+- Dosyalar.
+
+Desteklenen depolar:
+- core.
+- extra.
+- testing.
+- multilib.
+- multilib-testing.
+- community.
+- community-testing.
+
+Desteklenen mimariler: 
+- tüm.
+- x86_64.
+
+Desteklenen işaretlemeler:
+- Hepsi.
+- İşaretlenmiş.
+- İşaretlenmemiş.
+
+Bakımını yapan (Maintainer), Paketleyen Bilgisi ve sıralama (API buna olanak sağlamamaktadır) dışında HTML arama şeklinde olduğu gibi aynı sorgulama parametrelerini desteklemektedir 
+
+I use Arch BTW*
+
+*: "Arch kullanıyorum bu arada" anlamına gelen bir Archer deyimi

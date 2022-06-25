@@ -1,0 +1,6 @@
+- retrofit: set httpLoggingInterceptor level to body on DEBUG builds, to none on production.
+- search: remove fab and use keyboard ime action search.
+- settings: use mipmap for app icon (fix crash on lower api).
+- details: add base package.
+- set minimum sdk to 16.
+- remove some unused resources.

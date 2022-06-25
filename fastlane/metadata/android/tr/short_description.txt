@@ -1,0 +1,3 @@
+Arch Linux paket inceleyici.
+Bu uygulama resmî API'dan yararlanarak Arch Linux paket depolarına göz atmaya yarar.
+I use Arch BTW.

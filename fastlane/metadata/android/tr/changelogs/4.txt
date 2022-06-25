@@ -1,0 +1,8 @@
+versionCode 4
+versionName 0.4
+- replace switch statements with if.
+- okhttp: fix deprecated API.
+- update okhttp to 2.6.0.
+- update retrofit to 2.6.0.
+- update gradle to 5.4.1.
+- update build tools to 29.0.2.
