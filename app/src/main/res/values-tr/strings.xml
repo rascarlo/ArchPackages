@@ -1,0 +1,74 @@
+<!--
+  ~     Copyright (C) 2018 rascarlo <rascarlo@gmail.com>
+  ~
+  ~     This program is free software: you can redistribute it and/or modify
+  ~     it under the terms of the GNU General Public License as published by
+  ~     the Free Software Foundation, either version 3 of the License, or
+  ~     (at your option) any later version.
+  ~
+  ~     This program is distributed in the hope that it will be useful,
+  ~     but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~     GNU General Public License for more details.
+  ~
+  ~     You should have received a copy of the GNU General Public License
+  ~     along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+
+<resources>
+    <string name="action_settings">Ayarlar</string>
+    <string name="formatted_filename">Dosya ismi: %1$s</string>
+    <string name="formatted_version">Sürüm: %1$s</string>
+    <string name="formatted_pkgbase">Temel paket: %1$s</string>
+    <string name="formatted_arch">Mimari: %1$s</string>
+    <string name="formatted_repo">Depo: %1$s</string>
+    <string name="formatted_url">Yukarı akım (upstream) bağlantısı: %1$s</string>
+    <string name="formatted_license">Lisans: %1$s</string>
+    <string name="formatted_groups">Gruplar: %1$s</string>
+    <string name="formatted_maintainers">Bakımını yapanlar: %1$s</string>
+    <string name="formatted_packager">Paketleyenler: %1$s</string>
+    <string name="formatted_compressed_size">Paket boyutu: %1$s B (%2$s)</string>
+    <string name="formatted_installed_size">Kurulum boyutu: %1$s B (%2$s)</string>
+    <string name="formatted_build_date">İnşa etme tarihi: %1$s</string>
+    <string name="formatted_last_update">Son güncelleme: %1$s</string>
+    <string name="formatted_flag_date">İşaretleme tarihi: %1$s</string>
+    <string name="formatted_dependencies">Bağımlılıklar (%1$d)</string>
+    <string name="formatted_opt_dependencies">İsteğe bağlı Bağımlılıklar (%1$d)</string>
+    <string name="formatted_make_dependencies">Yapım Bağımlılıkları (%1$d)</string>
+    <string name="formatted_check_dependencies">Kontrol Bağımlılıkları (%1$d)</string>
+    <string name="formatted_conflicts">Çakışmalar (%1$d)</string>
+    <string name="formatted_provides">Sundukları (%1$d)</string>
+    <string name="formatted_replaces">Yerine geçtikleri (%1$d)</string>
+    <string name="files">Dosyalar</string>
+    <string name="formatted_dirs_count">Dizinler (%1$s)</string>
+    <string name="formatted_files_count">Dosyalar (%1$s)</string>
+    <string name="view_content">İçeriği göster</string>
+    <string name="package_search">Paket araması</string>
+    <string name="keywords">Anahtar kelimeler</string>
+    <string name="keywords_hint">Tüm paketleri aramak için boş bırakın.</string>
+    <string name="name_or_description">İsim veya açıklama</string>
+    <string name="exact_name">Tam isim</string>
+    <string name="description">Açıklama</string>
+    <string name="repository">Depo</string>
+    <string name="repository_hint">Bu parametreyi birden fazla depoda arama yapmak amacıyla birden fazla kez kullanmak mümkündür (ancak bilinmeli ki aramadan çıkarmak tüm depolarda arayacaktır).</string>
+    <string name="architecture">Mimari</string>
+    <string name="architecture_hint">Bu parametreyi birden fazla depoda arama yapmak amacıyla birden fazla kez kullanmak mümkündür (ancak bilinmeli ki aramadan çıkarmak tüm depolarda arayacaktır).</string>
+    <string name="arch_any">hepsi</string>
+    <string name="flag">İşaret</string>
+    <string name="all">Tümü</string>
+    <string name="flagged">İşaretlenmiş</string>
+    <string name="not_flagged">İşaretlenmemiş</string>
+    <string name="design">Tasarım</string>
+    <string name="theme">Tema</string>
+    <string name="theme_dark">Karanlık</string>
+    <string name="theme_black">Siyah</string>
+    <string name="theme_light">Açık</string>
+    <string name="links">Bağlantılar</string>
+    <string name="source">Kaynak</string>
+    <string name="api_wiki">API viki</string>
+    <string name="arch_linux_packages">Arch Linux paketleri</string>
+    <string name="translations">Çeviriler</string>
+    <string name="translations_italian">İtalyanca</string>
+    <string name="translations_portuguese_brazil">Brezilya Portekizcesi</string>
+    <string name="translations_turkish">Türkçe</string>
+</resources>

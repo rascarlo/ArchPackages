@@ -1,0 +1,7 @@
+versionCode 5
+versionName 0.5
+- target api 29
+- migrate to androidx
+- update libraries
+- localisations: add Italian
+- localisations: add Portuguese, Brazil
